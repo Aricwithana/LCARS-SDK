@@ -9,8 +9,8 @@ Included in the current version of the SDK is the Code core, addon(s) and base t
 
 For more information:
 
-http://www.lcarssdk.org/
-https://www.facebook.com/LCARSSDK
-https://twitter.com/LCARSSDK
+http://www.lcarssdk.org/ <br>
+https://www.facebook.com/LCARSSDK <br>
+https://twitter.com/LCARSSDK <br>
 
 To learn how to use the LCARS SDK Code core read through the attached wiki.
