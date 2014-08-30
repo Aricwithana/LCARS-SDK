@@ -1,0 +1,176 @@
+/** LCARS SDK 14241.1
+* This file is a part of the LCARS SDK.
+* https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
+* For more information please go to http://www.lcarssdk.org.
+**/
+
+/* Bracket Template Type A*/
+.sdk.bracket.typeA{position:relative;}
+.sdk.bracket.typeA > .elbow .bar+.bar{width:8px; min-width:0px;}
+
+.sdk.bracket.typeA > .topLeft{top:0px; left:0px; }
+.sdk.bracket.typeA > .topLeft .bar+.bar{position: absolute; top:34px; width: 8px; height: 14px; right: 0px;}
+.sdk.bracket.typeA > .topRight{top:0px; right:0px; }
+.sdk.bracket.typeA > .topRight .bar+.bar{position: absolute; top:34px; width: 8px; height: 14px; right: 0px; left:auto;}
+.sdk.bracket.typeA > .bottomLeft{bottom:0px; left:0px; }
+.sdk.bracket.typeA > .bottomLeft .bar+.bar{position: absolute; bottom:34px; width: 8px; height: 14px; right: 0px;}
+.sdk.bracket.typeA > .bottomRight{bottom:0px; right:0px;}
+.sdk.bracket.typeA > .bottomRight .bar+.bar{position: absolute; bottom:34px; width: 8px; height: 14px; right: 0px; left:auto;}
+
+.sdk.bracket.typeA .wrapper_leftColumn1 {position:absolute; top:38px; left:0px; bottom:38px;  width:8px;}
+.sdk.bracket.typeA .wrapper_leftColumn1 >.bar {margin-bottom:3px; position:relative; -webkit-box-flex: 1.5;  flex: 1.15;}
+.sdk.bracket.typeA .wrapper_leftColumn1 >.bar:nth-child(2) {	
+    -webkit-box-flex: 1;     
+	-moz-box-flex: 1;        
+	-webkit-flex: 1;        
+	-ms-flex: 1 0 auto !important;            
+	flex: 1;  
+}
+.sdk.bracket.typeA .wrapper_leftColumn1 >.bar:last-child {margin-bottom:0px; }
+
+.sdk.bracket.typeA .wrapper_leftColumn2 {position:absolute; top:51px; left:13px; bottom:51px; width:8px;}
+.sdk.bracket.typeA .wrapper_leftColumn2 >.bar {margin-bottom:3px; position:relative;}
+.sdk.bracket.typeA .wrapper_leftColumn2 >.bar:nth-child(2) {    
+    -webkit-box-flex: 2;     
+	-moz-box-flex: 2;        
+	-webkit-flex: 2;        
+	-ms-flex: 2 0 auto !important;            
+	flex: 2;  
+}
+.sdk.bracket.typeA .wrapper_leftColumn2 >.bar:last-child {margin-bottom:0px;}
+
+.sdk.bracket.typeA .wrapper_leftColumn3 {position:absolute; top:38px; right:13px; bottom:38px;  width:8px;}
+.sdk.bracket.typeA .wrapper_leftColumn3 >.bar {margin-bottom:3px; position:relative; -webkit-box-flex: 1.5;  flex: 1.15;}
+.sdk.bracket.typeA .wrapper_leftColumn3 >.bar:nth-child(2) {    
+    -webkit-box-flex: 1;     
+	-moz-box-flex: 1;        
+	-webkit-flex: 1;        
+	-ms-flex: 1 0 auto !important;            
+	flex: 1; 
+}
+.sdk.bracket.typeA .wrapper_leftColumn3 >.bar:last-child {margin-bottom:0px; }
+
+.sdk.bracket.typeA .wrapper_leftColumn4 {position:absolute; top:51px; right:0px; bottom:51px; width:8px;}
+.sdk.bracket.typeA .wrapper_leftColumn4 >.bar {margin-bottom:3px; position:relative;}
+.sdk.bracket.typeA .wrapper_leftColumn4 >.bar:nth-child(2) {    
+    -webkit-box-flex: 2;     
+	-moz-box-flex: 2;        
+	-webkit-flex: 2;        
+	-ms-flex: 2 0 auto !important;            
+	flex: 2;
+}
+.sdk.bracket.typeA .wrapper_leftColumn4 >.bar:last-child {margin-bottom:0px;}
+
+.sdk.bracket.typeA>.wrapper:not(.content) .bar{width:inherit;}
+.sdk.bracket.typeA>.content{position:absolute; top:38px; left:46px; bottom:38px; right:46px;}
+
+.sdk.bracket.typeA .wrapper_leftColumn1 .bar .bar{ -webkit-animation: bracketAnimation 5s linear infinite !important; animation: bracketAnimation 5s linear infinite !important;}
+.sdk.bracket.typeA .wrapper_leftColumn3 .bar .bar{ -webkit-animation: bracketAnimationR 5s linear infinite !important; animation: bracketAnimationR 5s linear infinite !important; }
+
+@-webkit-keyframes bracketAnimation {
+    0%   { height:50%; top:25%;}
+    10%  { height:36%; top:42%;}
+    20%  { height:10%; top:80%;}
+    30%  { height:30%; top:15%;}
+    40%  { height:62%; top:21%;}
+    50%  { height:75%; top:2%;}
+    60%  { height:12%; top:53%;}
+    70%  { height:25%; top:25%;}
+    80%  { height:92%; top:3%;}
+    90%  { height:16%; top:26%;}
+    100% { height:50%; top:25%;}
+}
+@keyframes bracketAnimation {
+    0%   { height:50%; top:25%;}
+    10%  { height:36%; top:42%;}
+    20%  { height:10%; top:80%;}
+    30%  { height:30%; top:15%;}
+    40%  { height:62%; top:21%;}
+    50%  { height:75%; top:2%;}
+    60%  { height:12%; top:53%;}
+    70%  { height:25%; top:25%;}
+    80%  { height:92%; top:3%;}
+    90%  { height:16%; top:26%;}
+    100% { height:50%; top:25%;}
+}
+
+@-webkit-keyframes bracketAnimationR {
+    0%   { height:50%; top:25%;}
+    10%  { height:16%; top:26%;}
+    20%  { height:92%; top:3%;}
+    30%  { height:25%; top:25%;}
+    40%  { height:62%; top:21%;}
+    50%  { height:75%; top:2%;}
+    60%  { height:62%; top:21%;}
+    70%  { height:30%; top:15%;}
+    80%  { height:10%; top:80%;}
+    90%  { height:36%; top:42%;}
+    100% { height:50%; top:25%;}
+}
+@keyframes bracketAnimationR {
+    0%   { height:50%; top:25%;}
+    10%  { height:16%; top:26%;}
+    20%  { height:92%; top:3%;}
+    30%  { height:25%; top:25%;}
+    40%  { height:62%; top:21%;}
+    50%  { height:75%; top:2%;}
+    60%  { height:62%; top:21%;}
+    70%  { height:30%; top:15%;}
+    80%  { height:10%; top:80%;}
+    90%  { height:36%; top:42%;}
+    100% { height:50%; top:25%;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sdk.dialog .content > h1:not(:first-child){margin-top:20px;}
+
+/* Dialog Panel/Windows - Flex is done specifically here instead of the [flex] attribute.  Less CSS this way*/
+.sdk.dialog.typeA{position:absolute; min-height:35px;}
+.sdk.dialog.typeA>.wrapper>*{position:relative;}
+.sdk.dialog.typeA .header, .dialog.typeA .footer{top:0px; left:0px; height:30px; right:0px;}
+.sdk.dialog.typeA .footer{top:auto; bottom:0px;}
+.sdk.dialog.typeA .header .bar{margin-right:10px;}
+.sdk.dialog.typeA .footer .bar{margin-left:10px;}
+.sdk.dialog.typeA>.content{right:35px; top:40px; left:35px; bottom:40px; overflow:hidden;}
+.sdk.dialog.typeA .title{line-height: .81;}
+
+
+.sdk.dialog.typeB{min-width:185px;}
+.sdk.dialog.typeB > .block{height:60px; left:150px; top:0px;}
+.sdk.dialog.typeB > .block~.block{bottom:0px; top:auto;}
+.sdk.dialog.typeB > .elbow{width:95px;}
+.sdk.dialog.typeB > .elbow .bar{width:45px;}
+.sdk.dialog.typeB > .topLeftAlt .innerRadius, .dialog.typeB > [data-version="bottomLeftAlt"] .innerRadius{left:35px;}
+.sdk.dialog.typeB > .bottomRightAlt"] .innerRadius, .dialog.typeB > [data-version="topRightAlt"] .innerRadius{right:35px;}
+.sdk.dialog.typeB > .topLeftAlt{left:50px; top:0px;}
+.sdk.dialog.typeB > .topLeftAlt .bar{bottom:-65px; height:67px;}
+.sdk.dialog.typeB > .bottomRightAlt{left:0px; top:520px; border-radius:0px;}
+.sdk.dialog.typeB > .bottomRightAlt .bar{height:132px; top:-130px;}
+.sdk.dialog.typeB > .topRightAlt{left:0px; top:520px; border-radius:0px;}
+.sdk.dialog.typeB > .bottomLeftAlt{left:50px; bottom:0px;}
+.sdk.dialog.typeB > .topRightAlt .bar{bottom:-107px; height:109px;}
+.sdk.dialog.typeB > .scrollButton{top:130px; left:50px; height:255px; width:45px;}
+.sdk.dialog.typeB>.content{right:0px; top:0px; left:180px; bottom:0px; overflow:hidden;}
+
+.sdk.dialog.typeC{position:absolute; min-height:35px;}
+.sdk.dialog.typeC>.wrapper>*{position:relative;}
+.sdk.dialog.typeC .header, .dialog.typeC .footer{top:0px; left:0px; height:60px; right:0px;}
+.sdk.dialog.typeC .footer{top:auto; bottom:0px;}
+.sdk.dialog.typeC .header .bar, .dialog.typeC .header .button{margin-right:10px; }
+.sdk.dialog.typeC .footer .bar, .dialog.typeC .footer .button{margin-left:10px;}
+.sdk.dialog.typeC>.content{right:70px; top:70px; left:70px; bottom:70px; overflow:hidden;}
+.sdk.dialog.typeC .title{line-height: .80;}
+.helveticaFont .sdk.dialog.typeC .title {line-height: .75;}
+
