@@ -13,4 +13,4 @@ http://www.lcarssdk.org/ <br>
 https://www.facebook.com/LCARSSDK <br>
 https://twitter.com/LCARSSDK <br>
 
-To learn how to use the LCARS SDK Code core read through the attached wiki.  Wiki is currently being updated.
+To learn how to use the LCARS SDK read through the attached wiki.  Wiki is currently being updated.
