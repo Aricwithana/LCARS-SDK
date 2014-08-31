@@ -1,4 +1,4 @@
-/** LCARS SDK 14241.1
+/** LCARS SDK 14243.101
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -361,7 +361,7 @@ var LCARS = {
         }   
  
         if(args.name === null){$(element).removeAttr('name'); }else if(args.name){$(element).attr('name', args.name);} 
-        if(args.href === null){$(element).removeAttr('href'); }else if(args.href){$(element).attr('name', args.href);} 
+        if(args.href === null){$(element).removeAttr('href'); }else if(args.href){$(element).attr('href', args.href);} 
         if(args.src === null){$(element).removeAttr('src'); }else if(args.name){$(element).attr('src', args.src);} 
        
        
@@ -712,7 +712,7 @@ $.fn.removeObject = function(success){
             delete allObjects[elemID];
         });
     });
-    if(typeof success === 'function'){setTimeout(function(){success();}, timing_sequence);}
+    if(typeof success === 'function'){setTimeout(function(){success();}, args.timing+timing_sequence);}
 }
 
 
@@ -734,18 +734,18 @@ $.fn.removeObjectSequence = function(args){
     if($(object).hasClass('fade') && args.fade !== false){
         $(object).css('opacity', '0');
         setTimeout(function(){$(object).addClass('hidden');}, args.timing+timing_sequence);
-        if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].remove === 'function'){setTimeout(function(){allObjects[objectID].remove();}, timing_sequence);}}
+        if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].remove === 'function'){setTimeout(function(){allObjects[objectID].remove();}, args.timing+timing_sequence);}}
         setTimeout(function(){ $(object).remove();}, args.timing+timing_sequence);
     }else{
         $(object).addClass('hidden');
-        if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].remove === 'function'){setTimeout(function(){allObjects[objectID].remove();}, timing_sequence);}}
+        if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].remove === 'function'){setTimeout(function(){allObjects[objectID].remove();}, args.timing+timing_sequence);}}
         setTimeout(function(){ $(object).remove();}, timing_sequence);
     } 
     
     if(numberStart+1 !== count){
         setTimeout(function(){ $(array).removeObjectSequence({number:numberStart+1, success:args.success}); }, timing_sequence);
     }else{
-       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, timing_sequence*2);}
+       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, args.timing+timing_sequence*2);}
     }
   
 }
@@ -765,10 +765,10 @@ $.fn.showObject = function(args){
             $(this).removeClass('hidden');
             $(this).css('opacity', '1');
             
-            if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].show === 'function'){setTimeout(function(){allObjects[objectID].show();}, timing_sequence);}}
+            if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].show === 'function'){setTimeout(function(){allObjects[objectID].show();}, args.timing + timing_sequence);}}
         }else{
             $(this).removeClass('hidden');
-            if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].show === 'function'){setTimeout(function(){allObjects[objectID].show();}, timing_sequence);}}
+            if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].show === 'function'){setTimeout(function(){allObjects[objectID].show();}, args.timing + timing_sequence);}}
         }   
     });
     if(typeof args.success === 'function'){setTimeout(function(){ args.success();}, args.timing+timing_sequence);}
@@ -793,17 +793,16 @@ $.fn.showObjectSequence = function(args){
     if($(object).hasClass('fade') && args.fade !== false){
         $(object).removeClass('hidden');
         $(object).css('opacity', '1');
-        
         if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].show === 'function'){setTimeout(function(){allObjects[objectID].show();}, args.timing+timing_sequence);}}
     }else{
         $(object).removeClass('hidden');
-        if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].show === 'function'){setTimeout(function(){allObjects[objectID].show();}, timing_sequence);}}
+        if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].show === 'function'){setTimeout(function(){allObjects[objectID].show();}, args.timing+timing_sequence);}}
     }    
     
     if(numberStart+1 !== count){
         setTimeout(function(){ $(array).showObjectSequence({number:numberStart+1, success:args.success}); }, timing_sequence);
     }else{
-       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, timing_sequence*2);}
+       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, args.timing+timing_sequence*2);}
     }            
 }
 
@@ -824,10 +823,10 @@ $.fn.hideObject = function(args){
         if($(this).hasClass('fade') && args.fade !== false){
             $(this).css('opacity', '0');
             setTimeout(function(){$('#'+objectID+'').addClass('hidden');}, args.timing+timing_sequence);
-            if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].hide === 'function'){setTimeout(function(){allObjects[objectID].hide();}, timing_sequence);}}
+            if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].hide === 'function'){setTimeout(function(){allObjects[objectID].hide();}, args.timing+timing_sequence);}}
         }else{
             $(this).addClass('hidden');
-            if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].hide === 'function'){setTimeout(function(){allObjects[objectID].hide();}, timing_sequence);}}
+            if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].hide === 'function'){setTimeout(function(){allObjects[objectID].hide();}, args.timing+timing_sequence);}}
         }   
     });
     if(typeof args.success === 'function'){setTimeout(function(){ args.success();}, args.timing+timing_sequence);}
@@ -849,16 +848,16 @@ $.fn.hideObjectSequence = function(args){
     if($(object).hasClass('fade') && args.fade !== false){
         $(object).css('opacity', '0');
         setTimeout(function(){$(object).addClass('hidden');}, args.timing+timing_sequence);
-        if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].hide === 'function'){setTimeout(function(){allObjects[objectID].hide();}, timing_sequence);}}
+        if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].hide === 'function'){setTimeout(function(){allObjects[objectID].hide();}, args.timing+timing_sequence);}}
     }else{
         $(object).addClass('hidden');
-        if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].hide === 'function'){setTimeout(function(){allObjects[objectID].hide();}, timing_sequence);}}
+        if(allObjects.hasOwnProperty(objectID)){if(typeof allObjects[objectID].hide === 'function'){setTimeout(function(){allObjects[objectID].hide();}, args.timing+timing_sequence);}}
     } 
     
     if(numberStart+1 !== count){
-        setTimeout(function(){ $(array).hideObjectSequence({number:numberStart+1, success:args.success}); }, timing_sequence);
+        setTimeout(function(){ $(array).hideObjectSequence({number:numberStart+1, success:args.success}); }, args.timing+timing_sequence);
     }else{
-       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, timing_sequence*2);}
+       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, args.timing+timing_sequence*2);}
     }
   
 }

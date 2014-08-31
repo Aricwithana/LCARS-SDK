@@ -1,4 +1,4 @@
-/** LCARS SDK 14241.1
+/** LCARS SDK 14243.101
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -13,15 +13,15 @@ var sdkTemplates = {
     
     dialogWindows:{
         typeA:{type:'wrapper', class:'sdk dialog typeA', children:[
-                {type:'wrapper', class:'header', flex:'h', children:[{type:'cap', size:'small', version:'left'}, {type:'barTitle'}, {type:'bar', flexC:'h'}, {type:'cap', size:'small', version:'right'}]},
-                {type:'wrapper', class:'footer', flex:'h', children:[{type:'cap', size:'small', version:'left'}, {type:'bar', flexC:'h'}, {type:'barTitle'}, {type:'cap', size:'small', version:'right'}]},
+                {type:'wrapper', class:'header', flex:'h', children:[{type:'cap', size:'small', version:'left'}, {type:'title', size:'half'}, {type:'bar', flexC:'h'}, {type:'cap', size:'small', version:'right'}]},
+                {type:'wrapper', class:'footer', flex:'h', children:[{type:'cap', size:'small', version:'left'}, {type:'bar', flexC:'h'}, {type:'title', size:'half'}, {type:'cap', size:'small', version:'right'}]},
                 {type:'wrapper', class:'content'}
             ]
         },
              
         typeAR:{type:'wrapper', class:'sdk dialog typeAR', children:[
-                {type:'wrapper', class:'header', flex:'h', children:[{type:'cap', size:'small', version:'left'}, {type:'bar', flexC:'h'}, {type:'barTitle'}, {type:'cap', size:'small', version:'right'}]},
-                {type:'wrapper', class:'footer', flex:'h', children:[{type:'cap', size:'small', version:'left'}, {type:'barTitle'}, {type:'bar', flexC:'h'}, {type:'cap', size:'small', version:'right'}]},
+                {type:'wrapper', class:'header', flex:'h', children:[{type:'cap', size:'small', version:'left'}, {type:'bar', flexC:'h'}, {type:'title', size:'half'}, {type:'cap', size:'small', version:'right'}]},
+                {type:'wrapper', class:'footer', flex:'h', children:[{type:'cap', size:'small', version:'left'}, {type:'title', size:'half'}, {type:'bar', flexC:'h'}, {type:'cap', size:'small', version:'right'}]},
                 {type:'wrapper', class:'content'}     
             ]
         },
@@ -42,15 +42,15 @@ var sdkTemplates = {
         },
         
         typeC:{type:'wrapper', class:'sdk dialog typeC', children:[
-                {type:'wrapper', class:'header', flex:'h', children:[{type:'cap', version:'left'}, {type:'barTitle'}, {type:'bar'}, {type:'cap', version:'right'}]},
-                {type:'wrapper', class:'footer', flex:'h', children:[{type:'cap', version:'left'}, {type:'bar'}, {type:'barTitle'}, {type:'cap', version:'right'}]},
+                {type:'wrapper', class:'header', flex:'h', children:[{type:'cap', version:'left'}, {type:'title', size:'half'}, {type:'bar'}, {type:'cap', version:'right'}]},
+                {type:'wrapper', class:'footer', flex:'h', children:[{type:'cap', version:'left'}, {type:'bar'}, {type:'title', size:'half'}, {type:'cap', version:'right'}]},
                 {type:'wrapper', class:'content'}
             ]
         },
              
         typeCR:{type:'wrapper', class:'sdk dialog typeCR', children:[
-                {type:'wrapper', class:'header', flex:'h', children:[{type:'cap', version:'left'}, {type:'bar', flexC:'h'}, {type:'barTitle'}, {type:'cap', version:'right'}]},
-                {type:'wrapper', class:'footer', flex:'h', children:[{type:'cap', version:'left'}, {type:'barTitle'}, {type:'bar', flexC:'h'}, {type:'cap', version:'right'}]},
+                {type:'wrapper', class:'header', flex:'h', children:[{type:'cap', version:'left'}, {type:'bar', flexC:'h'}, {type:'title', size:'half'}, {type:'cap', version:'right'}]},
+                {type:'wrapper', class:'footer', flex:'h', children:[{type:'cap', version:'left'}, {type:'title', size:'half'}, {type:'bar', flexC:'h'}, {type:'cap', version:'right'}]},
                 {type:'wrapper', class:'content'}     
             ]
         }         
