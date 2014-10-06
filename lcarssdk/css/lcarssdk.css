@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/** LCARS SDK 14243.101
+/** LCARS SDK 14278.102
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -190,7 +190,7 @@ pre{white-space: pre-wrap;
 .content{position:absolute; color:#ffffff;}
 .title{position:absolute; background-color:#000000; padding-left:10px; padding-right:10px; color:#ffffff; font-size: 82px; height:60px; line-height: .82;}
 .ie .title{line-height:1;}
-.title.half{position:absolute;  height:30px; font-size: 42px; line-height: .80;}
+.title.half{height:30px; font-size: 42px; line-height: .80;}
 .ie .title.half{line-height:1;}
 
 /* Button rounding and direction versions */
@@ -495,7 +495,7 @@ pre{white-space: pre-wrap;
 }
 
 /* Active State Parameters */
-html:not(.ie) .complexButton:not(.disabled):not(.noEvent):active> :not(.numericBlock),  
+html:not(.ie) .complexButton:not(.disabled):not(.noEvent):active :not(.numericBlock):not(.wrapper), 
 .button:not(.disabled):not(.noEvent):active, 
 .elbow:not(.disabled):not(.noEvent):active{-webkit-animation: active 1.25s linear infinite !important; animation: active 1.25s linear infinite !important;}
 
@@ -503,10 +503,10 @@ html:not(.ie) .complexButton:not(.disabled):not(.noEvent):active> :not(.numericB
 
 /*Addon for IE since child mouse events do not trigger parent css states.*/
 .ie .elbow:not(.disabled):not(.noEvent).active,
-.ie .complexButton:not(.disabled):not(.noEvent).active>.cap, 
-.ie .complexButton:not(.disabled):not(.noEvent).active>.block:not(.numericBlock), 
-.ie .complexButton:not(.disabled):not(.noEvent).active>.bar,
-.ie .complexButton:not(.disabled):not(.noEvent).active>.button{-webkit-animation: active 1.25s linear infinite !important; animation: active 1.25s linear infinite !important;} 
+.ie .complexButton:not(.disabled):not(.noEvent).active .cap, 
+.ie .complexButton:not(.disabled):not(.noEvent).active .block:not(.numericBlock), 
+.ie .complexButton:not(.disabled):not(.noEvent).active .bar,
+.ie .complexButton:not(.disabled):not(.noEvent).active .button{-webkit-animation: active 1.25s linear infinite !important; animation: active 1.25s linear infinite !important;}  
 
 .ie .complexButton.active, .ie .complexButton.active .numericBlock{-webkit-animation: none !important; animation: none !important;}
 

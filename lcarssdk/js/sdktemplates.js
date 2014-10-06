@@ -1,4 +1,4 @@
-/** LCARS SDK 14243.101
+/** LCARS SDK 14278.102
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -69,7 +69,7 @@ var sdkTemplates = {
     },
     //Numeric Buttons do not follow standard templating.  Wrapper is created with create call.   
     numericButtons:{
-		typeA:[{type:'cap', version:'left'}, {type:'numericBlock'}, {type:'button'}],
+		typeA:[{type:'cap', version:'left'}, {type:'block', class:'numericBlock'}, {type:'button'}],
 		typeAR:[{type:'button'}, {type:'block', class:'numericBlock'}, {type:'cap', version:'right'}],		
         typeB:[{type:'block', class:'numericBlock'}, {type:'button'}],
 		typeBR:[{type:'button'}, {type:'block', class:'numericBlock'}],

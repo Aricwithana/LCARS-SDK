@@ -1,4 +1,4 @@
-/** LCARS SDK 14243.101
+/** LCARS SDK 14278.102
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -299,32 +299,32 @@ var LCARS = {
         
         if(args.noTransition === true){
             $(element).addClass('noTransition');
-        }else if(args.noTransition === 'false'){
+        }else if(args.noTransition === false){
             $(element).removeClass('noTransition');
         }
         
         if(args.noEvent === true){
             $(element).addClass('noEvent');
-        }else if(args.noEvent === 'false'){
+        }else if(args.noEvent === false){
             $(element).removeClass('noEvent');
         }        
         
         if(args.hidden === true){
             $(element).addClass('hidden');
-        }else if(args.hidden === 'false'){
+        }else if(args.hidden === false){
             $(element).removeClass('hidden');
         }        
 
         if(args.fade === true){
             $(element).addClass('fade');
-        }else if(args.fade === 'false'){
+        }else if(args.fade === false){
             $(element).removeClass('fade');
         }  
 
 
         if(args.readOnly === true){
             $(element).attr('readonly', true);
-        }else if(args.readOnly === 'false'){
+        }else if(args.readOnly === false){
             $(element).attr('readonly', false);
         }
 

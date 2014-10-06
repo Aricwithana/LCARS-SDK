@@ -1,14 +1,14 @@
-LCARS SDK License 14243.101 (v1.0.1)
+LCARS SDK License 14278.102 (v1.0.2)
 Author: Aric McGriff
 Email: contact@lcarssdk.org
 Website: http://www.lcarssdk.org
-Date:08-31-2014
+Date:10-05-2014
 
 Original Intellectual Property Ownership.
 THE LCARS SDK IS MADE IN GOOD FAITH THAT THE ENVIRONMENT DOES NOT INFRINGE ON THE INTELLECTUAL PROPERTY OWNED BY PARAMOUNT/CBS TO WHOM STAR TREK AND RELATED MATERIALS ARE TRADEMARKED AND OWNED BY. ALL RELATED LCARS MATERIAL IS FOR THE JOY OF THE FANS AND TO HELP PROMOTE A QUALITY AND FUNCTIONAL LCARS ENVIRONMENT FOR THE STAR TREK FAN COMMUNITY.
 THE AUTHOR CLAIMS NO OWNERSHIP ON THE NAME, DESIGN OR SOUNDS OF LCARS. THE AUTHOR NOR THE LCARS SDK ARE AFFILIATED WITH PARAMOUNT/CBS.
 
-ORIGINAL DESIGN BY MIKE OKUDA ALONG WITH WORK FROM DOUG DREXLER UNDER GENE RODDENBERRY.
+ORIGINAL DESIGN BY MIKE OKUDA ALONG WITH WORK FROM DOUG DREXLER AND OTHERS UNDER GENE RODDENBERRY.
 
 Disclaimer of Warranty.
 THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
@@ -55,17 +55,17 @@ TERMS AND CONDITIONS
 1. For-Profit use is prohibited. The LCARS SDK is for Non-Profit use only.
 1.a For Licensed 3rd Party queries contact the Author/Project Lead for use of the Code core of the LCARS SDK.
 
-2. The LCARS SDK does not cost money to obtain or use and is source visible/modifiable. Under no conditions shall any right to the Code core, Graphic assets or other associated first party materials transfer to a third party that uses, modifies or releases modified versions of LCARS SDK.
+2. The LCARS SDK does not cost money to obtain or use.  The source is visible/modifiable. Under no conditions shall any right to the Code core, Graphic assets, Addons or other associated first party materials transfer to a third party that uses, modifies or releases modified versions of LCARS SDK.
 
-3. The LCARS SDK or Code core may not be licensed or sub-licensed without the express permission of the Author. The Author may not license the LCARS SDK or Code core for For-Profit use without express permission of Paramounts/CBS.
+3. The LCARS SDK may not be licensed or sub-licensed without the express permission of the Author. The Author may not license the LCARS SDK for For-Profit use without express permission of Paramounts/CBS.
 
-4. The LCARS SDK, its Author/Project Lead or any other associated relationships are not liable for any custom Addons or Modules created by a third party not included directly included in the LCARS SDK umbrella environment.
+4. The LCARS SDK, its Author/Project Lead or any other associated relationships are not responsible or liable for any custom Addons or Modules created by a third party not included directly included in the LCARS SDK umbrella environment.
 
-5. The LCARS SDK source code is available to allow the greatest control over its implementation use. By chance that a 3rd Party is negatively impacting the LCARS SDK environment or violating any other term and conditions concerning the LCAR SDK or related materials, at the discretion of the Author/Project Lead, the 3rd Party will be served a Cease & Desist, in writing. Take-down is immediate upon receiving the Cease & Desist.
+5. The LCARS SDK source code is available to allow the greatest control over its implementation use. By chance that a 3rd Party is negatively impacting the LCARS SDK environment or violating any other term and conditions concerning the LCARS SDK or related materials, at the discretion of the Author/Project Lead, the 3rd Party will be served a Cease & Desist, in writing. Take-down is immediate upon receiving the Cease & Desist.
 
 6. Included font provided by Jens. The .ttf file is directly from his site. Additional file types provided via the Font Squirrel service upon font authors permission.
 6.a http://www.gtjlcars.de/LCARSindex/LCARSFONTS.htm
-6.b Included font, lcarsunknown.ttf, has an unknown creator. The Author makes no claim of ownership and if original owner is found, please contact the Project Lead. Font is utilized for lowercase letters.
+6.b Included font, lcarsunknown.ttf, has an unknown creator. The Author makes no claim of ownership and if original owner is found, please contact the Project Lead. Font is utilized for lowercase characters.
 
 7. All released derivative work shall provide this license in whole and unmodified and use of the LCARS SDK identifiable.
 
