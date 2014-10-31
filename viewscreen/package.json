@@ -1,0 +1,19 @@
+{
+  "main": "/startup/index.html",
+  "name": "LCARS SDK Viewscreen",
+  "description": "Modern Viewer for the LCARS SDK",
+  "version": "14304.01",
+  "window": {
+    "title": "LCARS SDK Viewscreen",
+    "icon": "favicon.png",
+    "toolbar": false,
+    "frame": true,
+    "fullscreen":true,
+    "maximized":true,
+    "min_width": 1024,
+    "min_height": 720,
+    "width":1024,
+    "height":720,
+    "position":"center"
+  }
+}

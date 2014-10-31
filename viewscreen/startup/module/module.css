@@ -1,0 +1,80 @@
+/* Colors */
+
+.blue1>.bar, .blue1>.block, .blue1>.button, .blue1>.cap{background-color:#3366FF; border-color:#3366FF;}
+.blue2>.bar, .blue2>.block, .blue2>.button, .blue2>.cap{background-color:#3366CC; border-color:#3366CC;}
+.blue3>.bar, .blue3>.block, .blue3>.button, .blue3>.cap{background-color:#336699; border-color:#336699;}
+.blue4>.bar, .blue4>.block, .blue4>.button, .blue4>.cap{background-color:#003366; border-color:#003366;}
+
+.green1>.bar, .green1>.block, .green1>.button, .green1>.cap{background-color:#3E7A5E; border-color:#3E7A5E;}
+.green2>.bar, .green2>.block, .green2>.button, .green2>.cap{background-color:#4A766E; border-color:#4A766E;}
+.green3>.bar, .green3>.block, .green3>.button, .green3>.cap{background-color:#174038; border-color:#174038;}    
+
+.gold1>.bar, .gold1>.block, .gold1>.button, .gold1>.cap{background-color:#CC9933; border-color:#CC9933;}
+.gold2>.bar, .gold2>.block, .gold2>.button, .gold2>.cap{background-color:#FF9933; border-color:#FF9933;}
+
+.red1>.bar, .red1>.block, .red1>.button, .red1>.cap{background-color:#990000; border-color:#990000;}
+.red2>.bar, .red2>.block, .red2>.button, .red2>.cap{background-color:#ff0000; border-color:#ff0000;}
+
+.blue1:not(.complexButton){background-color:#3366FF; border-color:#3366FF;}
+.blue2:not(.complexButton){background-color:#3366CC; border-color:#3366CC;}
+.blue3:not(.complexButton){background-color:#336699; border-color:#336699;}
+.blue4:not(.complexButton){background-color:#003366; border-color:#003366;}    
+
+.green1:not(.complexButton){background-color:#3E7A5E; border-color:#3E7A5E;}
+.green2:not(.complexButton){background-color:#4A766E; border-color:#4A766E;}
+.green3:not(.complexButton){background-color:#174038; border-color:#174038;}
+
+.gold1:not(.complexButton){background-color:#CC9933; border-color:#CC9933;}
+.gold2:not(.complexButton){background-color:#FF9933; border-color:#FF9933;}
+
+.red1:not(.complexButton){background-color:#990000; border-color:#990000;}
+.red2:not(.complexButton){background-color:#ff0000; border-color:#ff0000;}
+    
+
+
+/*
+.color>.bar, .color>.block, .color>.button, .color>.cap{background-color:#000000; border-color:#000000;}
+.color:not(.complexButton){background-color:#000000; border-color:#000000;}
+*/
+
+#wpr_moduleLoader{max-width:1235px; min-width:1024px; min-height:720px; width:100%; height:100%; position:relative; padding:10px; margin-left:auto; margin-right:auto; text-align:right;}
+#wpr_moduleLoader > .elbow{width:165px; height:270px; float:left; position:static;}
+#wpr_moduleLoader > .elbow ~ .elbow{width:255px; right:0px; float:right;}
+#wpr_moduleLoader > .elbow .innerRadius{top:265px; bottom:auto; left:55px;}
+#wpr_moduleLoader > .elbow ~ .elbow .innerRadius{left:auto; right:55px;}
+#wpr_moduleLoader > .elbow .bar{top:270px; bottom:10px; left:10px; height:auto; width:60px;}
+#wpr_moduleLoader > .elbow ~ .elbow .bar{ left:auto; right:10px;}
+
+#wpr_moduleLoader_controls{left:185px; right:275px; height:270px;}
+#wpr_moduleLoader_controls .column{min-width:150px;}
+#wpr_moduleLoader_controls > *:not(:first-child){margin-left:10px; height:inherit;}
+#wpr_moduleLoader_controls .column > *:not(:first-child){margin-top:10px;}
+#wpr_moduleLoader_controls > .column:first-child{max-width:245px;}
+#wpr_moduleLoader_controls > .column:nth-child(2){width:150px;}
+
+input:checked ~ .button{-webkit-animation: darkRed2LightRed 1.5s step-end infinite !important; animation: darkRed2LightRed 1.5s step-end infinite !important; }
+input:checked ~ .button:before{content:'Fullscreen';}
+#wpr_moduleLoader > .content{top:325px; left:115px; right:115px; bottom:10px; overflow:hidden;}
+
+#wpr_moduleLoader_list{width:100%; flex-wrap:wrap;}
+
+#wpr_moduleLoader_list .complexButton{width:100%; position:relative; margin-top:10px;}
+#wpr_moduleLoader_list .complexButton:first-child, #wpr_moduleLoader_list .complexButton:nth-child(2){margin-top:0px;}
+#wpr_moduleLoader .numericBlock{letter-spacing: 2px; overflow: hidden;}
+#wpr_moduleLoader_list .complexButton > *:not(:first-child){margin-left:10px;}
+#wpr_moduleLoader_list .complexButton .button{min-width:125px;}
+#wpr_moduleLoader_list .complexButton .cap ~ .cap{ max-width:150px; min-width:150px;}
+
+#wpr_moduleLoader_list .complexButton:nth-child(odd){max-width:475px; margin-right:50px; min-width:407px;}
+#wpr_moduleLoader_list .complexButton:nth-child(odd) .numericBlock{width:85px;}
+
+#wpr_moduleLoader_list .complexButton:nth-child(even){max-width:480px; min-width:337px;}
+#wpr_moduleLoader_list .complexButton:nth-child(even) .numericBlock{width:65px;}
+
+@media (max-width: 1234px) {
+    #wpr_moduleLoader_list .complexButton:nth-child(even) .cap, #wpr_moduleLoader_list .complexButton .numericBlock{display:none;}
+    #wpr_moduleLoader_list .complexButton:nth-child(even) .button{border-radius:60px 0px 0px 60px; margin-left:0px;}
+    #wpr_moduleLoader_list .complexButton:nth-child(odd) .cap ~ .cap{display:none}
+    #wpr_moduleLoader_list .complexButton:nth-child(odd) .button{border-radius:0px 60px 60px 0px;}
+    #wpr_moduleLoader_list .complexButton:nth-child(odd) .button:before{right:25px;}
+}

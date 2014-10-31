@@ -1,8 +1,8 @@
-LCARS SDK License 14278.102 (v1.0.2)
+LCARS SDK License 14304.013 (v1.0.3)
 Author: Aric McGriff
 Email: contact@lcarssdk.org
 Website: http://www.lcarssdk.org
-Date:10-05-2014
+Date: 10.31.2014
 
 Original Intellectual Property Ownership.
 THE LCARS SDK IS MADE IN GOOD FAITH THAT THE ENVIRONMENT DOES NOT INFRINGE ON THE INTELLECTUAL PROPERTY OWNED BY PARAMOUNT/CBS TO WHOM STAR TREK AND RELATED MATERIALS ARE TRADEMARKED AND OWNED BY. ALL RELATED LCARS MATERIAL IS FOR THE JOY OF THE FANS AND TO HELP PROMOTE A QUALITY AND FUNCTIONAL LCARS ENVIRONMENT FOR THE STAR TREK FAN COMMUNITY.
@@ -51,6 +51,8 @@ Addons Included: Scroll Button (scrollbutton.css/scrollbutton.js)
 
 Module: A derivative work utilizing the LCARS SDK. Contains project specific code and generally extended features usability. A module is dependant upon the Code core not the other way around.
 
+Viewscreen:  Application environment for working with the LCARS SDK and modules utilizing the LCARS SDK.
+
 TERMS AND CONDITIONS
 1. For-Profit use is prohibited. The LCARS SDK is for Non-Profit use only.
 1.a For Licensed 3rd Party queries contact the Author/Project Lead for use of the Code core of the LCARS SDK.
@@ -62,6 +64,7 @@ TERMS AND CONDITIONS
 4. The LCARS SDK, its Author/Project Lead or any other associated relationships are not responsible or liable for any custom Addons or Modules created by a third party not included directly included in the LCARS SDK umbrella environment.
 
 5. The LCARS SDK source code is available to allow the greatest control over its implementation use. By chance that a 3rd Party is negatively impacting the LCARS SDK environment or violating any other term and conditions concerning the LCARS SDK or related materials, at the discretion of the Author/Project Lead, the 3rd Party will be served a Cease & Desist, in writing. Take-down is immediate upon receiving the Cease & Desist.
+5.a Viewscreen is provided as-is.  For more information about node-webkit: https://github.com/rogerwang/node-webkit
 
 6. Included font provided by Jens. The .ttf file is directly from his site. Additional file types provided via the Font Squirrel service upon font authors permission.
 6.a http://www.gtjlcars.de/LCARSindex/LCARSFONTS.htm

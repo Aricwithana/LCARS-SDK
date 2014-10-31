@@ -1,4 +1,4 @@
-/** LCARS SDK 14278.102
+/** LCARS SDK 14304.013
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -336,7 +336,7 @@ var LCARS = {
         
         if(args.password === true){
             $(element).attr('type', 'password');
-        }else if(args.checked === false){
+        }else if(args.password === false){
             $(element).attr('type', 'text');
         }
  

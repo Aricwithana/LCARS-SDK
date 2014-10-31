@@ -1,0 +1,562 @@
+@charset "utf-8";
+/** LCARS SDK
+* This file is a part of the LCARS SDK.
+* It is licensed under the Creative Commons Attribution-NonCommercial 4.0 International  (CC BY-NC 4.0).
+* For more information please go to http://www.lcarssdk.org.
+**/
+
+@font-face {
+    font-family: 'LCARS';
+    src: url('../fonts/lcarsgtj3.eot');
+	src: url('../fonts/lcarsgtj3.eot?#iefix') format('embedded-opentype'), url('../fonts/lcarsgtj3.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LCARS Lower';
+    src: url('../fonts/lcarsunknown.eot');
+	src: url('../fonts/lcarsunknown.eot?#iefix') format('embedded-opentype'), url('../fonts/lcarsunknown.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	font-size: 25px;
+	vertical-align: baseline;	
+	font-family:"LCARS";
+    font-weight: normal;
+	text-overflow: ellipsis; 
+	white-space:nowrap; 
+	border-style: none; 
+	outline:none;
+	text-transform:uppercase;
+	line-height:1;
+	/*letter-spacing:.25px;*/
+    display:block;
+}
+
+* {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+	-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.helveticaFont *, .helveticaFont *:before, .helveticaFont *:after{font-family:'Helvetica W02 Ultra Cm';}
+
+
+html{overflow:hidden;}
+body{background-color:#000000;	height: 100%; width:100%; overflow:hidden; position: fixed; -webkit-transform:translate3d(0,0,0);}
+
+.scaler, .stepper{-webkit-transform-origin: 0% 0%; transform-origin: 0% 0%; -ms-transform-origin:0% 0%; overflow:hidden;} 
+
+ol, ul{list-style: none;}
+blockquote, q{quotes: none;	}
+blockquote:before, blockquote:after, q:before, q:after{content: ''; content: none;	}
+table{border-collapse:collapse; border-spacing:0;	}
+*:focus { outline: none; }
+
+*:before, *:after{padding:0px; margin:0px; -webkit-backface-visibility: hidden; display:block; -webkit-box-sizing: border-box; box-sizing: border-box; -moz-box-sizing: border-box;  text-overflow: ellipsis; white-space:nowrap; text-transform:uppercase; word-wrap: break-word; overflow-wrap: break-word; white-space: normal; height: 25px; color:#000000;}
+
+input[type="text"], input[type="password"]{border:0px; margin:0px; padding:0px; background-color:#000000;   font-family: 'LCARS Lower';  letter-spacing: .5px; -webkit-user-select:auto; color:#ffffff;}
+
+
+h1{font-size:50px;}
+a{ color:#000000; text-decoration:none;}
+.italic{font-style:italic;}
+.regularText{text-transform:none;}
+
+p, small{	
+    white-space:normal; 
+    margin-top:20px; 
+    margin-bottom:20px;
+    -webkit-user-select: text;          
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+	line-height:1.25;
+	font-size:32px;
+    font-family: 'LCARS Lower';
+    text-transform: none;
+    letter-spacing: .5px;
+}
+
+small{font-size:18px; margin-top:10px; margin-bottom:10px; font-family: 'LCARS';}
+
+span{
+    white-space:normal;
+    -webkit-user-select: text;                  
+	-khtml-user-select: text;
+	-moz-user-select: autextto;
+	-ms-user-select: text;
+	user-select: text;
+	line-height:inherit;
+	font-size:inherit;
+    display:inline;
+    font-family: 'LCARS Lower';
+    text-transform: none;
+    letter-spacing: .5px;
+}
+
+pre{white-space: pre-wrap;    
+    -webkit-user-select: text;  
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+    text-transform: none;
+    font-family: 'LCARS Lower';
+    letter-spacing: 1px;
+}
+
+
+
+
+/* Flex Settings */
+.flexv{ 
+	display: -webkit-box;     
+	display: -moz-box;         
+	display: -ms-flexbox;      
+	display: -webkit-flex;     
+	display: flex;   
+	-webkit-box-orient:vertical; -moz-box-orient:vertical; box-orient:vertical; -webkit-flex-direction:column; -ms-flex-direction:column; -moz-flex-direction:column; flex-direction:column;
+}
+
+.flexcv{            
+	-webkit-box-flex: 1;     
+	-moz-box-flex: 1;        
+	-webkit-flex: 1;          
+	-ms-flex: 1 0 auto !important;              
+	flex: 1;                            
+ }
+
+
+.flexh{ 
+	display: -webkit-box;       
+	display: -moz-box;        
+	display: -ms-flexbox;     
+	display: -webkit-flex;     
+	display: flex;   
+	-webkit-box-orient:horizontal; -moz-box-orient:horizontal; box-orient:horizontal; -webkit-flex-direction:row; -ms-flex-direction:row; -moz-flex-direction:row; flex-direction:row;
+}
+
+.flexch{ 
+	-webkit-box-flex: 1;   
+	-moz-box-flex: 1;        
+	-webkit-flex: 1;          
+	-ms-flex: 1 0 auto !important;             
+	flex: 1;                            
+ }
+
+/*Basic Elements*/
+.level{position:absolute;}
+.level>.bar{height:inherit; width:inherit;}
+.bar{position:absolute; height:30px; width:30px; background-color:inherit; -webkit-box-sizing:content-box; box-sizing:content-box; }
+.bar.large{height:60px;}
+.bar.half{height:15px;}
+.cap{position:absolute; width:60px; height:60px; background-color:inherit; -webkit-box-sizing:content-box; box-sizing:content-box; }
+.cap.small{width:30px; height:30px;}
+.block{position:absolute; height:60px; width:25px; background-color:inherit; -webkit-box-sizing:content-box; box-sizing:content-box; }
+.wrapper{position:absolute;}
+.content{position:absolute; color:#ffffff;}
+.title{position:absolute; background-color:#000000; padding-left:10px; padding-right:10px; color:#ffffff; font-size: 82px; height:60px; line-height: .82;}
+.ie .title{line-height:1;}
+.title.half{position:absolute;  height:30px; font-size: 42px; line-height: .80;}
+.ie .title.half{line-height:1;}
+
+/* Button rounding and direction versions */
+.button.pill{border-radius:30px;}
+.button.pill:before, .button[version="pill"]:after{right:25px; left:25px;}
+.button.tabRight{border-top-right-radius:30px; border-bottom-right-radius:30px;}
+.button.tabRight:before, .button[version="tabRight"]:after{right:25px;}
+.button.tabLeft{border-top-left-radius:30px; border-bottom-left-radius:30px;}
+.button.tabLeft:before, .button[version="tabRight"]:after{left:25px;}
+
+.cap.right{border-top-right-radius:30px; border-bottom-right-radius:30px;}
+.cap.left{border-top-left-radius:30px; border-bottom-left-radius:30px;}
+
+
+
+
+/*Button*/
+.button{position:absolute; height:60px; width:150px; cursor:pointer;}
+.block:before, .bar:before, .button:before{ font-size:25px; overflow:hidden; display:block; position:absolute; left:8px; bottom:3px; right:8px;  }
+.block:after, .bar:after, .button:after{font-size:25px; overflow:hidden; display:block; position:absolute; left:8px; top:8px; right:8px;  }
+
+.block[data-label]:before, .bar[data-label]:before, .button[data-label]:before{content:attr(data-label); }
+.block[data-altLabel]:after, .bar[data-altLabel]:after, .button[data-altLabel]:after{content:attr(data-altLabel); }
+
+/*Complex Button*/
+.complexButton{	    
+	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+	display: -ms-flexbox;      /* TWEENER - IE 10 */
+	display: -webkit-flex;     /* NEW - Chrome */
+	display: flex;   
+	-webkit-box-orient:horizontal; -moz-box-orient:horizontal; box-orient:horizontal; -webkit-flex-direction:row; -ms-flex-direction:row; -moz-flex-direction:row; flex-direction:row;
+	background:transparent;
+	height:60px;
+	width:150px;
+	cursor:pointer;
+	position:absolute;
+}
+
+.complexButton .button{  
+	-webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+	-moz-box-flex: 1;         /* OLD - Firefox 19- */
+	-webkit-flex: 1;          /* Chrome */
+	-ms-flex: 1 0 auto !important;              /* IE 10 */
+	flex: 1;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+   
+}
+
+.complexButton.vertical{-webkit-box-orient:vertical; -moz-box-orient:vertical; box-orient:vertical; -webkit-flex-direction:column; -ms-flex-direction:column; -moz-flex-direction:column; flex-direction:column;}
+.complexButton.vertical .button{margin-left:0px; margin-bottom:5px;}
+.complexButton.vertical .button:last-child{margin-bottom:0px;}
+
+.complexButton.duo .button{margin-left:0px;}
+.complexButton.duo:not(.vertical) .button:last-child{margin-left:-2px !important;}
+
+.complexButton.vertical.duo .button{margin-bottom:0px;}
+.complexButton.vertical.duo .button:last-child{margin-top:-2px !important; }
+
+.complexButton .block, .complexButton .bar {-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;}
+
+.ie .numericButton .numericBlock{line-height:1;}
+
+.complexButton .bar, .complexButton .block{min-width:25px; position:relative; height:100%;}
+.complexButton .cap{position:relative;  height:100%;}
+.complexButton .button{width:auto; position:relative; height:100%;}
+
+.complexButton .numericBlock{background-color:#000000 !important; padding-left: 0px; text-align:right; font-size: 80px; line-height: .82; height:inherit; color:#ffffff; position:relative; -webkit-box-sizing: border-box; letter-spacing:1px; min-width:25px; width:auto;}
+
+.complexButton :first-child~*{margin-left:5px;}
+.complexButton input + *{margin-left:0px !important;}
+
+/* Radio Button Complex Button Variant */
+.radioButton input{display:none;}
+.radioButton input~.checkBlock{background-color:transparent;}
+.radioButton input:checked~.checkBlock{background-color:#ffffff;}
+
+/* Radio Button Complex Button Variant */
+.checkboxButton input{display:none;}
+.checkboxButton input~.checkBlock{background-color:#ffffff;}
+.checkboxButton input~.checkBlock~.checkBlock{background-color:transparent;}
+
+.checkboxButton input:checked~.checkBlock{background-color:transparent;}
+.checkboxButton input:checked~.checkBlock~.checkBlock{background-color:#ffffff;}
+
+
+
+/*Default Elbows*/
+.elbow{position:absolute; z-index:1; cursor:pointer; width:150px; height:75px;}
+.elbow:before{font-size:25px; overflow:hidden; display:block; position:absolute; left:8px; right:8px; z-index:2;}
+.elbow:after{font-size:25px; overflow:hidden; display:block; position:absolute; left:8px; right:8px; z-index:2;}
+
+.elbow[data-label]:before{content:attr(data-label);}
+.elbow[data-altlabel]:after{content:attr(data-altLabel);}
+
+.elbow .innerRadius{position:absolute; width:30px;  height:30px; border-width:15px; border-style: solid; z-index:1;  -webkit-box-sizing: content-box; box-sizing: content-box; -moz-box-sizing: content-box;}
+.elbow >.bar{position:absolute; background-color:inherit !important; height:30px;}
+
+
+.topRight{border-top-right-radius:75px; text-align:left;}
+.topRight .innerRadius{border-color:inherit; top: 15px; left: -30px; border-left:0px solid transparent; border-bottom:0px solid transparent; border-top-right-radius:60px; border-bottom-left-radius: 60px;}
+.topRight>.bar{top:0px; min-width: 31px; left: -30px;}
+.topRight:before{bottom:8px}
+.topRight:after{top:8px}
+
+.topLeft{border-top-left-radius:75px; text-align:right;}
+.topLeft .innerRadius{border-color:inherit; top: 15px; right: -30px; border-right:0px solid transparent; border-bottom:0px solid transparent; border-top-left-radius:60px; border-bottom-right-radius: 60px;}
+.topLeft>.bar{top:0px; min-width: 31px; right: -30px;}
+.topLeft:before{bottom:8px; }
+.topLeft:after{top:8px; }
+
+.bottomLeft{border-bottom-left-radius:75px; text-align:right;}
+.bottomLeft .innerRadius{border-color:inherit; bottom: 15px; right: -30px; border-right:0px solid transparent; border-top:0px solid transparent; border-bottom-left-radius:60px; border-top-right-radius: 60px;}
+.bottomLeft>.bar{bottom:0px; min-width: 31px; right: -30px;}
+.bottomLeft:before{top:8px}
+.bottomLeft:after{bottom:8px}
+
+.bottomRight{border-bottom-right-radius:75px; text-align:left;}
+.bottomRight .innerRadius{border-color:inherit; bottom: 15px; left: -30px; border-left:0px solid transparent; border-top:0px solid transparent; border-bottom-right-radius:60px; border-top-left-radius: 60px;}
+.bottomRight>.bar{bottom:0px; min-width: 31px; left: -30px;}
+.bottomRight:before{top:8px}
+.bottomRight:after{bottom:8px}
+
+
+.topRightAlt{border-top-right-radius:75px; height:150px; width:75px; text-align:right;}
+.topRightAlt .innerRadius{border-color:inherit; bottom: -30px; right: 15px; border-left:0px solid transparent; border-bottom:0px solid transparent; border-top-right-radius:60px; border-bottom-left-radius: 60px;}
+.topRightAlt>.bar{bottom:-30px; min-width: 30px; right: 0px; height:31px; width:30px;}
+.topRightAlt:before{bottom:4px}
+.topRightAlt:after{top:4px}
+
+
+.topLeftAlt{border-top-left-radius:75px; height:150px; width:75px; text-align:right;}
+.topLeftAlt .innerRadius{border-color:inherit; bottom: -30px; left: 15px; border-right:0px solid transparent; border-bottom:0px solid transparent; border-top-left-radius:60px; border-bottom-right-radius: 60px;}
+.topLeftAlt>.bar{bottom:-30px; min-width: 30px; left: 0px; height:31px; width:30px;}
+.topLeftAlt:before{bottom:4px}
+.topLeftAlt:after{top:4px}
+
+
+.bottomLeftAlt{border-bottom-left-radius:75px; height:150px; width:75px; text-align:right;}
+.bottomLeftAlt .innerRadius{border-color:inherit; top: -29px; left: 15px; border-right:0px solid transparent; border-top:0px solid transparent; border-bottom-left-radius:60px; border-top-right-radius: 60px;}
+.bottomLeftAlt>.bar{top:-30px; min-width: 30px; left: 0px; height:31px; width:30px;}
+.bottomLeftAlt:before{bottom:4px}
+.bottomLeftAlt:after{top:4px}
+
+
+.bottomRightAlt{border-bottom-right-radius:75px; height:150px; width:75px; text-align:right;}
+.bottomRightAlt .innerRadius{border-color:inherit; top: -29px; right: 15px; border-left:0px solid transparent; border-top:0px solid transparent; border-bottom-right-radius:60px; border-top-left-radius: 60px;}
+.bottomRightAlt>.bar{top:-30px; min-width: 30px; right: 0px; height:31px; width:30px;}
+.bottomRightAlt:before{bottom:4px}
+.bottomRightAlt:after{top:4px}
+
+
+
+/** Base Elbows
+*   This class is meant to be used as an elbow curve that matches
+*   the UI vertical step.  Default is 60px height so a 60px 
+*   border-radius.  For a base smaller than 60px the inner radius
+*   size would use the '.medium' innerRadius border radius of 30px.
+*/
+.base.topRight{border-top-right-radius:60px; height: 60px;}
+.base.topLeft{border-top-left-radius:60px; height: 60px;}
+.base.bottomLeft{border-bottom-left-radius:60px; height: 60px;}
+.base.bottomRight{border-bottom-right-radius:60px; height: 60px;}
+.base.topRightAlt{border-top-right-radius:60px; height: 60px;}
+.base.topLeftAlt{border-top-left-radius:60px; height: 60px;}
+.base.bottomLeftAlt{border-bottom-left-radius:60px; height: 60px;}
+.base.bottomRightAlt{border-bottom-right-radius:60px; height: 60px;}
+
+ 
+/*Medium Elbows*/
+.elbow.medium{width: 60px;}
+.elbow.medium .innerRadius{border-width: 10px;}
+
+.medium.bottomLeftAlt{border-bottom-left-radius:30px; height:60px;}
+.medium.bottomLeftAlt .innerRadius{left: 20px; border-right:0px solid transparent; border-top:0px solid transparent; border-bottom-left-radius:30px; border-top-right-radius: 30px;}
+
+.medium.bottomRightAlt{border-bottom-right-radius:30px; height:60px;}
+.medium.bottomRightAlt .innerRadius{right: 20px; border-left:0px solid transparent; border-top:0px solid transparent; border-bottom-right-radius:30px; border-top-left-radius: 30px;}
+
+.medium.topLeftAlt{border-top-left-radius:30px; height:60px;}
+.medium.topLeftAlt .innerRadius{left: 20px; border-right:0px solid transparent; border-bottom:0px solid transparent; border-top-left-radius:30px; border-bottom-right-radius: 30px;}
+
+.medium.topRightAlt{border-top-right-radius:30px; height:60px;}
+.medium.topRightAlt .innerRadius{right: 20px; border-left:0px solid transparent; border-bottom:0px solid transparent; border-top-right-radius:30px; border-bottom-left-radius: 30px;}
+
+.medium.topRight{border-top-right-radius:30px; text-align:left;}
+.medium.topRight .innerRadius{ top: 20px; left: -30px; border-left:0px solid transparent; border-bottom:0px solid transparent; border-top-right-radius:30px; border-bottom-left-radius: 30px;}
+
+.medium.topLeft{border-top-left-radius:30px; text-align:right;}
+.medium.topLeft .innerRadius{ top: 20px; right: -30px; border-right:0px solid transparent; border-bottom:0px solid transparent; border-top-left-radius:30px; border-bottom-right-radius: 30px;}
+
+.medium.bottomLeft{border-bottom-left-radius:30px; text-align:right;}
+.medium.bottomLeft .innerRadius{ bottom: 20px; right: -30px; border-right:0px solid transparent; border-top:0px solid transparent; border-bottom-left-radius:30px; border-top-right-radius: 30px;}
+
+.medium.bottomRight{border-bottom-right-radius:30px; text-align:left;}
+.medium.bottomRight .innerRadius{bottom: 20px; left: -30px; border-left:0px solid transparent; border-top:0px solid transparent; border-bottom-right-radius:30px; border-top-left-radius: 30px;}
+
+
+/*Small Elbow*/
+.elbow.small{ height:35px; width:21px;}
+.elbow.small .innerRadius{width:15px; height:15px; border-width: 5px; }
+.elbow.small .bar{width: 22px; min-width: 13px; height: 13px;}
+
+.small.topLeft{border-top-left-radius:21px;}
+.small.topLeft .innerRadius{top: 8px; right: -20px; border-top-left-radius:16px; border-bottom-right-radius:16px;}
+.small.topLeft .bar{right:-20px; }
+
+.small.topRight{border-top-right-radius:21px;}
+.small.topRight .innerRadius{top: 8px; left: -20px; border-top-right-radius:16px; border-bottom-left-radius:16px;}
+.small.topRight .bar{left:-20px;}
+
+.small.bottomLeft{border-bottom-left-radius:21px;}
+.small.bottomLeft .innerRadius{bottom: 8px; right: -20px; border-bottom-left-radius:16px; border-top-right-radius: 16px;}
+.small.bottomLeft .bar{right:-20px;}
+
+.small.bottomRight{border-bottom-right-radius:21px;}
+.small.bottomRight .innerRadius{bottom: 8px; left: -20px; border-bottom-right-radius:16px;  border-top-left-radius: 16px;}
+.small.bottomRight .bar{left:-20px;}
+
+
+.small.bottomLeftAlt{border-bottom-left-radius:21px; width:35px; height:21px;}
+.small.bottomLeftAlt .innerRadius{left: 8px; top: -15px; border-right:0px solid transparent; border-top:0px solid transparent; border-bottom-left-radius:16px; border-top-right-radius: 16px;}
+.small.bottomLeftAlt .bar{top:-20px; width:13px; height:22px;}
+
+.small.bottomRightAlt{border-bottom-right-radius:21px; width:35px; height:21px;}
+.small.bottomRightAlt .innerRadius{right: 8px; top: -15px; border-left:0px solid transparent; border-top:0px solid transparent; border-bottom-right-radius:16px; border-top-left-radius: 16px;}
+.small.bottomRightAlt .bar{top:-20px; width:13px; height:22px;}
+
+.small.topLeftAlt{border-top-left-radius:21px; width:35px; height:21px;}
+.small.topLeftAlt .innerRadius{left: 8px; bottom: -15px; border-right:0px solid transparent; border-bottom:0px solid transparent;border-top-left-radius:16px; border-bottom-right-radius: 16px;}
+.small.topLeftAlt .bar{bottom:-20px; width:13px; height:22px;}
+
+.small.topRightAlt{border-top-right-radius:21px; width:35px; height:21px;}
+.small.topRightAlt .innerRadius{right: 8px; bottom: -15px; border-left:0px solid transparent; border-bottom:0px solid transparent; border-top-right-radius:16px; border-bottom-left-radius: 16px;}
+.small.topRightAlt .bar{bottom:-20px; width:13px; height:22px;}
+
+
+
+/* Column-Row Stacks */
+.column{overflow:hidden;}
+.column>*{width:100%; position:relative; margin-top:5px;}
+.column.flexv>.complexButton>*{height:auto;}
+
+.column>*:first-child{margin-top:0px;}
+
+.row{overflow:hidden;}
+.row>*{min-width:30px; height:inherit; position:relative; margin-left:5px; }
+.row>*:first-child{margin-left:0px;}
+
+
+
+/* Active State Animation */
+@-webkit-keyframes active {
+     0% {background-color:#ffffff;  color:#000000; border-color:#ffffff;}
+     100% {background-color:#ffffff; color:#000000; border-color:#ffffff;}
+}
+@keyframes active {
+     0% {background-color:#ffffff; color:#000000; border-color:#ffffff;}
+     100% {background-color:#ffffff;  color:#000000; border-color:#ffffff;}
+}
+
+/* Active State Parameters */
+html:not(.ie) .complexButton:not(.disabled):not(.noEvent):active> :not(.numericBlock),  
+.button:not(.disabled):not(.noEvent):active, 
+.elbow:not(.disabled):not(.noEvent):active{-webkit-animation: active 1.25s linear infinite !important; animation: active 1.25s linear infinite !important;}
+
+.complexButton:active, .complexButton:active .block.numericBlock{-webkit-animation: none !important; animation: none !important;}
+
+/*Addon for IE since child mouse events do not trigger parent css states.*/
+.ie .elbow:not(.disabled):not(.noEvent).active,
+.ie .complexButton:not(.disabled):not(.noEvent).active>.cap, 
+.ie .complexButton:not(.disabled):not(.noEvent).active>.block:not(.numericBlock), 
+.ie .complexButton:not(.disabled):not(.noEvent).active>.bar,
+.ie .complexButton:not(.disabled):not(.noEvent).active>.button{-webkit-animation: active 1.25s linear infinite !important; animation: active 1.25s linear infinite !important;} 
+
+.ie .complexButton.active, .ie .complexButton.active .numericBlock{-webkit-animation: none !important; animation: none !important;}
+
+
+
+
+
+
+/*Basic States*/
+.disabled{background-color:#505050 !important; border-color:#505050 !important; pointer-events:none; -webkit-animation:none !important; animation:none!important; cursor:default;}
+.disabled.complexButton{background-color:transparent  !important;}
+.disabled.complexButton :not(.numericBlock){background-color:#505050 !important; -webkit-animation:none !important; animation:none !important;}
+
+
+.blink:not(.complexButton){ -webkit-animation: blink 1.25s step-end infinite; animation: blink 1.25s step-end infinite;}
+.blink.complexButton :not(.numericBlock){ -webkit-animation: blink 1.25s step-end infinite; animation: blink 1.25s step-end infinite;}
+@-webkit-keyframes blink {
+   from, to { }
+     50% {background-color:transparent; color:transparent; border-color:transparent;}
+}
+@keyframes blink {
+   from, to { }
+     50% {background-color:transparent; color:transparent; border-color:transparent;}
+}
+
+
+.darkRed2LightRed:not(.complexButton){ -webkit-animation: darkRed2LightRed 1.5s step-end infinite !important; animation: darkRed2LightRed 1.5s step-end infinite !important; }
+.darkRed2LightRed.complexButton :not(.numericBlock){ -webkit-animation: darkRed2LightRed 1.5s step-end infinite !important; animation: darkRed2LightRed 1.5s step-end infinite !important; }
+@-webkit-keyframes darkRed2LightRed {
+   from, to { background-color:#990000; border-color:#990000;}
+     50% {background-color:#FF0000; border-color:#FF0000;}
+}
+@keyframes darkRed2LightRed {
+   from, to { background-color:#990000; border-color:#990000;}
+     50% {background-color:#FF0000; border-color:#FF0000;}
+}
+
+
+.whiteFlash:not(.complexButton){ -webkit-animation: whiteFlash 1.25s step-end infinite; animation: whiteFlash 1.25s step-end infinite;}
+.whiteFlash.complexButton :not(.numericBlock){ -webkit-animation: whiteFlash 1.25s step-end infinite; animation: whiteFlash 1.25s step-end infinite;}
+@-webkit-keyframes whiteFlash {
+   from, to { }
+     50% {background-color:#ffffff; color:#ffffff;}
+}
+@keyframes whiteFlash {
+   from, to { }
+     50% {background-color:#ffffff; color:#ffffff;}
+}
+
+.darkRedBlink:not(.complexButton){ -webkit-animation: darkRedBlink 2.5s step-end infinite !important; animation: darkRedBlink 2.5s step-end infinite !important; pointer-events:none;}
+.darkRedBlink.complexButton :not(.numericBlock){ -webkit-animation: darkRedBlink 2.5s step-end infinite !important; animation: darkRedBlink 2.5s step-end infinite !important;  pointer-events:none;}
+@-webkit-keyframes darkRedBlink {
+   from, to { background-color:#990000; border-color:#990000;}
+     50% {background-color:transparent; border-color:transparent;}
+}
+@keyframes darkRedBlink {
+   from, to { background-color:#990000; border-color:#990000;}
+     50% {background-color:transparent; border-color:transparent;}
+}
+
+
+
+/*Single Class States hanlding visibility, motion and event interaction*/
+.hidden{-webkit-transform:translate3d(99999px,0,0); transform:translate3d(99999px,0,0); -webkit-animation:none !important; animation:none !important; -webkit-transition:none !important; transition:none !important;}
+.hidden *{ -webkit-animation:none !important; animation:none !important; -webkit-transition:none; transition:none !important;}
+.fade{opacity:0; -webkit-transition:opacity .25s linear; transition:opacity .25s linear;}
+.noEvent{pointer-events:none;}
+.noTransition, .noTransition *{-webkit-transition:none !important; transition:none !important; -webkit-animation:none !important; animation:none !important;}
+
+
+
+/* Default Color - All colors should come after Active States and Animations.*/
+.grey>.bar, .grey>.block, .grey>.button, .grey>.cap{background-color:#505050; border-color:#505050;}
+.white>.bar, .white>.block, .white>.button, .white>.cap{background-color:#ffffff; border-color:#ffffff;}
+.transparent>.bar, .transparent>.block, .transparent>.button, .transparent>.cap{background-color:transparent; border-color:transparent;}
+
+.grey:not(.complexButton){background-color:#505050; border-color:#505050;}
+.white:not(.complexButton){background-color:#ffffff; border-color:#ffffff;}
+.transparent:not(.complexButton){background-color:transparent; border-color:transparent;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+{
+  "main": "index.html",
+  "name": "Warpcore",
+  "description": "Warpcore animation with connected speed controls.",
+  "version": "0",
+  "id":"window_warpcore",
+  "window": {
+    "title": "Warpcore",
+    "icon": "favicon.png",
+    "toolbar": false,
+    "frame": true,
+    "fullscreen":false,
+    "width":400,
+    "height":602,
+    "resizable":false
+  }
+}

@@ -1,0 +1,137 @@
+<!-- LCARS SDK 14304.013
+- This file is a part of the LCARS SDK.
+- https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
+- For more information please go to http://www.lcarssdk.org.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>LCARS SDK: RDR-275 Mark I Comm Feed</title>
+    
+    <script type="text/javascript" src="../../lcarssdk/js/webviewinfo.js"></script>
+    <script type="text/javascript" src="../../lcarssdk/js/zepto.min.js"></script>		
+    <script type="text/javascript" src="../../lcarssdk/js/lcarssdk.js"></script>    
+    <script type="text/javascript" src="../../lcarssdk/js/sdktemplates.js"></script>       
+    <script type="text/javascript" src="../../lcarssdk/addons/scrollbutton/scrollbutton.js"></script>
+
+    <link rel="stylesheet" href="../../lcarssdk/css/lcarssdk.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="../../lcarssdk/css/sdktemplates.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="../../lcarssdk/addons/scrollbutton/scrollbutton.css" type="text/css" media="screen" charset="utf-8" />    
+
+<script>
+var gui = require('nw.gui');
+var win = gui.Window.get();
+win.maximize();
+
+var colorArray = ['w1','w2','w3','w4','c1','c2','c3','c4',];
+
+var sampleContent = '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p><p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat</p>';
+
+
+var rdr275 = 
+    {type:'wrapper', id:'wpr_viewport', class:'scaler', appendTo:'body', hidden:true, fade:true, children:[
+        {type:'wrapper', class:'column', id:'column_feedSelection', children:[
+            {type:'button', version:'pill', color:'w3', label:'@LCARSSDK'},
+            {type:'button', version:'pill', color:'c2', label:'LOREM IPSUM', state:'blink'},
+            {type:'button', version:'pill', color:'w1', label:'Facebook'},
+            {type:'button', version:'pill', color:'w2', label:'Weather'},
+            {type:'button', version:'pill', color:'c3', label:'GNews'},
+            {type:'button', version:'pill', color:'c4', label:'FNews'},
+            {type:'button', version:'pill', color:'c1', label:'YNews'},
+            {type:'button', version:'pill', color:'w3', label:'Messages'},
+            {type:'button', version:'pill', color:'c2', label:'Video'},
+            {type:'button', version:'pill', color:'w2', label:'Classified'},
+            {type:'button', version:'pill', color:'c3', label:'Blog'}
+        ]},
+        {type:'wrapper', id:'wpr_rightFrame', children:[
+            {type:'elbow', version:'topLeft', class:'up', label:'▲', color:'c4', id:'elbow_scrollUp', click:contentScroll, tap:contentScroll},
+            {type:'wrapper', class:'row', flex:'h', id:'row_headerFrame', children:[
+                {type:'title', size:'half', text:'RDR-275 MARK I COMM FEED'},
+                {type:'cap', version:'right', size:'small', color:'w4'},         
+            ]},
+            {type:'button', label:'0- SP', color:'w4', id:'btn_scrollValue'},
+            {type:'elbow', version:'bottomLeft', label:'▼', color:'c1', id:'elbow_scrollDown', click:contentScroll, tap:contentScroll},
+            {type:'cap', version:'right', size:'small', color:'w4'},
+            {type:'title', class:'postTitle', text:'Lorem Ipsum'},
+            {type:'wrapper', class:'content', id:'wpr_loadedContent', children:sampleContent}
+        ]}
+        
+    
+    ]};
+    
+$(document).ready(function(){
+    $(rdr275).createObject({success:init});
+});
+
+function init(){
+    $('.scaler').viewport('scale', {width:1290, height:730, max:true})
+    window.onresize = function(event) {
+        $('.scaler').viewport('scale', {width:1290, height:730, max:true}) 
+    }
+    
+    setTimeout(function(){$('.scaler').showObject({})}, 500);
+}
+
+function contentScroll(){
+    if($(this).hasClass('up')){
+        $(this).scrollUp({target:['#wpr_loadedContent'], step:65});
+    }else{
+        $(this).scrollDown({target:['#wpr_loadedContent'], step:65});
+    }
+    var sTop = $('#wpr_loadedContent').scrollTop();
+    var sHeight = $('#wpr_loadedContent')[0].scrollHeight
+    var posVal = Math.round((sTop/(sHeight-485))*100)
+    $('#btn_scrollValue').objectLabel(posVal+'- SP')
+}
+</script>
+
+<style>
+
+#wpr_viewport{width:1290px; height:730px; -webkit-transition:opacity .25s linear; transition:opacity .25s linear; opacity:0;}
+
+.elbow{height:320px;}
+.title.half{padding-left:0px; padding-right:5px;}
+.postTitle{top:65px; left:185px; border-bottom:2px solid #ffffff; height:67px; right:35px;}
+
+#column_feedSelection{width:150px; top:10px; bottom:10px; left:10px; text-align:right;}
+#wpr_rightFrame{top:10px; left:170px; right:10px; bottom:10px;}
+#row_headerFrame{right:0px; top:0px; height:30px;}
+#elbow_scrollUp .bar{width:606px; right:-604px;}
+#elbow_scrollDown{bottom:0px;}
+#elbow_scrollDown .bar{width:927px; right:-925px;}
+#btn_scrollValue{top:325px; text-align:right;}
+#wpr_rightFrame>.cap{bottom:0px; right:0px;}
+#wpr_loadedContent{left:185px; top:160px; right:35px; height:485px; overflow:hidden;}
+
+.c1>.bar, .c1>.block, .c1>.button, .c1>.cap{background-color:#774466; border-color:#774466;}
+.c2>.bar, .c2>.block, .c2>.button, .c2>.cap{background-color:#4455BB; border-color:#4455BB;}
+.c3>.bar, .c3>.block, .c3>.button, .c3>.cap{background-color:#9977AA; border-color:#9977AA;}
+.c4>.bar, .c4>.block, .c4>.button, .c4>.cap{background-color:#6688CC; border-color:#6688CC;}
+.w1>.bar, .w1>.block, .w1>.button, .w1>.cap{background-color:#AA5533; border-color:#AA5533;}
+.w2>.bar, .w2>.block, .w2>.button, .w2>.cap{background-color:#BB6622; border-color:#BB6622;}
+.w3>.bar, .w3>.block, .w3>.button, .w3>.cap{background-color:#DD6644; border-color:#DD6644;}
+.w4>.bar, .w4>.block, .w4>.button, .w4>.cap{background-color:#EE9955; border-color:#EE9955;}
+
+.c1:not(.complexButton){background-color:#774466; border-color:#774466;}
+.c2:not(.complexButton){background-color:#4455BB; border-color:#4455BB;}
+.c3:not(.complexButton){background-color:#9977AA; border-color:#9977AA;}
+.c4:not(.complexButton){background-color:#6688CC; border-color:#6688CC;}
+.w1:not(.complexButton){background-color:#AA5533; border-color:#AA5533;}
+.w2:not(.complexButton){background-color:#BB6622; border-color:#BB6622;}
+.w3:not(.complexButton){background-color:#DD6644; border-color:#DD6644;}
+.w4:not(.complexButton){background-color:#EE9955; border-color:#EE9955;}
+
+</style>
+
+</head>
+
+<body ontouchstart="">
+</body>
+</html>
