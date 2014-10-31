@@ -15,9 +15,11 @@ BF:  Dialog Templates, correct Title object definition syntax.
 BF:  Removed accidental false string from settings.
 CO:  Active state tweak for complex button sub-elements.
 
-14304.013 - 
-BF:  Fixed variable for checked setting.
-EH:  Viewscreen application added.
+14304.103 - 
+BF:  Password setting variable
+EH:  Viewscreen application environment included.
+
+
 
 
 Legend - 

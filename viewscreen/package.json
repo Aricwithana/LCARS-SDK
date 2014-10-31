@@ -2,7 +2,7 @@
   "main": "/startup/index.html",
   "name": "LCARS SDK Viewscreen",
   "description": "Modern Viewer for the LCARS SDK",
-  "version": "14304.01",
+  "version": "14304.010",
   "window": {
     "title": "LCARS SDK Viewscreen",
     "icon": "favicon.png",
