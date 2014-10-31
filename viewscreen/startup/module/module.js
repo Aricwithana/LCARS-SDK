@@ -74,14 +74,14 @@ function genButtons(){
                 windowList[data.id] = {page:'../modules/'+thisModule+'/index.html', id:data.id, title:this, options:data.window};
 
                 if (countLength%2 == 0){
-                    $({type:'complexButton', click:function(){loadModule(data.id)}, color:LCARS.colorGen(colorSetModuleList), label:thisModule, flexC:'h', nbValue:'521', template:[
+                    $({type:'complexButton', click:function(){loadModule(data.id)}, color:LCARS.colorGen(colorSetModuleList), label:thisModule, flexC:'h', nbValue:''+Math.floor(Math.random() * 900 + 100)+'', template:[
                         {type:'cap', version:'left'}, 
                         {type:'button', color:LCARS.colorGen(colorSetModuleList)}, 
                         {type:'block', class:'numericBlock'}, 
                         {type:'cap', version:'right'}
                     ]}).createObject({appendTo:'#wpr_moduleLoader_list'});
                 }else{
-                    $({type:'complexButton', click:function(){loadModule(data.id)}, color:LCARS.colorGen(colorSetModuleList), flexC:'h', nbValue:'63', label:thisModule, template:[
+                    $({type:'complexButton', click:function(){loadModule(data.id)}, color:LCARS.colorGen(colorSetModuleList), flexC:'h', nbValue:''+Math.floor(Math.random() * 90 + 10)+'', label:thisModule, template:[
                         {type:'cap', version:'left'}, 
                         {type:'button', color:LCARS.colorGen(colorSetModuleList)}, 
                         {type:'block', class:'numericBlock'},
