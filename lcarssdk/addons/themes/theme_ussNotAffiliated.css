@@ -1,0 +1,39 @@
+/** LCARS SDK 14312.104
+* This file is a part of the LCARS SDK.
+* https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
+* For more information please go to http://www.lcarssdk.org.
+**/
+
+
+/* USS Not Affiliated Theme*/
+
+.una_blue1>.bar, .una_blue1>.block, .una_blue1>.button, .blue1>.cap{background-color:#3366FF; border-color:#3366FF;}
+.una_blue2>.bar, .una_blue2>.block, .una_blue2>.button, .una_blue2>.cap{background-color:#3366CC; border-color:#3366CC;}
+.una_blue3>.bar, .una_blue3>.block, .una_blue3>.button, .una_blue3>.cap{background-color:#336699; border-color:#336699;}
+.una_blue4>.bar, .una_blue4>.block, .blue4>.button, .una_blue4>.cap{background-color:#003366; border-color:#003366;}
+
+.una_green1>.bar, .una_green1>.block, .una_green1>.button, .una_green1>.cap{background-color:#009999; border-color:#009999;}
+.una_green2>.bar, .una_green2>.block, .una_green2>.button, .una_green2>.cap{background-color:#006666; border-color:#006666;}
+.una_green3>.bar, .una_green3>.block, .una_green3>.button, .una_green3>.cap{background-color:#003333; border-color:#003333;}    
+
+.una_gold1>.bar, .una_gold1>.block, .una_gold1>.button, .una_gold1>.cap{background-color:#CC9933; border-color:#CC9933;}
+.una_gold2>.bar, .una_gold2>.block, .una_gold2>.button, .una_gold2>.cap{background-color:#FF9933; border-color:#FF9933;}
+
+.una_red1>.bar, .una_red1>.block, .una_red1>.button, .una_red1>.cap{background-color:#990000; border-color:#990000;}
+.una_red2>.bar, .una_red2>.block, .una_red2>.button, .una_red2>.cap{background-color:#ff0000; border-color:#ff0000;}
+
+
+.una_blue1:not(.complexButton){background-color:#3366FF; border-color:#3366FF;}
+.una_blue2:not(.complexButton){background-color:#3366CC; border-color:#3366CC;}
+.una_blue3:not(.complexButton){background-color:#336699; border-color:#336699;}
+.una_blue4:not(.complexButton){background-color:#003366; border-color:#003366;}    
+
+.una_green1:not(.complexButton){background-color:#009999; border-color:#009999;}
+.una_green2:not(.complexButton){background-color:#006666; border-color:#006666;}
+.una_green3:not(.complexButton){background-color:#003333; border-color:#003333;}
+
+.una_gold1:not(.complexButton){background-color:#CC9933; border-color:#CC9933;}
+.una_gold2:not(.complexButton){background-color:#FF9933; border-color:#FF9933;}
+
+.una_red1:not(.complexButton){background-color:#990000; border-color:#990000;}
+.una_red2:not(.complexButton){background-color:#ff0000; border-color:#ff0000;}
