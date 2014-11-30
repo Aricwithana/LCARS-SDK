@@ -1318,7 +1318,7 @@ var LCARS = {
     bracket:{
         create:function(args){
             if(args.id){args.template.id = args.id;}
-            var element = LCARS.create[args.template.type](args.template);
+            var element = LCARS[args.template.type].create(args.template);
             element = LCARS.definition(element, args);
             return element;		
         }
@@ -1327,7 +1327,7 @@ var LCARS = {
     dialog:{
         create:function(args){
             if(args.id){args.template.id = args.id;}
-            var element = LCARS.create[args.template.type](args.template);
+            var element = LCARS[args.template.type].create(args.template);
             element = LCARS.definition(element, args);
             return element;	        
         }, 
