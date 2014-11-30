@@ -1334,12 +1334,43 @@ var LCARS = {
         
         settings:{
             headerTitle:function(args){
-                if(args.headerTitle === null){$(element).find('.header').children('.title').text('');}else if(args.headerTitle){$(element).find('.header').children('.title').text(args.headerTitle);}
+                var headerTitle = $(args.element).find('.header').children('.title');
+                var titleID = $(headerTitle).attr('id');
+                if(args.set === true){
+                    if(args.args.headerTitle === null && args.original.headerTitle != null){     
+                        $(headerTitle).text('');
+                        allObjects[args.elemID].headerTitle = null;
+                        allObjects[titleID].text = null;
+                    }else if(typeof args.args.headerTitle === 'string'){
+                        $(headerTitle).text(args.args.headerTitle);
+                        allObjects[args.elemID].headerTitle = args.args.headerTitle;
+                        allObjects[titleID].text = args.args.headerTitle;
+                    }
+                    return args.element;
+                }else{
+                    if(!allObjects[args.elemID].headerTitle){return null;}else{return allObjects[args.elemID].headerTitle;}
+                }            
                 return args.element;
             },
+            
             footerTitle:function(args){
-                if(args.footerTitle === null){$(element).find('.footer').children('.title').text('');}else if(args.footerTitle){$(element).find('.footer').children('.title').text(args.footerTitle);}
-                return args.element;
+                var footerTitle = $(args.element).find('.footer').children('.title');
+                var titleID = $(footerTitle).attr('id');
+                if(args.set === true){
+                    if(args.args.footerTitle === null && args.original.footerTitle != null){     
+                        $(footerTitle).text('');
+                        allObjects[args.elemID].footerTitle = null;
+                        allObjects[titleID].text = null;
+                    }else if(typeof args.args.footerTitle === 'string'){
+                        $(headerTitle).text(args.args.footerTitle);
+                        allObjects[args.elemID].footerTitle = args.args.footerTitle;
+                        allObjects[titleID].text = args.args.footerTitle;
+                    }
+                    return args.element;
+                }else{
+                    if(!allObjects[args.elemID].footerTitle){return null;}else{return allObjects[args.elemID].footerTitle;}
+                }            
+                return args.element;             
             }
         }
     },
