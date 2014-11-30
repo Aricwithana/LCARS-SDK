@@ -1,4 +1,4 @@
-/** LCARS SDK 14312.104
+/** LCARS SDK 14333.2
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -9,12 +9,8 @@
 
 .sdk.scrollButton .button{position:relative; text-align:center; margin:0px !important;}
 
-.sdk.scrollButton.typeAV .button:last-child{    
-    height: 100%;            
-	-webkit-box-flex: 2;     
-	-moz-box-flex: 2;        
-	-webkit-flex: 2;          
-	-ms-flex: 2 0 auto !important;              
+.sdk.scrollButton.typeAV .button:last-child{     
+	-webkit-flex: 2;                      
 	flex: 2;
 }
 

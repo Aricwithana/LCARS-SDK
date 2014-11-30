@@ -1,4 +1,4 @@
-/** LCARS SDK 14312.104
+/** LCARS SDK 14333.2
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -8,34 +8,26 @@
 // @allObjects - Holds all definitions of objects that have an ID. Access via:  var allObjects.objectID;
 // @sdkAddonTemplates - Container for Addon Templates;
 // @objectCount - Number of objects stored in allObjects;
-// @eventNames - List of available events within the SDK, segmented via mouse/touch.
 var timing_sequence = 65;
 var allObjects = {};
 var sdkAddonTemplates = {}
 var objectCount = 0;
-if(webviewInfo.input === 'desktop'){
-    var eventNames = ['click', 'mouseenter', 'mouseleave', 'hover', 'mousedown', 'mouseup'] 
-}else{
-    var eventNames = ['tap','singleTap', 'doubleTap', 'longTap', 'swipe', 'swipeLeft', 'swipeRight', 'swipeUp', 'swipeDown'] 
-}
 
-/** +brief LCARS.X
- *	&info - This maintains the base SDK logic.  It is purely meant to handle
- *          {} object definitions and not DOM elements hence the lack of the
- *          $.fn syntax for the calls.  
- *          
+
+/** +brief LCARS.XXX
+ *          Each element is defined under the LCARS global variable.         
  *          This also allows for easy extensibility of the LCARS base API
  *          without the need to modify this file directly so upgrading
  *          does not conflict with custom needs of custom projects.
  */  
 var LCARS = {
-    /** +brief Viewport Scaler
-     *	&info - Scale viewport container in porportion and aspect ratio.
-     *	@panelW - Width of container
-     *	@panelH - Height of container
-     *	@max -  true, Disables viewport container from expanding beyond its defined width/height.
-     *	@wrapper - Wrapper DOM Object         
-     */   
+/** +brief Viewport Scaler
+ *	&info - Scale viewport container in porportion and aspect ratio.
+ *	@panelW - Width of container
+ *	@panelH - Height of container
+ *	@max -  true, Disables viewport container from expanding beyond its defined width/height.
+ *	@wrapper - Wrapper DOM Object         
+ */   
     scaler: function(panelW, panelH, wrapper, max){
         var windowH = $(window).height();
         var windowW = $(window).width();
@@ -85,16 +77,16 @@ var LCARS = {
     },
      
       
-    /** +brief Viewport Stepper - IN PRODUCTION, DO NOT USE.
-     *	&info - Shrink Width and Height of viewport in steps of passed parameters.
-     *	@panelW - Width of container
-     *	@panelH - Height of container
-     *	@baseStepV - Base Vertical step height     
-     *	@spacingStepV - BaseStepV + spacing between (60+5=65)
-     *	@baseStepH - Base Horizontal step width 
-     *	@spacingStepH -  BaseStepV + spacing between (150+5=155)
-     *	@wrapper - Wrapper DOM Object
-     *          
+/** +brief Viewport Stepper - IN PRODUCTION, DO NOT USE.
+ *	&info - Shrink Width and Height of viewport in steps of passed parameters.
+ *	@panelW - Width of container
+ *	@panelH - Height of container
+ *	@baseStepV - Base Vertical step height     
+ *	@spacingStepV - BaseStepV + spacing between (60+5=65)
+ *	@baseStepH - Base Horizontal step width 
+ *	@spacingStepH -  BaseStepV + spacing between (150+5=155)
+ *	@wrapper - Wrapper DOM Object
+ *          
         
     stepper: function(panelW, panelH, baseStepV, spacingStepV, baseStepH, spacingStepH, wrapper){
         var windowH = $(window).height();
@@ -119,522 +111,1248 @@ var LCARS = {
     },
     */ 
     
-    /** +brief Mouse Events
-     *	@element - DOM Object
-     *	@args - Element Definition, ex. {type:'button', click:function(){ //do somthing}}  
-     *	@id - ID of Element to access allObjects.id  
-     *  !note - SDK checks for touch input or mouse input.
-     */	
-	eventBinders: function(element, args, id){                       
-        for (i = 0; i < eventNames.length; i++) { 
-            var eventName = eventNames[i];
-            var targetObj = allObjects[id];
-            if(args[eventName] != null){
-                if(targetObj[eventName]){$(element).off(eventName, targetObj[eventName]);}
-                $(element).on(eventName, args[eventName]);
-                if(args.type === 'radioButton' || args.type === 'checkboxButton'){$(element).on(eventName, preventLabelDoubleEvent);}
-            }else if(args[eventName] === null){
-                if(targetObj[eventName]){$(element).off(eventName, targetObj[eventName]);}
-                if(args.type === 'radioButton' || args.type === 'checkboxButton'){$(element).off(eventName, preventLabelDoubleEvent);}               
-            }
-        }             
-        return true
-    },
-    
-    /** +brief Randomly select color from array.
-     *	@array - ['blue', 'yellow', 'grey']
-     */	
+ 
+/** +brief Randomly select color from array.
+ *	@array - ['blue', 'yellow', 'grey']
+ */	
     colorGen: function(array){
         var color = array[Math.floor(array.length * Math.random())];
         return color;  
     },
     
-    /** +brief Object Definition Storage
-     *  &info - This stores each rendered elements definition into a global
-     *          variable, allObjects.  If there is no ID present, an ID will
-     *          be generated.  All rendered elements MUST have an ID, one way
-     *          or another.
-     *  EX:  allObjects.btn_ButtonID.label
-     *  @setGet - boolean - true - Enables object modifcation after creation.
-     *  !note - If functionality needs to be added custom for a project
-     *          override 'LCARS.objectDefinition' with your own module.
-     *          DO NOT EDIT THIS, WILL BE OVERWRITTEN WHEN SDK IS UPGRADED.
-     */	    
-    objectDefinition: function(element, args, setGet){
-        
-        if(setGet === true){
+    
+ /** +brief Object Settings
+ *  &info - This maintains the settings applied within the DOM. 
+ *  !note - If functionality needs to be added custom for a project
+ *          add a 'LCARS.object.settings.xxx' with your own module to override.
+ *          DO NOT EDIT THIS, WILL BE OVERWRITTEN WHEN SDK IS UPGRADED.
+ */	   
+    settings:{
+        //Universal Set Call
+        set:function(element, args){
             var elemID = $(element).attr('id');
-            var targetObj = allObjects[elemID];
-            var element = LCARS.setObjectSettings(element, args, targetObj);
-            var eventsReady = LCARS.eventBinders(element, args, elemID);
+            var original = allObjects[elemID];
+            
             for (var prop in args) {
-              if(args.hasOwnProperty(prop)){          
-                if(args[prop] === null){                 
-                    targetObj[prop] = null;             
+                if(args.type){var customSettings = LCARS[args.type].settings;}else{var customSettings = LCARS[original.type].settings;}
+                
+                if(customSettings && customSettings[prop] && customSettings[prop] !== null){
+                    element = LCARS[allObjects[elemID].type].settings[prop]({element:element, args:args, original:original, set:true, elemID:elemID});
+                }else if(LCARS.settings[prop]){
+                    element = LCARS.settings[prop]({element:element, args:args, original:original, set:true,  elemID:elemID}); 
                 }else{
-                    if(prop === 'class'){
-                        if(typeof args[prop] === 'string'){
-                            targetObj[prop] = targetObj[prop] + ' ' + args[prop]
-                        }else if(Array.isArray(args[prop])){
-                            for (i = 0; i < args.class.length; i++) { 
-                                var className = args.class[i];
-                                targetObj[prop].replace(className,'');
-                            }                               
-                        }
-                    }else if(prop === 'attrs' && targetObj.attrs){ 
-                        for (i = 0; i < args.attrs.length; i++) { 
-                            var domAttr = args.attrs[i];
-                            if(domAttr.value === null){     
-                                for (i = 0; i < targetObj.attrs.length; i++) { 
-                                    var targetAttr = targetObj.attrs[i];
-                                    if(targetAttr.attr === domAttr.attr){
-                                        targetAttr.value = null;
-                                    }
-                                }            
-                            }else if(typeof domAttr.attr === 'string'){
-                                if(targetObj[prop]){
-                                    for (i = 0; i < targetObj.attrs.length; i++) { 
-                                        var targetAttr = targetObj.attrs[i];
-                                        if(targetAttr.attr === domAttr.attr){
-                                            targetAttr.value = domAttr.value;
-                                        }else{
-                                          targetAttr[domAttr.attr] = domAttr.value;  
-                                        }
-                                    }                               
-                                }
-                            } 
-                        }               
+                    original[prop] = args[prop];   
+                }
+                
+            }
+            return element;
+        },
+        
+        //Universal Get Call
+        get:function(element, arg, args){
+            var elemID = $(element).attr('id');        
+                var customSettings = LCARS[allObjects[elemID].type].settings
+                if(customSettings && customSettings[arg]){
+                    element = LCARS[allObjects[elemID].type].settings[arg]({elemID:elemID, args:args});
+                }else{
+                    element = LCARS.settings[arg]({elemID:elemID, args:args});
+                }
+            return element;           
+        },      
+
+        //Mouse/Touch Event Settings
+        click:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.click != null && webviewInfo.input !== 'touch'){
+                if(targetObj.click){$(args.element).off('click', targetObj.click);}
+                targetObj.click = args.args.click;              
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('click', labelPreventSet);
+                    $(args.element).on('click', targetObj.click);   
+                }else{
+                    $(args.element).on('click', targetObj.click);
+                }
+            }else if(args.args.click === null){
+                if(targetObj.click){$(args.element).off('click');}
+                targetObj.click = null;             
+            }  
+            return args.element;
+        },
+        
+        mouseenter:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.mouseenter != null && webviewInfo.input !== 'touch'){
+                if(targetObj.mouseenter){$(args.element).off('mouseenter');}
+                targetObj.mouseenter = args.args.mouseenter;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('mouseenter', targetObj.mouseenter);           
+                    $(args.element).on('mouseenter', labelPreventDefault);
+                }else{
+                    $(args.element).on('mouseenter', targetObj.mouseenter);
+                }
+            }else if(args.args.mouseenter === null){
+                if(targetObj.mouseenter){$(args.element).off('mouseenter');}
+                targetObj.mouseenter = null;             
+            }  
+            return args.element;
+        },
+        
+        mouseleave:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.mouseleave != null && webviewInfo.input !== 'touch'){
+                if(targetObj.mouseleave){$(args.element).off('mouseleave');}
+                targetObj.mouseleave = args.args.mouseleave;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('mouseleave', targetObj.mouseleave);           
+                    $(args.element).on('mouseleave', labelPreventDefault);
+                }else{
+                    $(args.element).on('mouseleave', targetObj.mouseleave);
+                }
+            }else if(args.args.mouseleave === null){
+                if(targetObj.mouseleave){$(args.element).off('mouseleave');}
+                targetObj.mouseleave = null;             
+            }  
+            return args.element;
+        
+        }, 
+        
+        hover:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.hover != null && webviewInfo.input !== 'touch'){
+                if(targetObj.hover){$(args.element).off('hover');}
+                targetObj.hover = args.args.hover;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('hover', targetObj.hover);           
+                    $(args.element).on('hover', labelPreventDefault);
+                }else{
+                    $(args.element).on('hover', targetObj.hover);
+                }
+            }else if(args.args.hover === null){
+                if(targetObj.hover){$(args.element).off('hover');}
+                targetObj.hover = null;             
+            }  
+            return args.element;
+        }, 
+        
+        mousedown:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.mousedown != null && webviewInfo.input !== 'touch'){
+                if(targetObj.mousedown){$(args.element).off('mousedown');}
+                targetObj.mousedown = args.args.mousedown;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('mousedown', targetObj.mousedown);           
+                    $(args.element).on('mousedown', labelPreventDefault);
+                }else{
+                    $(args.element).on('mousedown', targetObj.mousedown);
+                }
+            }else if(args.args.mousedown === null){
+                if(targetObj.mousedown){$(args.element).off('mousedown');}
+                targetObj.mousedown = null;             
+            }  
+            return args.element;
+        },
+        
+        mouseup:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.mouseup != null && webviewInfo.input !== 'touch'){
+                if(targetObj.mouseup){$(args.element).off('mouseup');}
+                targetObj.mouseup = args.args.mouseup;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('mouseup', targetObj.mouseup);           
+                    $(args.element).on('mouseup', labelPreventDefault);
+                }else{
+                    $(args.element).on('mouseup', targetObj.mouseup);
+                }
+            }else if(args.args.mouseup === null){
+                if(targetObj.mouseup){$(args.element).off('mouseup');}
+                targetObj.mouseup = null;             
+            } 
+            return args.element;
+        },         
+
+        tap:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.tap != null && webviewInfo.input === 'touch'){
+                if(targetObj.tap){$(args.element).off('tap');}
+                targetObj.tap = args.args.tap;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('tap', targetObj.tap);           
+                    $(args.element).on('tap', labelPreventSet);
+                }else{
+                    $(args.element).on('tap', targetObj.tap);
+                }
+            }else if(args.args.tap === null){
+                if(targetObj.tap){$(args.element).off('tap');}
+                targetObj.tap = null;             
+            }  
+            return args.element;
+        }, 
+        
+        singleTap:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.singleTap != null && webviewInfo.input === 'touch'){
+                if(targetObj.singleTap){$(args.element).off('singleTap');}
+                targetObj.singleTap = args.args.singleTap;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('singleTap', targetObj.singleTap);           
+                    $(args.element).on('singleTap', labelPreventSet);
+                }else{
+                    $(args.element).on('singleTap', targetObj.singleTap);
+                }
+            }else if(args.args.singleTap === null){
+                if(targetObj.singleTap){$(args.element).off('singleTap');}
+                targetObj.singleTap = null;             
+            }  
+            return args.element;
+        }, 
+        
+        doubleTap:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.doubleTap != null && webviewInfo.input === 'touch'){
+                if(targetObj.doubleTap){$(args.element).off('doubleTap');}
+                targetObj.doubleTap = args.args.doubleTap;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('doubleTap', targetObj.doubleTap);           
+                    $(args.element).on('doubleTap', labelPreventDefault);
+                }else{
+                    $(args.element).on('doubleTap', targetObj.doubleTap);
+                }
+            }else if(args.args.doubleTap === null){
+                if(targetObj.doubleTap){$(args.element).off('doubleTap');}
+                targetObj.doubleTap = null;             
+            }  
+            
+            return args.element;
+        }, 
+        
+        longTap:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.longTap != null && webviewInfo.input === 'touch'){
+                if(targetObj.longTap){$(args.element).off('longTap');}
+                targetObj.longTap = args.args.longTap;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('longTap', targetObj.longTap);           
+                    $(args.element).on('longTap', labelPreventDefault);
+                }else{
+                    $(args.element).on('longTap', targetObj.longTap);
+                }
+            }else if(args.args.longTap === null){
+                if(targetObj.longTap){$(args.element).off('longTap');}
+                targetObj.longTap = null;             
+            }  
+            return args.element;
+        }, 
+        
+        swipe:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.swipe != null && webviewInfo.input === 'touch'){
+                if(targetObj.swipe){$(args.element).off('swipe');}
+                targetObj.swipe = args.args.swipe;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('swipe', targetObj.swipe);           
+                    $(args.element).on('swipe', labelPreventDefault);
+                }else{
+                    $(args.element).on('swipe', targetObj.swipe);
+                }
+            }else if(args.args.swipe === null){
+                if(targetObj.swipe){$(args.element).off('swipe');}
+                targetObj.swipe = null;             
+            }  
+            return args.element;
+        },
+        
+        swipeLeft:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.swipeLeft != null && webviewInfo.input === 'touch'){
+                if(targetObj.swipeLeft){$(args.element).off('swipeLeft');}
+                targetObj.swipeLeft = args.args.swipeLeft;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('swipeLeft', targetObj.swipeLeft);           
+                    $(args.element).on('swipeLeft', labelPreventDefault);
+                }else{
+                    $(args.element).on('swipeLeft', targetObj.swipeLeft);
+                }
+            }else if(args.args.swipeLeft === null){
+                if(targetObj.swipeLeft){$(args.element).off('swipeLeft');}
+                targetObj.swipeLeft = null;             
+            }  
+            return args.element;
+        },
+        
+        swipeRight:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.swipeRight != null && webviewInfo.input === 'touch'){
+                if(targetObj.swipeRight){$(args.element).off('swipeRight');}
+                targetObj.swipeRight = args.args.swipeRight;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('swipeRight', targetObj.swipeRight);           
+                    $(args.element).on('swipeRight', labelPreventDefault);
+                }else{
+                    $(args.element).on('swipeRight', targetObj.swipeRight);
+                }
+            }else if(args.args.swipeRight === null){
+                if(targetObj.swipeRight){$(args.element).off('swipeRight');}
+                targetObj.swipeRight = null;             
+            }  
+            return args.element;
+        },
+        
+        swipeUp:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.swipeUp != null && webviewInfo.input === 'touch'){
+                if(targetObj.swipeUp){$(args.element).off('swipeUp');}
+                targetObj.swipeUp = args.args.swipeUp;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('swipeUp', targetObj.swipeUp);           
+                    $(args.element).on('swipeUp', labelPreventDefault);
+                }else{
+                    $(args.element).on('swipeUp', targetObj.swipeUp);
+                }
+            }else if(args.args.swipeUp === null){
+                if(targetObj.swipeUp){$(args.element).off('swipeUp');}
+                targetObj.swipeUp = null;             
+            }  
+            return args.element;
+        }, 
+        
+        swipeDown:function(args){
+            var elemID = $(args.element).attr('id');
+            var targetObj = allObjects[elemID];              
+            if(args.args.swipeDown != null && webviewInfo.input === 'touch'){
+                if(targetObj.swipeDown){$(args.element).off('swipeDown');}
+                targetObj.swipeDown = args.args.swipeDown;
+                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
+                    $(args.element).on('swipeDown', targetObj.swipeDown);           
+                    $(args.element).on('swipeDown', labelPreventDefault);
+                }else{
+                    $(args.element).on('swipeDown', targetObj.swipeDown);
+                }
+            }else if(args.args.swipeDown === null){
+                if(targetObj.swipeDown){$(args.element).off('swipeDown');}
+                targetObj.swipeDown = null;             
+            }  
+            return args.element;
+        },         
+     
+        //Base Settings
+        type:function(args){         
+            if(args.set === true){
+                if(args.args.type === null && args.original.type != null){     
+                    $(args.element).removeClass(args.original.type); 
+                    allObjects[args.elemID].type = null;
+                }else if(typeof args.args.type === 'string'){
+                    if(args.original.type){$(args.element).removeClass(args.original.type);}
+                    $(args.element).addClass(args.args.type);
+                    allObjects[args.elemID].type = args.args.type;
+                }            
+                return args.element;          
+            }else{
+                if(!allObjects[args.elemID].type){return null;}else{return allObjects[args.elemID].type;}
+            }
+        },
+        
+        color:function(args){         
+            if(args.set === true){
+                if(args.args.color === null && args.original.color != null){     
+                    $(args.element).removeClass(args.original.color); 
+                    allObjects[args.elemID].color = null;
+                }else if(typeof args.args.color === 'string'){
+                    if(args.original.color){$(args.element).removeClass(args.original.color);}
+                    $(args.element).addClass(args.args.color);
+                    allObjects[args.elemID].color = args.args.color;
+                }            
+                return args.element;          
+            }else{
+                if(!allObjects[args.elemID].color){return null;}else{return allObjects[args.elemID].color;}
+            }
+        },
+        
+        version:function(args){
+            if(args.set === true){
+                if(args.args.version === null && args.original.version != null){     
+                    $(args.element).removeClass(args.original.version);
+                    allObjects[args.elemID].version = null;
+                }else if(typeof args.args.version === 'string'){
+                    if(args.original.version){$(args.element).removeClass(args.original.version);}
+                    $(args.element).addClass(args.args.version);
+                    allObjects[args.elemID].version = args.args.version;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].version){return null;}else{return allObjects[args.elemID].version;}
+            }  
+        },
+
+        label:function(args){
+            if(args.set === true){
+                if(args.args.label === null && args.original.label != null){     
+                    $(args.element).removeAttr('data-label');
+                    allObjects[args.elemID].label = null;
+                }else if(typeof args.args.label === 'string'){
+                    $(args.element).attr('data-label', args.args.label);
+                    allObjects[args.elemID].label = args.args.label;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].label){return null;}else{return allObjects[args.elemID].label;}
+                
+            }  
+        },
+        
+        altLabel:function(args){
+            if(args.set === true){
+                if(args.args.altLabel === null && args.original.altLabel != null){     
+                    $(args.element).removeAttr('data-altLabel');
+                    allObjects[args.elemID].altLabel = null;
+                }else if(typeof args.args.altLabel === 'string'){
+                    $(args.element).attr('data-altLabel', args.args.altLabel);
+                    allObjects[args.elemID].altLabel = args.args.altLabel;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].altLabel){return null;}else{return allObjects[args.elemID].altLabel;}
+            }  
+        },
+
+        size:function(args){
+            if(args.set === true){
+                if(args.args.size === null && args.original.size != null){     
+                    $(args.element).removeClass(args.original.size);
+                    allObjects[args.elemID].size = null;
+                }else if(typeof args.args.size === 'string'){
+                    if(args.original.size){$(args.element).removeClass(args.original.size);}
+                    $(args.element).addClass(args.args.size);
+                    allObjects[args.elemID].size = args.args.size;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].size){return null;}else{return allObjects[args.elemID].size;}
+            }  
+        },
+        
+        state:function(args){
+            if(args.set === true){
+                if(args.args.state === null && args.original.state != null){     
+                    $(args.element).removeClass(args.original.state);
+                    allObjects[args.elemID].state = null;
+                }else if(typeof args.args.state === 'string'){
+                    if(args.original.state){$(args.element).removeClass(args.original.state);}
+                    $(args.element).addClass(args.args.state);
+                    allObjects[args.elemID].state = args.args.state;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].state){return null;}else{return allObjects[args.elemID].state;}
+            }  
+        }, 
+        
+        class:function(args){
+            if(args.set === true){
+                if(typeof args.args.class === 'string'){
+                    $(args.element).addClass(args.args.class);
+                    if(allObjects[args.elemID].class){
+                        allObjects[args.elemID].class = allObjects[args.elemID].class + ' ' + args.args.class;
                     }else{
-                        targetObj[prop] = args[prop];
+                        allObjects[args.elemID].class = args.args.class;
+                    }
+                }else if(Array.isArray(args.args.class)){
+                    for (i = 0; i < args.args.class.length; i++) { 
+                        var className = args.args.class[i];
+                        $(args.element).removeClass(className);
+                        var classN = allObjects[args.elemID].class
+                        var re = new RegExp(className,"g");
+                        var newClass = classN.replace(re, '');
+                        allObjects[args.elemID].class = newClass;
                     }
                 }
-              }
-           }
-           
-           return element;
-        }else{  
-            //Clones args to prevent references and altering stored templates.
-            var object = Object.create(args);
-            objectCount += 1;
-            object.objectNumber = objectCount;
-            if(object.id){
-                allObjects[object.id] = object;           
+                return args.element;
             }else{
-                var genID = object.type+'_'+objectCount;
-                object.id = genID;
-                allObjects[genID] = object; 
-            } 
-            var eventsReady = LCARS.eventBinders(element, object, object.id);
-            var element = LCARS.setObjectSettings(element, object)
-            
-            return element;
-        }  
-    },
-   
-    /** +brief Object Settings
-     *  &info - This maintains the settings applied within the DOM. 
-     *  !note - If functionality needs to be added custom for a project
-     *          override 'LCARS.setObjectSettings' with your own module.
-     *          DO NOT EDIT THIS, WILL BE OVERWRITTEN WHEN SDK IS UPGRADED.
-     */	
-    setObjectSettings: function(element, args, original){
-
-        if(!original){original = {}}
-        if(args.id){$(element).attr('id', args.id);}
-        if(args.type){$(element).addClass(args.type);} 
-               
-        if(args.label === null){$(element).removeAttr('data-label'); }else if(args.label){$(element).not('.complexButton').attr('data-label', args.label);} 	 
-        if(args.altLabel === null){$(element).removeAttr('data-altLabel'); }else if(args.altLabel){$(element).not('.complexButton').attr('data-altLabel', args.altLabel);}       
-        
-        if(args.color === null && original.color != null){     
-            $(element).removeClass(original.color);          
-        }else if(typeof args.color === 'string'){
-            if(original.color){$(element).removeClass(original.color);}
-            $(element).addClass(args.color);
-        }
-        
-        if(args.version === null && original.version != null){     
-            $(element).removeClass(original.version);          
-        }else if(typeof args.version === 'string'){
-            if(original.version){$(element).removeClass(original.version);}
-            $(element).addClass(args.version);
-        }        
-        
-        if(args.size === null && original.size != null){     
-            $(element).removeClass(original.size);          
-        }else if(typeof args.size === 'string'){
-            if(original.size){$(element).removeClass(original.size);}
-            $(element).addClass(args.size);
-        }   
-        
-        if(args.state === null && original.state != null){     
-            $(element).removeClass(original.state);          
-        }else if(typeof args.state === 'string'){
-            if(original.state){$(element).removeClass(original.state);}
-            $(element).addClass(args.state);
-        }         
-             
-        if(typeof args.class === 'string'){
-            $(element).addClass(args.class);
-        }else if(Array.isArray(args.class)){
-            for (i = 0; i < args.class.length; i++) { 
-                var className = args.class[i];
-                $(element).removeClass(className);
-            }
-        }
-     
-        if(args.flex === null && original.flex != null){     
-            $(element).removeClass('flex'+original.flex);          
-        }else if(typeof args.flex === 'string'){
-            if(original.flex){$(element).removeClass('flex'+original.flex);}
-            $(element).addClass('flex'+args.flex);
-        } 
-
-        if(args.flexC === null && original.flexC != null){     
-            $(element).removeClass('flexc'+original.flexC);          
-        }else if(typeof args.flexC === 'string'){
-            if(original.flexC){$(element).removeClass('flexc'+original.flexC);}
-            $(element).addClass('flexc'+args.flexC);
-        } 
-        
-        if(args.noTransition === true){
-            $(element).addClass('noTransition');
-        }else if(args.noTransition === false){
-            $(element).removeClass('noTransition');
-        }
-        
-        if(args.noEvent === true){
-            $(element).addClass('noEvent');
-        }else if(args.noEvent === false){
-            $(element).removeClass('noEvent');
-        }        
-        
-        if(args.hidden === true){
-            $(element).addClass('hidden');
-        }else if(args.hidden === false){
-            $(element).removeClass('hidden');
-        }        
-
-        if(args.fade === true){
-            $(element).addClass('fade');
-        }else if(args.fade === false){
-            $(element).removeClass('fade');
-        }  
-
-
-        if(args.readOnly === true){
-            $(element).attr('readonly', true);
-        }else if(args.readOnly === false){
-            $(element).attr('readonly', false);
-        }
-
-        if(args.checked === true){
-            $(element).find('input').prop('checked', true);
-        }else if(args.checked === false){
-            $(element).find('input').prop('checked', false);
-        }
-        
-        if(args.password === true){
-            $(element).attr('type', 'password');
-        }else if(args.password === false){
-            $(element).attr('type', 'text');
-        }
- 
-        if(args.nbValue === null && original.nbValue != null){     
-            $(element).find('.numericBlock').empty();          
-        }else if(typeof args.nbValue === 'string'){
-            $(element).find('.numericBlock').text(args.nbValue);
-        }  
- 
-        if(args.text === null && original.text != null){     
-            if($(element).is('input')){
-                $(element).val('');
-            }else{
-                $(element).empty();
-            }
-        }else if(typeof args.text === 'string'){
-            if($(element).is('input')){
-                $(element).val(args.text);
-            }else{
-                $(element).text(args.text);
-            }            
-        }   
- 
-        if(args.name === null){$(element).removeAttr('name'); }else if(args.name){$(element).attr('name', args.name);} 
-        if(args.href === null){$(element).removeAttr('href'); }else if(args.href){$(element).attr('href', args.href);} 
-        if(args.src === null){$(element).removeAttr('src'); }else if(args.name){$(element).attr('src', args.src);} 
-       
-       
-       
-        if(args.headerTitle === null){$(element).find('.header').children('.title').text('');}else if(args.headerTitle){$(element).find('.header').children('.title').text(args.headerTitle);} 
-        if(args.footerTitle === null){$(element).find('.footer').children('.title').text('');}else if(args.footerTitle){$(element).find('.footer').children('.title').text(args.footerTitle);}
-        
-       
-       
-        if(args.attrs){
-            if(args.attrs === null){
-                if(original.attrs){
-                    for (i = 0; i < original.attrs.length; i++) { 
-                        var originalAttr = original.attrs[i];
-                        $(element).removeAttr(originalAttr.attr);
-                    }                               
-                } 
-            }else{
-                for (i = 0; i < args.attrs.length; i++) { 
-                    var domAttr = args.attrs[i];
-                    if(domAttr.value === null ){ 
-                        $(element).removeAttr(domAttr.attr);
-                    }else if(typeof domAttr.value === 'string'){
-                        $(element).attr(domAttr.attr, domAttr.value);
-                    } 
-                }
-            }
-        }
-
-
-        if(Array.isArray(args.children)){
-            $(args.children).each(function(){
-                var childElement = LCARS.create[this.type](this);
-                $(element).append(childElement);            
-            });                                   
-        }else if(typeof args.children === 'string'){
-            $(element).append(args.children);
-        }        
-        
-        return element;
-    },
-    
-    /** +brief LCARS.create
-     *  @keys - Keys are the same as the {type:value} of an objects definition.
-     *          THESE MUST MATCH!
-     *  >return - All LCARS.create.X calls MUST RETURN the created object.
-     *  !note - The built in calls are meant to cover the main basic elements.
-     *          There are a couple basic elements missing, which will be included
-     *          in future versions.
-     *  !note - Extensibility:  The reason the $.fn.createObject(); is universal
-     *          beause of the KEY/TYPE relationship.  Extend the LCARS.create
-     *          with additional code going 'LCARS.create.newObject = function(args){ //Do Something }
-     *          and use the 'newObject' KEY as the element type '{type:'newObject'}
-     *  @LCARS.create.widget - This call is used when wanting to call a custom function
-     *                          that is not using the LCARS.create.X syntax.
-     *  @LCARS.create.dialogWindow - This is a generic call that assumes there is
-     *                                  a header and footer within the dialog along
-     *                                  with the possibility of a title in either.
-     *  @args.appendTo - string selector for DOM element w/ id/class/other selector symbol.  ex.
-     *                   {type:'button', color:'red', appendTo:'#customElement'}
-     */	
-	create: {
-		button:function(args){
-            if(args.href !== undefined){var element = $('<a class="button">');}else{var element = $('<div class="button">');}            
-            element = LCARS.objectDefinition(element, args);
-            return element;          
+                if(!allObjects[args.elemID].class){return null;}else{return allObjects[args.elemID].class;}
+            }  
         },
-                                
-        elbow:function(args){
+        
+        flex:function(args){
+            if(args.set === true){
+                
+                if(args.args.flex === null && args.original.flex != null){     
+                    $(args.element).removeClass('flex'+args.original.flex);
+                    allObjects[args.elemID].flex = null;   
+                }else if(typeof args.args.flex === 'string'){
+                    if(args.original.flex){$(args.element).removeClass('flex' + args.original.flex);}
+                    $(args.element).addClass('flex' + args.args.flex);
+                    allObjects[args.elemID].flex = 'flex' + args.args.flex;
+                }          
+                return args.element;
+            
+            }else{
+                if(!allObjects[args.elemID].flex){return null;}else{return 'flex' + allObjects[args.elemID].flex;}          
+            }  
+        },
+        
+        flexC:function(args){
+            if(args.set === true){
+                
+                if(args.args.flexC === null && args.original.flexC != null){     
+                    $(args.element).removeClass('flexc'+args.original.flexC);
+                    allObjects[args.elemID].flexC = null;   
+                }else if(typeof args.args.flexC === 'string'){
+                    if(args.original.flexC){$(args.element).removeClass('flexc' + args.original.flexC);}
+                    $(args.element).addClass('flexc' + args.args.flexC);
+                    allObjects[args.elemID].flexC = 'flexc' + args.args.flexC;
+                }          
+                return args.element;
+            
+            }else{
+                if(!allObjects[args.elemID].flexC){return null;}else{return 'flexc' + allObjects[args.elemID].flexC;}   
+            }  
+        },
+        
+        noTransition:function(args){
+            if(args.set === true){
+                if(args.args.noTransition === false){     
+                    $(args.element).removeClass('noTransition');
+                    allObjects[args.elemID].noTransition = args.args.noTransition;
+                }else if(args.args.noTransition === true){
+                    $(args.element).addClass('noTransition');
+                    allObjects[args.elemID].noTransition = args.args.noTransition;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].noTransition){return null;}else{return allObjects[args.elemID].noTransition;}
+            }  
+        },
+        
+        noEvent:function(args){
+            if(args.set === true){
+                if(args.args.noEvent === false){     
+                    $(args.element).removeClass('noEvent');
+                    allObjects[args.elemID].noEvent = args.args.noEvent;
+                }else if(args.args.noEvent === true){
+                    $(args.element).addClass('noEvent');
+                    allObjects[args.elemID].noEvent = args.args.noEvent;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].noEvent){return null;}else{return allObjects[args.elemID].noEvent;}
+            }  
+        },
+        
+        hidden:function(args){
+            if(args.set === true){
+                if(args.args.hidden === false){     
+                    $(args.element).removeClass('hidden');
+                    allObjects[args.elemID].hidden = args.args.hidden;
+                }else if(args.args.hidden === true){
+                    $(args.element).addClass('hidden');
+                    allObjects[args.elemID].hidden = args.args.hidden;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].hidden){return null;}else{return allObjects[args.elemID].hidden;}
+            }  
+        },
+        
+        fade:function(args){
+            if(args.set === true){
+                if(args.args.fade === false){     
+                    $(args.element).removeClass('fade');
+                    allObjects[args.elemID].fade = args.args.fade;
+                }else if(args.args.fade === true){
+                    $(args.element).addClass('fade');
+                    allObjects[args.elemID].hidden = args.args.fade;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].fade){return null;}else{return allObjects[args.elemID].fade;}
+            }  
+        },
+        
+        readOnly:function(args){
+            if(args.set === true){
+                if(args.args.readOnly === false){     
+                    $(args.element).attr('readonly', false);
+                    allObjects[args.elemID].readOnly = args.args.readOnly;
+                }else if(args.args.readOnly === true){
+                    $(args.element).attr('readonly', true);
+                    allObjects[args.elemID].readOnly = args.args.readOnly;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].readOnly){return null;}else{return allObjects[args.elemID].readOnly;}
+            }  
+        },
+        
+        checked:function(args){
+            if(args.set === true){
+                if(args.args.checked === false){     
+                    $(args.element).find('input').prop('checked', false);
+                    allObjects[args.elemID].checked = false;
+                }else if(args.args.checked === true){
+                    $(args.element).find('input').prop('checked', true);
+                    allObjects[args.elemID].checked = true;
+                }
+                return args.element;
+            }else{
+                if(allObjects[args.elemID].checked){return allObjects[args.elemID].checked;}else{return null;}
+            }  
+        },
+        
+        password:function(args){
+            if(args.set === true){
+                if(args.args.password === false){     
+                    $(args.element).attr('type', 'text');
+                    allObjects[args.elemID].password = args.args.password;
+                }else if(args.args.password === true){
+                    $(args.element).attr('type', 'password');
+                    allObjects[args.elemID].password = args.args.password;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].password){return null;}else{return allObjects[args.elemID].password;}
+            }  
+        },
+        
+        inputValue:function(args){
+            if(args.set === true){
+                if(args.args.inputValue === null){     
+                    $(args.element).removeAttr('value');
+                    allObjects[args.elemID].inputValue = null;
+                }else if(args.args.inputValue === 'string'){
+                    $(args.element).attr('value', args.args.inputValue);
+                    allObjects[args.elemID].inputValue = args.args.inputValue;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].inputValue){return null;}else{return allObjects[args.elemID].inputValue;}
+            }  
+        },        
+        
+        text:function(args){
+            if(args.set === true){
+                if(args.args.text === null && args.original.text != null){     
+                    if($(args.element).is('input')){
+                        $(args.element).val('');
+                    }else{
+                        $(args.element).empty();
+                    }                                       
+                    allObjects[args.elemID].text = null;                
+                }else if(typeof args.args.text === 'string'){
+                    if($(args.element).is('input')){
+                        $(args.element).val(args.args.text);
+                    }else{
+                        $(args.element).text(args.args.text);
+                    }                   
+                    allObjects[args.elemID].text = args.args.text;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].text){return null;}else{return allObjects[args.elemID].text;}
+            }  
+        },
+        
+        name:function(args){
+            if(args.set === true){
+                if(args.args.name === null && args.original.name != null){     
+                    $(args.element).removeAttr('name');
+                    allObjects[args.elemID].name = null;
+                }else if(typeof args.args.name === 'string'){
+                    $(args.element).attr('name', args.args.name);
+                    allObjects[args.elemID].name = args.args.name;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].name){return null;}else{return allObjects[args.elemID].name;}
+            }  
+        },
+        
+        href:function(args){
+            if(args.set === true){
+                if(args.args.href === null && args.original.href != null){     
+                    $(args.element).removeAttr('href');
+                    allObjects[args.elemID].href = null;
+                }else if(typeof args.args.href === 'string'){
+                    $(args.element).attr('href', args.args.href);
+                    allObjects[args.elemID].href = args.args.href;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].href){return null;}else{return allObjects[args.elemID].href;}
+            }  
+        },
+        
+        src:function(args){
+            if(args.set === true){
+                if(args.args.src === null && args.original.src != null){     
+                    $(args.element).removeAttr('src');
+                    allObjects[args.elemID].src = null;
+                }else if(typeof args.args.src === 'string'){
+                    $(args.element).attr('src', args.args.src);
+                    allObjects[args.elemID].src = args.args.src;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].src){return null;}else{return allObjects[args.elemID].src;}
+            }  
+        },
+        
+        attrs:function(args){
+            if(args.set === true){
+                if(args.args.attrs === null && args.original.attrs !== null){
+                    for (i = 0; i < allObjects[args.elemID].attrs.length; i++) { 
+                        var domAttr = allObjects[args.elemID].attrs[i];
+                        $(args.element).removeAttr(domAttr.attr);
+                    }
+                    allObjects[args.elemID].attrs = null;  
+                }else{              
+                    if(!allObjects[args.elemID].attrs){allObjects[args.elemID].attrs = []}             
+                    for (i = 0; i < args.args.attrs.length; i++) { 
+                        var domAttr = args.args.attrs[i];
+                        var present = null;                  
+                        
+                        for (i = 0; i < allObjects[args.elemID].attrs.length; i++) { 
+                            var orgAttr = allObjects[args.elemID].attrs[i];
+                            if(orgAttr[domAttr.attr] === domAttr.attr){present = i;}
+                        }
+                        
+                        if(domAttr.value === null ){ 
+                            if(present !== null){
+                                allObjects[args.elemID].attrs[present].value = null;
+                            }
+                            $(args.element).removeAttr(domAttr.attr);
+                            
+                        }else if(typeof domAttr.value === 'string'){
+                            if(present !== null){
+                                allObjects[args.elemID].attrs[present].value = domAttr.value;    
+                            }else{
+                                $(args.element).attr(domAttr.attr, domAttr.value);
+                                allObjects[args.elemID].attrs.push(domAttr);
+                            }
+                        }
+                    }
+                }
+                return args.element;
+            }else{
+               if(!allObjects[args.elemID].attrs){return null;}else{return allObjects[args.elemID].attrs;}
+            }  
+        },
+        
+        children:function(args){
+            if(Array.isArray(args.args.children)){
+                $(args.args.children).each(function(){
+                    var childElement = LCARS[this.type].create(this);
+                    $(args.element).append(childElement);            
+                });                                   
+            }else if(typeof args.args.children === 'string'){
+                $(args.element).append(args.args.children);
+            }
+            allObjects[args.elemID].children = args.args.children;
+            return args.element;
+        },
+        
+        nbValue:function(args){
+            if(args.set === true){ 
+                if(args.args.nbValue === null && args.original.nbValue != null){     
+                    $(args.element).empty();
+                    allObjects[args.elemID].nbValue = null;
+                    $(args.element).width(0);
+                }else if(typeof args.args.nbValue === 'string'){
+                    var nbvLength = args.args.nbValue.length;
+                    var nbvWidth = (nbvLength * 25) + ((nbvLength-1) * 5) + 10;
+                    $(args.element).width(nbvWidth);
+                    $(args.element).text(args.args.nbValue);
+                    allObjects[args.elemID].nbValue = args.args.nbValue;
+                }                
+            }else{
+                if(!allObjects[args.elemID].nbValue){return null;}else{return allObjects[args.elemID].nbValue;}
+            }                
+            return args.element;
+        },  
+        
+        colors:function(args){
+             if(args.set === true){ 
+                if(args.args.colors === null && args.original.colors != null){     
+                    $(args.element).children(':not(.numericBlock)').each(function(){
+                        LCARS.settings.set(this, {color:null});                     
+                    });
+                    allObjects[args.elemID].colors = null;
+                }else if(Array.isArray(args.args.colors)){
+                    var childrenElem = $(args.element).children(':not(.numericBlock)')
+                    for (i = 0; i < childrenElem.length; i++) { 
+                        var childElem = childrenElem[i];
+                        if(args.args.colors[i]){
+                            LCARS.settings.set(childElem, {color:args.args.colors[i]});  
+                        }        
+                    }           
+                    allObjects[args.elemID].colors = args.args.colors;
+                }                
+            }else{
+                if(!allObjects[args.elemID].colors){return null;}else{return allObjects[args.elemID].colors;}
+            }                
+            return args.element;
+        }
+        
+    },
+  
+  
+/** +brief Object Definition Storage
+*  &info - This stores each rendered elements definition into a global
+*          variable, allObjects.  If there is no ID present, an ID will
+*          be generated.  All rendered elements MUST have an ID, one way
+*          or another.
+*  EX:  allObjects.btn_ButtonID.label
+*  @element - DOM object
+*  @args - passed array settings making up the elements definition.
+*/	  
+    definition:function(element, args){
+        //Clones args to prevent references and altering stored templates.
+        var object = Object.create(args);
+        objectCount += 1;
+        if(object.id){
+            allObjects[object.id] = {id:object.id, objectNumber:objectCount};
+            $(element).attr('id', object.id);
+            
+        }else{
+            var genID = object.type+'_'+objectCount;
+            allObjects[genID] = {id:genID, objectNumber:objectCount};
+            $(element).attr('id', genID);     
+        } 
+        element = LCARS.settings.set(element, object)
+
+        return element;    
+    },
+
+   
+/** +brief LCARS.create
+ *  @keys - Keys are the same as the {type:value} of an objects definition.
+ *          THESE MUST MATCH!
+ *  >return - All LCARS.xxx.create/LCARS.settings.xxx calls MUST RETURN the created object.
+ *  !note - The built in calls are meant to cover the main basic elements.
+ *          There are a couple basic elements missing, which will be included
+ *          in future versions.
+ *  !note - Extensibility:  The reason the $.fn.createObject(); is universal, along with
+ *          the unlimited settings, is beause of the KEY/TYPE relationship.  Extend the LCARS.xxx
+ *          with additional code going 'LCARS.newObjectName.create = function(args){ //Do Something }
+ *          and use the 'newObject' KEY as the element type '{type:'newObject'}
+ *  
+ *          Override universal settings by applying the setting key name under the element
+ *          expression.  ex.  LCARS.complexButton.settings.label.  The LCARS.get/LCARS.set
+ *          will use them instead of the native setting handling.
+ *
+ *  @LCARS.dialog - This is a generic call that has optinal settings to auto generate
+ *                      header and footer title text.
+ *  @args.appendTo - string selector for DOM element w/ id/class/other selector symbol.  ex.
+ *                   {type:'button', color:'red', appendTo:'#customElement'}
+ */	
+    button:{
+        create:function(args){
+            if(args.href !== undefined){var element = $('<a class="button">');}else{var element = $('<div class="button">');}            
+            element = LCARS.definition(element, args);
+            return element;
+        }
+    },
+
+    elbow:{
+        create:function(args){
             if(args.href !== undefined){
                 var element = $('<a class="elbow"><div class="innerRadius"></div><div class="bar"></div></a>');
             }else{
                 var element =  $('<div class="elbow"><div class="innerRadius"></div><div class="bar"></div></div>');
             }	            
-            element = LCARS.objectDefinition(element, args);                            
-            return element;	            
-        },
- 
-        bar: function(args){
+            element = LCARS.definition(element, args);                            
+            return element;	    
+        }
+    },
+
+    bar: {
+        create:function(args){
             var element =  $('<div class="bar"></div>');					            
-            element = LCARS.objectDefinition(element, args);    						            
-            return element;	            
-        },
-        
-        cap:function(args){
+            element = LCARS.definition(element, args);    						            
+            return element;	
+        }
+    },
+
+    cap:{
+        create:function(args){
             var element =  $('<div class="cap"></div>');					            
-            element = LCARS.objectDefinition(element, args);            
-            return element;	        
-        },
-        
-        block:function(args){
+            element = LCARS.definition(element, args);            
+            return element;	
+        }
+    },
+
+    block:{
+        create:function(args){
             var element =  $('<div class="block"></div>');					            
-            element = LCARS.objectDefinition(element, args);            
-            return element;        
-        },
-        
-        complexButton:function(args){
+            element = LCARS.definition(element, args);            
+            return element;
+        }
+    },
+
+    complexButton:{
+        create:function(args){
             if(args.href !== undefined){var element = $('<a class="complexButton">');}else{var element = $('<div class="complexButton">');}           
-            $(args.template).each(function(){
-                if(this.type == 'button'){
-                    if(args.label !== undefined){this.label = args.label;}
-                    if(args.altLabel !== undefined){this.altLabel = args.altLabel;}
-                }                 
-                var elementChild = LCARS.create[this.type](this);
-                $(element).append(elementChild);
-            });          
-            element = LCARS.objectDefinition(element, args);
-            return element;	        
+            if(args.template){        
+                $(args.template).each(function(){               
+                    var elementChild = LCARS[this.type].create(this);
+                    $(element).append(elementChild);
+                });
+            }
+            if(args.colors){
+                saveColors = [];
+                for (i = 0; i < args.colors.length; i++) { 
+                    saveColors.push(args.colors[i]);
+                }
+                args.colors = [];
+                element = LCARS.definition(element, args);
+                args.colors = saveColors;
+                element = LCARS.settings.set(element, {colors:saveColors});
+            }else{
+                element = LCARS.definition(element, args);
+            }
+            return element;	  
         },
         
-        numericButton:function(args){
-            if(args.href !== undefined){var element = $('<a class="complexButton numericButton">');}else{var element = $('<div class="complexButton numericButton">');}         						
-            $(args.template).each(function(){
-                var nbCheck = 'numericBlock';
-                if(nbCheck.indexOf(this.class) > -1){
-                    if(args.nbValue){this.nbValue = args.nbValue;}
+        settings:{
+            label:function(args){
+                if(args.set === true){
+                    var elemBtn = $(args.element).find('.button');
+                    var btnID = $(elemBtn).attr('id');
+                    if(args.args.label === null && args.original.label != null){     
+                        $(elemBtn).removeAttr('data-label');
+                        allObjects[args.elemID].label = null;
+                        allObjects[btnID].label = null;
+                    }else if(typeof args.args.label === 'string'){
+                        $(elemBtn).attr('data-label', args.args.label);             
+                        allObjects[args.elemID].label = args.args.label;
+                        allObjects[btnID].label = args.args.label;
+                    }
+                    return args.element;
                 }else{
-                    if(this.type == 'button'){
-                        if(args.label !== undefined){this.label = args.label;}
-                        if(args.altLabel !== undefined){this.altLabel = args.altLabel;}
-                    }                      
-                }
-                var elementChild = LCARS.create[this.type](this);
-                $(element).append(elementChild);
-            });            
-            element = LCARS.objectDefinition(element, args);            
-            return element;	        
-        },
-        
-        radio:function(args){       
-            var element = $('<input type="radio">')
-            element = LCARS.objectDefinition(element, args);
-            return element;	          
-        },
-        
+                    if(!allObjects[args.elemID].label){return null;}else{return allObjects[args.elemID].label;}
 
-        radioButton:function(args){
-            var element = $('<label class="complexButton radioButton">');
-            var input = LCARS.create.radio({type:'radio', name:args.name, checked:args.checked});
-            $(element).prepend(input);
-            $(args.template).each(function(){
-                if(this.type == 'button'){
-                    if(args.label !== undefined){this.label = args.label;}
-                    if(args.altLabel !== undefined){this.altLabel = args.altLabel;}
-                }
-                var elementChild = LCARS.create[this.type](this);
-                $(element).append(elementChild);
-            });   
-            element = LCARS.objectDefinition(element, args);
-            return element;	          
-        },
-
-        numericRadioButton:function(args){
-            var element = $('<label class="complexButton numericButton radioButton">');
-            var input = LCARS.create.radio({type:'radio', name:args.name, checked:args.checked});
-            $(element).prepend(input);
-            $(args.template).each(function(){
-                var nbCheck = 'numericBlock';
-                if(nbCheck.indexOf(this.class) > -1){
-                    if(args.nbValue){this.nbValue = args.nbValue;}
+                }  
+            },
+            
+            altLabel:function(args){
+                if(args.set === true){
+                    var elemBtn = $(args.element).find('.button');
+                    var btnID = $(elemBtn).attr('id');
+                    if(args.args.altLabel === null && args.original.altLabel != null){     
+                        $(elemBtn).removeAttr('data-altLabel');
+                        allObjects[args.elemID].altLabel = null;
+                        allObjects[args.btnID].altLabel = null;
+                    }else if(typeof args.args.altLabel === 'string'){
+                        $(elemBtn).attr('data-altLabel', args.args.altLabel);             
+                        allObjects[args.elemID].altLabel = args.args.altLabel;
+                        allObjects[args.btnID].altLabel = args.args.altLabel;
+                    }
+                    return args.element;
                 }else{
-                    if(this.type == 'button'){
-                        if(args.label !== undefined){this.label = args.label;}
-                        if(args.altLabel !== undefined){this.altLabel = args.altLabel;}
-                    }                      
-                }
-                var elementChild = LCARS.create[this.type](this);
-                $(element).append(elementChild);
-            });   
-            element = LCARS.objectDefinition(element, args);
-            return element;	          
-        },
+                    if(!allObjects[args.elemID].altLabel){return null;}else{return allObjects[args.elemID].altLabel;}
 
-        checkbox:function(args){       
-            var element = $('<input type="checkbox">')
-            element = LCARS.objectDefinition(element, args);
-            return element;	          
-        },        
-
-        checkboxButton:function(args){
-            var element = $('<label class="complexButton checkboxButton">');
-            var input = LCARS.create.checkbox({type:'checkboxButton', name:args.name, checked:args.checked});
-            $(element).prepend(input);
-            $(args.template).each(function(){
-                if(this.type == 'button'){
-                    if(args.label !== undefined){this.label = args.label;}
-                    if(args.altLabel !== undefined){this.altLabel = args.altLabel;}
+                }  
+            },
+            nbValue:function(args){
+                if(args.set === true){         
+                    var elemNB = $(args.element).find('.numericBlock');
+                    LCARS.settings.set(elemNB, {nbValue:args.args.nbValue});
+                    allObjects[args.elemID].nbValue = args.args.nbValue;
+                }else{
+                    if(!allObjects[args.elemID].nbValue){return null;}else{return allObjects[args.elemID].nbValue;}
                 }                
-                var elementChild = LCARS.create[this.type](this);
-                $(element).append(elementChild);
-            });   
-            element = LCARS.objectDefinition(element, args);
-            return element;	          
-        },
+                return args.element;
+            }            
+        }   
+    },
 
-        numericCheckboxButton:function(args){
-            var element = $('<label class="complexButton numericButton checkboxButton">');
-            var input = LCARS.create.checkbox({type:'checkboxButton', name:args.name, checked:args.checked});
+    radio:{
+        create:function(args){       
+            var element = $('<input type="radio">')
+            element = LCARS.definition(element, args);
+            return element;	
+        }
+    },
+
+    radioButton:{
+        create:function(args){
+            var element = $('<label class="complexButton radioButton">');
+            var input = LCARS.radio.create({type:'radio', name:args.name, checked:args.checked});
             $(element).prepend(input);
-            $(args.template).each(function(){
-                var nbCheck = 'numericBlock';
-                if(nbCheck.indexOf(this.class) > -1){
-                    if(args.nbValue){this.nbValue = args.nbValue;}
-                }else{
-                    if(this.type == 'button'){
-                        if(args.label !== undefined){this.label = args.label;}
-                        if(args.altLabel !== undefined){this.altLabel = args.altLabel;}
-                    }                      
+            if(args.template){        
+                $(args.template).each(function(){
+                    var nbCheck = 'numericBlock';
+                    if(nbCheck.indexOf(this.class) > -1){
+                        if(args.nbValue){this.nbValue = args.nbValue;}
+                    }else{                  
+                        if(this.type == 'button'){
+                            if(args.label !== undefined){this.label = args.label;}
+                            if(args.altLabel !== undefined){this.altLabel = args.altLabel;}
+                        } 
+                    }                   
+                    var elementChild = LCARS[this.type].create(this);
+                    $(element).append(elementChild);
+                });
+            }
+            if(args.colors){
+                saveColors = [];
+                for (i = 0; i < args.colors.length; i++) { 
+                    saveColors.push(args.colors[i]);
                 }
-                var elementChild = LCARS.create[this.type](this);
-                $(element).append(elementChild);
-            });   
-            element = LCARS.objectDefinition(element, args);
-            return element;	          
+                args.colors = [];
+                element = LCARS.definition(element, args);
+                args.colors = saveColors;
+                element = LCARS.settings.set(element, args);
+            }else{
+                element = LCARS.definition(element, args);
+            }
+            return element; 
         },
         
-        wrapper:function(args){
+        settings:{
+            label:function(args){
+                if(args.set === true){
+                    var elemBtn = $(args.element).find('.button');
+                    var btnID = $(elemBtn).attr('id');
+                    if(args.args.label === null && args.original.label != null){     
+                        $(elemBtn).removeAttr('data-label');
+                        allObjects[args.elemID].label = null;
+                        allObjects[btnID].label = null;
+                    }else if(typeof args.args.label === 'string'){
+                        $(elemBtn).attr('data-label', args.args.label);             
+                        allObjects[args.elemID].label = args.args.label;
+                        allObjects[btnID].label = args.args.label;
+                    }
+                    return args.element;
+                }else{
+                    if(!allObjects[args.elemID].label){return null;}else{return allObjects[args.elemID].label;}
+
+                }  
+            },
+            
+            altLabel:function(args){
+                if(args.set === true){
+                    var elemBtn = $(args.element).find('.button');
+                    var btnID = $(elemBtn).attr('id');
+                    if(args.args.altLabel === null && args.original.altLabel != null){     
+                        $(elemBtn).removeAttr('data-altLabel');
+                        allObjects[args.elemID].altLabel = null;
+                        allObjects[args.btnID].altLabel = null;
+                    }else if(typeof args.args.altLabel === 'string'){
+                        $(elemBtn).attr('data-altLabel', args.args.altLabel);             
+                        allObjects[args.elemID].altLabel = args.args.altLabel;
+                        allObjects[args.btnID].altLabel = args.args.altLabel;
+                    }
+                    return args.element;
+                }else{
+                    if(!allObjects[args.elemID].altLabel){return null;}else{return allObjects[args.elemID].altLabel;}
+
+                }  
+            },
+            nbValue:function(args){
+                if(args.set === true){         
+                    var elemNB = $(args.element).find('.numericBlock');
+                    LCARS.settings.set(elemNB, {nbValue:args.args.nbValue});
+                    allObjects[args.elemID].nbValue = args.args.nbValue;
+                }else{
+                    if(!allObjects[args.elemID].nbValue){return null;}else{return allObjects[args.elemID].nbValue;}
+                }               
+                return args.element;
+            }            
+        }
+    },
+
+    checkbox:{
+        create:function(args){       
+            var element = $('<input type="checkbox">')
+            element = LCARS.definition(element, args);
+            return element;
+        }
+    },        
+
+    checkboxButton:{
+        create:function(args){
+            var element = $('<label class="complexButton checkboxButton">');
+            var input = LCARS.checkbox.create({type:'checkboxButton', name:args.name, checked:args.checked});
+            $(element).prepend(input);
+            if(args.template){        
+                $(args.template).each(function(){
+                    var nbCheck = 'numericBlock';
+                    if(nbCheck.indexOf(this.class) > -1){
+                        if(args.nbValue){this.nbValue = args.nbValue;}
+                    }else{                  
+                        if(this.type == 'button'){
+                            if(args.label !== undefined){this.label = args.label;}
+                            if(args.altLabel !== undefined){this.altLabel = args.altLabel;}
+                        } 
+                    }                   
+                    var elementChild = LCARS[this.type].create(this);
+                    $(element).append(elementChild);
+                });
+            }
+            if(args.colors){
+                saveColors = [];
+                for (i = 0; i < args.colors.length; i++) { 
+                    saveColors.push(args.colors[i]);
+                }
+                args.colors = [];
+                element = LCARS.definition(element, args);
+                args.colors = saveColors;
+                element = LCARS.settings.set(element, args);
+            }else{
+                element = LCARS.definition(element, args);
+            }
+            return element;
+        },
+        
+        settings:{
+            label:function(args){
+                if(args.set === true){
+                    var elemBtn = $(args.element).find('.button');
+                    var btnID = $(elemBtn).attr('id');
+                    if(args.args.label === null && args.original.label != null){     
+                        $(elemBtn).removeAttr('data-label');
+                        allObjects[args.elemID].label = null;
+                        allObjects[btnID].label = null;
+                    }else if(typeof args.args.label === 'string'){
+                        $(elemBtn).attr('data-label', args.args.label);             
+                        allObjects[args.elemID].label = args.args.label;
+                        allObjects[btnID].label = args.args.label;
+                    }
+                    return args.element;
+                }else{
+                    if(!allObjects[args.elemID].label){return null;}else{return allObjects[args.elemID].label;}
+
+                }  
+            },
+            
+            altLabel:function(args){
+                if(args.set === true){
+                    var elemBtn = $(args.element).find('.button');
+                    var btnID = $(elemBtn).attr('id');
+                    if(args.args.altLabel === null && args.original.altLabel != null){     
+                        $(elemBtn).removeAttr('data-altLabel');
+                        allObjects[args.elemID].altLabel = null;
+                        allObjects[args.btnID].altLabel = null;
+                    }else if(typeof args.args.altLabel === 'string'){
+                        $(elemBtn).attr('data-altLabel', args.args.altLabel);             
+                        allObjects[args.elemID].altLabel = args.args.altLabel;
+                        allObjects[args.btnID].altLabel = args.args.altLabel;
+                    }
+                    return args.element;
+                }else{
+                    if(!allObjects[args.elemID].altLabel){return null;}else{return allObjects[args.elemID].altLabel;}
+
+                }  
+            },
+            nbValue:function(args){
+                if(args.set === true){         
+                    var elemNB = $(args.element).find('.numericBlock');
+                    LCARS.settings.set(elemNB, {nbValue:args.args.nbValue});
+                    allObjects[args.elemID].nbValue = args.args.nbValue;
+                }else{
+                    if(!allObjects[args.elemID].nbValue){return null;}else{return allObjects[args.elemID].nbValue;}
+                }              
+                return args.element;
+            }            
+        }             
+    },
+
+    wrapper:{
+        create:function(args){
             var element = $('<div class="wrapper"></div>');            
-            element = LCARS.objectDefinition(element, args);          
-            return element;	        
-        },
-        
-        level:function(args){
-            var element = $('<div class="level"><div class="bar" data-number="50%"></div></div>');					
-            element = LCARS.objectDefinition(element, args);
-            return element;	        
-        },
-        
-        title:function(args){
+            element = LCARS.definition(element, args);  
+            
+            return element;	
+        }
+    },
+
+    title:{
+        create:function(args){
             var element = $('<div>'+args.text+'</div>');					
-            element = LCARS.objectDefinition(element, args);
-            return element;		        
-        },
-        
-        img:function(args){
+            element = LCARS.definition(element, args);
+            return element;
+        }
+    },
+
+    img:{
+        create:function(args){
             var element = $('<img>');					
-            element = LCARS.objectDefinition(element, args);            
-            return element;	        
-        },
-        
-        svg:function(args){
+            element = LCARS.definition(element, args);            
+            return element;	 
+        }
+    },
+
+    svg:{
+        create:function(args){
             var element = $(args.xml);	
-            element = LCARS.objectDefinition(element, args);               
-            return element;	        
-        },
-        
-        textInput:function(args){
+            element = LCARS.definition(element, args);               
+            return element;	
+        }
+    },
+
+    textInput:{
+        create:function(args){
             if(args.password === true){
                 var element = $('<input type="password" />');					
             }else{
                 var element = $('<input type="text" />');					
             }  
-            element = LCARS.objectDefinition(element, args);
-            return element;	        
-        },
-        
-        bracket:function(args){
-            if(args.id){args.template.id = args.id;}
-            var element = LCARS.create[args.template.type](args.template);
-            element = LCARS.objectDefinition(element, args);
-            return element;		       
-        },
-        
-        dialog:function(args){
-            if(args.id){args.template.id = args.id;}
-            var element = LCARS.create[args.template.type](args.template);
-            element = LCARS.objectDefinition(element, args);
-            return element;	        
+            element = LCARS.definition(element, args);
+            return element;
         }
-	}   
+    },
+
+    bracket:{
+        create:function(args){
+            if(args.id){args.template.id = args.id;}
+            var element = LCARS.create[args.template.type](args.template);
+            element = LCARS.definition(element, args);
+            return element;		
+        }
+    },
+
+    dialog:{
+        create:function(args){
+            if(args.id){args.template.id = args.id;}
+            var element = LCARS.create[args.template.type](args.template);
+            element = LCARS.definition(element, args);
+            return element;	        
+        }, 
+        
+        settings:{
+            headerTitle:function(args){
+                if(args.headerTitle === null){$(element).find('.header').children('.title').text('');}else if(args.headerTitle){$(element).find('.header').children('.title').text(args.headerTitle);}
+                return args.element;
+            },
+            footerTitle:function(args){
+                if(args.footerTitle === null){$(element).find('.footer').children('.title').text('');}else if(args.footerTitle){$(element).find('.footer').children('.title').text(args.footerTitle);}
+                return args.element;
+            }
+        }
+    },
+    
+    htmlTag:{
+        create:function(args){
+            var element = $('<'+args.tag+'>');
+            element = LCARS.definition(element, args);
+            return element;
+        }
+    }    
+    
 }
-
-
 
 
 //Disables Rubber Banding in iOS.
@@ -646,7 +1364,8 @@ $(document).ready(function(){
     }
 });
 
-//Used to sort alphabetically within their array.
+
+//Used to sort alphabetically within an array.
 function compare(a,b) {
   if (a.label < b.label)
      return -1;
@@ -656,20 +1375,81 @@ function compare(a,b) {
 }
 
 
-function preventLabelDoubleEvent(event){
+/** + brief Label 'Double Event' Prevention
+*
+*   Radio and Checkbox buttons are created via a parent label wrapper
+*   and the input element stored within, hidden and display:none.
+*
+*   Doing this causes events to trigger twice.
+*
+*   Click, Tap & Single Tap call the labelPreventSet().  This prevents and
+*   sets the input DOM state along with updating the appropirate definitions.
+*   
+*   All other events should not trigger the input checked state change
+*   and thus call the simple labelPreventDefault().
+*
+*   !note - Be careful with the labelPreventSet() function and async
+*   checking of the input value to update the value once specific 
+*   requirements are set.  labelPreventDefault() can be rewritten to 
+*   work with specific observers. 
+*
+**/
+
+function labelPreventDefault(){
     event.preventDefault();
-    event.stopPropagation();      
+}
+
+function labelPreventSet(event){
+    event.preventDefault();
     var input = $(this).find('input');
+    var elemID = $(this).attr('id');
+    var inputID = $(input).attr('id');
     if($(this).hasClass('checkboxButton')){
-        if($(input).prop('checked')){$(input).prop('checked', false);}else{$(input).prop('checked', true);}
+        if(allObjects[elemID].checked === true){
+            $(input).prop('checked', false);   
+            allObjects[elemID].checked = false;
+            allObjects[inputID].checked = false;
+        }else{      
+            $(input).prop('checked', true);
+            allObjects[elemID].checked = true;
+            allObjects[inputID].checked = true;
+        }
     }else{
-      if($(input).prop('checked')){}else{$(input).prop('checked', true);}  
+        if(allObjects[elemID].checked !== true){    
+            $(input).prop('checked', true);
+            allObjects[elemID].checked = true;
+            allObjects[inputID].checked = true;
+            var nameGroup = $(this).attr('name')
+            $('label[name="'+nameGroup+'"]:not(#'+elemID+')').each(function(){
+                var input = $(this).find('input');
+                var elemID = $(this).attr('id');
+                var inputID = $(input).attr('id');
+                allObjects[elemID].checked = false;
+                allObjects[inputID].checked = false;
+            });
+        }  
     }
 }
 
 
-/* $.fn Calls - Used specifically with object definition objects.  ex.  {type:'button', label:'someText'} */
-
+/** + brief $.fn Calls
+*   
+*   The SDK provides a handful of $.api calls for easy object
+*   creation, manipulation and deletion. 
+*
+*   !note - Use the $.removeObject() when deleting an object from the
+*           scene for proper cleanup within the environment.  
+*           
+*           DO NOT USE native $.remove() any object that has a stored definition.
+*
+*   The SDK does not provide $.api wrappers per specific settings, only a single universal
+*   controller is provided, $.objectSettings();
+*
+*   An example would be $.objectLabel(); -> pass string - sets / pass nothing - returns
+*   These are easy to create per a projects needs and are likely to be customized 
+*   accordingly so not provided here.
+*
+*/
 
 /** +brief Create Object
  *	@args - {}
@@ -682,18 +1462,14 @@ function preventLabelDoubleEvent(event){
  */	
 $.fn.createObject = function(args){
     this.each(function(){
-        var element = LCARS.create[this.type](this);
+        var element = LCARS[this.type].create(this);
+        
         if(args.appendTo == undefined && this.appendTo == undefined || args.return === true){return element; }else
         if(args.appendTo !== undefined){$(''+args.appendTo+'').append(element); setTimeout(function(){if(typeof this.success  === 'function'){this.success();}},0); }else
         if(args.appendTo == undefined && this.appendTo !== undefined){$(''+this.appendTo+'').append(element); setTimeout(function(){if(typeof this.success  === 'function'){this.success();}},0);}
     });
     setTimeout(function(){if(typeof args.success  === 'function'){args.success();}}, args.timing + 0);
 }
-
-
-
-/* $.fn Calls - Used specifically for objects within the DOM */
-
 
 /** +brief Remove Object
  *	^syntax - $(element).removeObject(success);
@@ -714,7 +1490,6 @@ $.fn.removeObject = function(success){
     });
     if(typeof success === 'function'){setTimeout(function(){success();}, args.timing+timing_sequence);}
 }
-
 
 /** +brief Sequence Remove - Delay and sequential
  *  !note - Remove elements and triggers optional individual element remove function.
@@ -806,9 +1581,6 @@ $.fn.showObjectSequence = function(args){
     }            
 }
 
-
-
-
 /** +brief Hide Object
  *	@args - {fade:boolean, timing:int, success:function(){}}
  *  @args.fade - true/false - Override objects fade setting.
@@ -863,192 +1635,65 @@ $.fn.hideObjectSequence = function(args){
 }
 
 
-/** +brief Numeric Block Value.
- *  ^syntax - $(element).numericBlockValue(value, success);
- *	@value -  value:string/int,}
- *  >return - String/Int
- *	!note:  Pass only one element for return.
- *  !note:  Target complex button.
- */	
-$.fn.nbValue = function(value, success){  
-    var elemID = $(this).attr('id');
-    var objectDef = allObjects[elemID]
-    
-    if(!value || typeof value === 'function'){
-        if(objectDef.nbValue){
-            var returnVal = objectDef.nbValue;
-            if(typeof success === 'function'){value();}
-            return returnVal
-        }else{
-            if(typeof success === 'function'){value();}
-            return false;
-        }        
-    }else{
-        this.each(function(){
-            if(value === 'remove'){
-                $(this).children('.numericBlock').text('');
-                delete objectDef.nbValue;
-            }else{   
-                $(this).children('.numericBlock').text(value);
-                objectDef.nbValue = value;
-            }
-        });
-        if(typeof success === 'function'){success();}
-        return this;
-    } 
-}
-
-
-/** +brief Object Lable
- *	@action - String Text/Remove/undefined
- *  ^syntax - $(element).objectLabel(action, success); 
- *  >return - String when value else false.
- *	!note:  Pass only one element.
- *  !note:  When checking complex buttons, only use this when
- *          there is only one button within the complex button.
- *          If there is more than one, target the indivdual buttons
- *          than the complex button itself.
- */	
-$.fn.objectLabel = function(action, success){   
-    var elemID = $(this).attr('id');
-    var complex = this.hasClass('complexButton');
-    if(complex){var elemChildID = $(this).children('.button').attr('id'); var elemChild = $(this).children('.button');}
-    
-    if(typeof action === 'function' || !action){    
-        if(complex){
-            if(allObjects[elemChildID].label){
-                if(typeof action === 'function'){action();}
-                return allObjects[elemChildID].label;
-            }else{
-                return false;   
-            }
-        }else{          
-            if(allObjects[elemID].label){
-                if(typeof action === 'function'){action();}
-                return allObjects[elemID].label
-            }else{
-                if(typeof action === 'function'){action();}
-                return false;   
-            }        
-        }
-    }else if(action === 'remove'){
-        if(complex){
-            $(elemChild).removeAttr('data-label');
-            delete allObjects[elemChildID].label
-        }else{
-            this.removeAttr('data-label'); 
-            delete allObjects[elemID].label
-        }
-        
-        if(typeof success === 'function'){success();}
-        return this;   
-    }else if(action){
-        if(complex){
-            $(elemChild).attr('data-label', action);    
-            allObjects[elemChildID].label = action;
-        }else{
-            this.attr('data-label', action);
-            allObjects[elemID].label = action;
-        }               
-        if(typeof success === 'function'){success();}
-        return this;
-    }else{
-        return this;   
-    }
-}
-
-
-/** +brief Object Alt Lable
- *	@action - String Text/Remove/undefined
- *  ^syntax - $(element).objectLabel(action, success);
- *  >return - String when value else false.
- *	!note:  Pass only one element.
- *  !note:  When checking complex buttons, only use this when
- *          there is only one button within the complex button.
- *          If there is more than one, target the indivdual buttons
- *          than the complex button itself.
- */	
-$.fn.objectAltLabel = function(action, success){   
-    var elemID = $(this).attr('id');
-    var complex = this.hasClass('complexButton');
-    if(complex){var elemChildID = $(this).children('.button').attr('id'); var elemChild = $(this).children('.button');}
-    
-    if(typeof action === 'function' || !action){    
-        if(complex){
-            if(allObjects[elemChildID].altLabel){
-                if(typeof action === 'function'){action();}
-                return allObjects[elemChildID].altLabel;
-            }else{
-                return false;   
-            }
-        }else{          
-            if(allObjects[elemID].altLabel){
-                if(typeof action === 'function'){action();}
-                return allObjects[elemID].altLabel
-            }else{
-                if(typeof action === 'function'){action();}
-                return false;   
-            }        
-        }
-    }else if(action === 'remove'){
-        if(complex){
-            $(elemChild).removeAttr('data-altlabel');
-            delete allObjects[elemChildID].altLabel
-        }else{
-            this.removeAttr('data-altlabel'); 
-            delete allObjects[elemID].altLabel
-        }
-        
-        if(typeof success === 'function'){success();}
-        return this;   
-    }else if(action){
-        if(complex){
-            $(elemChild).attr('data-altlabel', action);    
-            allObjects[elemChildID].altLabel = action;
-        }else{
-            this.attr('data-altlabel', action);
-            allObjects[elemID].altLabel = action;
-        }               
-        if(typeof success === 'function'){success();}
-        return this;
-    }else{
-        return this;   
-    }
-}
-
-
-
 /** +brief Object Setting
- *  ex. $.fn.objectSettings('color', 'red');
- *  @setting - Setting to change.  Matches setting name used in object definitions.
- *  @value - New Value to set.
- *  >return - $.fn.objectSettings('color', function(){});
- *  --remove - $.fn.objectSettings('color', 'remove', function(){});
- *  !note - Call utilizes the LCARS.setObjectSettings(element, args)
- *          logic to change settings.  All settings within that call
- *          are accessable with this call.  
+ *  ex. $.fn.objectSettings({color:'red'}, function(){});
+ *  ex. $.fn.objectSettings('color', {secondary:arg}, function(){});
+ *  @setting - Setting(s) to change.  Matches setting name used in object definitions.
+ *  @args - Secondary set of arguments that can be passed when getting.
+ *  >return - Pass String Name - $.fn.objectSettings('color'); 
+ *
+ *  !note - Look to each setting for proper value type to be
+ *          passed through the settings.  Most settings use string/null
+ *          as the set/get flags.  Some settings, like class, use a
+ *          string/array combination to apply and remove class names.
  */	    
-$.fn.objectSettings = function(setting, success){		
-    var elemID = $(this).attr('id');
-    var objectDef = allObjects[elemID]
-    if(setting.get){ 
-        if(objectDef[setting.get]){
-            if(typeof success === 'function'){success();}
-            return objectDef[setting.get];
-        }else{
-            if(typeof success === 'function'){success();}
-            return null;
-        } 
+$.fn.objectSettings = function(setting, args, success){		
+    if(typeof setting === 'string'){ 
+        if(typeof args === 'function'){args();}
+        if(typeof success === 'function'){success();}
+        return LCARS.settings.get($(this), setting, args);
     }else{ 
         $(this).each(function(){
-            LCARS.objectDefinition($(this), setting, true);
+            LCARS.settings.set($(this), setting);
         });
-        if(typeof success === 'function'){success();}
+        if(typeof args === 'function'){args();}
         return this; 
-    }   
-  
+    }  
 }
 
+/** +brief Get Definition
+*   @id - boolean, if true returns ID strings else definition objects.
+*   >return - {} else null.
+*	!note:  Pass only a single object.
+**/	
+$.fn.getDefinition = function(){
+    var elemID = $(this).attr('id');
+    if(allObjects[elemID]){
+        return allObjects[elemID];
+    }else{
+        return null;
+    }
+}
+
+/** +brief Get Children
+*   
+*   >return - [].
+*	!note:  Pass only a single object.
+**/	
+$.fn.getChildren = function(id){ 
+    var allChildren = []
+    $(this).children().each(function(){
+        var elemID = $(this).attr('id');
+        if(id === true){
+            allChildren.push(elemID);
+        }else{
+            allChildren.push(allObjects[elemID]);    
+        }
+    });
+    return allChildren;
+} 
+        
+        
 /** +brief Viewport Settings
  *  +Scale a wrappered interface, respecting aspect ratio of the interface.
  *  +Shrink the viewport height/width in specific increments
@@ -1081,148 +1726,6 @@ $.fn.viewport = function(action, args){
 }
 
 
-/** +brief Object Color
- *	@action - String Text/Remove/object
- *  ^syntax - $(element).objectLabel(action, success);
- *  >return - String when value else false.
- *	!note:  Pass only one element for returns.
- *  !note:  If an object array is passed ex. ['red', 'burnt orange', 'blue']
- *          then this $.fn calls the core LCARS API, LCARS.colorGen(array);
- *          This will take an array of color names and randomly return one.
- */	
-$.fn.objectColor = function(action, success){   
-    var elemID = $(this).attr('id');
-    var objectDef = allObjects[elemID] 
-    if(typeof action === 'function' || !action){
-        
-        if(objectDef.color){
-            if(typeof action === 'function'){action();}
-            return objectDef.color;  
-        }else{
-            if(typeof action === 'function'){action();}
-            return null;
-        }    
-        
-    }else if(action === 'remove'){
-        this.each(function(){
-            $(this).removeClass(objectDef.color); 
-            delete allObjects[elemID].color;
-        });        
-        if(typeof success === 'function'){success();}
-        return this;
-    
-    }else if(action){
-        
-        this.each(function(){
-            if(objectDef.color){$(this).removeClass(objectDef.color);}
-            $(this).addClass(action);
-            objectDef.color = action;
-        });
-        if(typeof success === 'function'){success();}
-        return this; 
-    
-    }else{
-        return this;   
-    }
-}
-
-
-
-/** +brief Object State
- *	@action - String Text/Remove/object
- *  ^syntax - $(element).objectState(action, success);
- *  >return - String when value else false.
- *	!note:  Pass only one element for returns.
- *  !note:  If element already had a set state, it is stored in 
- *          a secondary data-attribute.  When a state is removed,
- *          if the secondary data-attribute exists, that state
- *          will be placed on the element.
- */	
-$.fn.objectState = function(action, success){   
-    var elemID = $(this).attr('id');
-    var objectDef = allObjects[elemID]    
-    if(typeof action === 'function' || !action){
-        
-        if(objectDef.state){
-            if(typeof action === 'function'){action();}
-            return objectDef.state;  
-        }else{
-            if(typeof action === 'function'){action();}
-            return false;
-        }            
-    }else if(action === 'remove'){
-        this.each(function(){
-            $(this).removeClass(objectDef.state);
-            delete objectDef.state;
-        });
-        if(typeof success === 'function'){success();}
-        return this;
-        
-    }else if(action){ 
-        this.each(function(){
-            if(objectDef.state){$(this).removeClass(objectDef.state);}
-            $(this).addClass(action);
-            objectDef.state = action;
-        });
-        if(typeof success === 'function'){success();}
-        return this; 
-    
-    }else{
-        return this;   
-    }
-}
-
-
-/** +brief Input Settings
- *	@action - String Text/Clear/object
- *  ^syntax - $(element).objectState(action, success);
- *  >return - String when value else true/false.
- *	!note:  Pass only one element for returns.
- */	
-$.fn.inputSettings = function(action, success){   
-    var elemID = $(this).attr('id');
-    var objectDef = allObjects[elemID];
-    
-    if(typeof action === 'function' || !action){
-        if($(this).is('[type="text"]') || $(this).is('[type="password"]')){
-            return $(this).val();
-        }else if($(this).find('input').is(':checked')){
-            if(typeof action === 'function'){action();}
-            return true  
-        }else{
-            if(typeof action === 'function'){action();}
-            return false;
-        }            
-    }else if(action === 'clear'){
-        this.each(function(){            
-            if($(this).is('[type="text"]') || $(this).is('[type="password"]')){
-                $(this).val('');
-            }else{
-                $(this).find('input').prop('checked', false );
-                delete objectDef.checked;
-            }
-        });
-        if(typeof success === 'function'){success();}
-        return this;       
-    }else if(action === 'check'){ 
-        this.each(function(){           
-            $(this).find('input').prop('checked', true );
-            objectDef.checked = true;
-        });
-        if(typeof success === 'function'){success();}
-        return this; 
-    }else if(action){ 
-        this.each(function(){           
-            $(this).val(action);
-        });
-        if(typeof success === 'function'){success();}
-        return this;     
-    }else{
-        return this;   
-    }
-    
-}
-
 /** +brief Has Attribute 
  *	@arg - String: attribute value
  *  @string - Boolean:  Returns attribute value if true.
@@ -1235,20 +1738,6 @@ $.fn.hasAttr = function(arg, string){
         return $(this).attr(arg);
     }else{
         return check;
-    }
-}
-
-
-/** +brief Get Definition
- *  >return - {} else false.
- *	!note:  Pass only a single object.
- */	
-$.fn.getDefinition = function(){
-    var elemID = $(this).attr('id');
-    if(allObjects[elemID]){
-        return allObjects[elemID];
-    }else{
-        return false;
     }
 }
 
