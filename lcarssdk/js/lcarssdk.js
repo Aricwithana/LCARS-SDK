@@ -1,4 +1,4 @@
-/** LCARS SDK 14333.2
+/** LCARS SDK 14346.201
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -1520,8 +1520,8 @@ $.fn.removeObject = function(success){
         });
     });
     if(typeof success === 'function'){setTimeout(function(){success();}, args.timing+timing_sequence);}
-}
-
+}                         
+                             
 /** +brief Sequence Remove - Delay and sequential
  *  !note - Remove elements and triggers optional individual element remove function.
  *  @args - {fade:true, timing:int, success:function(){}}
@@ -1536,7 +1536,8 @@ $.fn.removeObjectSequence = function(args){
     var count = array.length
     var numberStart = args.number || 0;
     var object = array[numberStart]
-    var objectID = $(object).attr('id'); 
+    var objectID = $(object).attr('id');
+    if(!args.timing){args.timing = 0;}
     if($(object).hasClass('fade') && args.fade !== false){
         $(object).css('opacity', '0');
         setTimeout(function(){$(object).addClass('hidden');}, args.timing+timing_sequence);
@@ -1549,9 +1550,9 @@ $.fn.removeObjectSequence = function(args){
     } 
     
     if(numberStart+1 !== count){
-        setTimeout(function(){ $(array).removeObjectSequence({number:numberStart+1, success:args.success}); }, timing_sequence);
+        setTimeout(function(){ $(array).removeObjectSequence({timing:args.timing, number:numberStart+1, success:args.success}); }, timing_sequence);
     }else{
-       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, args.timing+timing_sequence*2);}
+       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, args.timing+timing_sequence);}
     }
   
 }
@@ -1596,6 +1597,7 @@ $.fn.showObjectSequence = function(args){
     var numberStart = args.number || 0;
     var object = array[numberStart]
     var objectID = $(object).attr('id'); 
+    if(!args.timing){args.timing = 0;}
     if($(object).hasClass('fade') && args.fade !== false){
         $(object).removeClass('hidden');
         $(object).css('opacity', '1');
@@ -1606,10 +1608,10 @@ $.fn.showObjectSequence = function(args){
     }    
     
     if(numberStart+1 !== count){
-        setTimeout(function(){ $(array).showObjectSequence({number:numberStart+1, success:args.success}); }, timing_sequence);
+        setTimeout(function(){ $(array).showObjectSequence({timing:args.timing, number:numberStart+1, success:args.success}); }, args.timing+timing_sequence);
     }else{
-       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, args.timing+timing_sequence*2);}
-    }            
+       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, args.timing+timing_sequence);}
+    }         
 }
 
 /** +brief Hide Object
@@ -1647,7 +1649,8 @@ $.fn.hideObjectSequence = function(args){
     var count = array.length
     var numberStart = args.number || 0;
     var object = array[numberStart]
-    var objectID = $(this).attr('id'); 
+    var objectID = $(this).attr('id');
+    if(!args.timing){args.timing = 0;}
     if($(object).hasClass('fade') && args.fade !== false){
         $(object).css('opacity', '0');
         setTimeout(function(){$(object).addClass('hidden');}, args.timing+timing_sequence);
@@ -1658,11 +1661,10 @@ $.fn.hideObjectSequence = function(args){
     } 
     
     if(numberStart+1 !== count){
-        setTimeout(function(){ $(array).hideObjectSequence({number:numberStart+1, success:args.success}); }, args.timing+timing_sequence);
+        setTimeout(function(){ $(array).hideObjectSequence({timing:args.timing, number:numberStart+1, success:args.success}); }, args.timing+timing_sequence);
     }else{
-       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, args.timing+timing_sequence*2);}
-    }
-  
+       if(typeof args.success  === 'function'){setTimeout(function(){ args.success();}, args.timing+timing_sequence);}
+    }  
 }
 
 

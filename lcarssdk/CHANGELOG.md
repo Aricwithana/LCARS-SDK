@@ -66,6 +66,12 @@ RM: Legacy Flexbox Model
 RM: Removed Viewscreen app from SDK.  Will provide in seperate repo.    
 BF: Assorted fixes and updated that have been lost in the mix.    
 
+14346.201 - 
+BF: X Object Sequence Timing variable.
+    Applies as 0 unless passed.  Remove *2 from 
+    function set timeout loop.
+CO: Block Font
+    Updated the font with tweaked MNW@
 
 Legend - 
 BF:  Bug Fix
