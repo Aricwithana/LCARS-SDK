@@ -73,6 +73,12 @@ BF: X Object Sequence Timing variable.
 CO: Block Font
     Updated the font with tweaked MNW@
 
+14347.202-
+BF: Remove Object
+    Removed args.timing for it is not used and threw error.
+CO: Block Font
+    Update to :
+
 Legend - 
 BF:  Bug Fix
 CO:  Cosmetic

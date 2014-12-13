@@ -1,4 +1,4 @@
-/** LCARS SDK 14346.201
+/** LCARS SDK 14347.202
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -707,7 +707,7 @@ var LCARS = {
                 }
                 return args.element;
             }else{
-                if(allObjects[args.elemID].checked){return allObjects[args.elemID].checked;}else{return null;}
+                if(allObjects[args.elemID].checked){return allObjects[args.elemID].checked;}else{return false;}
             }  
         },
         
@@ -869,7 +869,7 @@ var LCARS = {
                     $(args.element).empty();
                     allObjects[args.elemID].nbValue = null;
                     $(args.element).width(0);
-                }else if(typeof args.args.nbValue === 'string'){
+                }else{
                     var nbvLength = args.args.nbValue.length;
                     var nbvWidth = (nbvLength * 25) + ((nbvLength-1) * 5) + 10;
                     $(args.element).width(nbvWidth);
@@ -1519,7 +1519,7 @@ $.fn.removeObject = function(success){
             delete allObjects[elemID];
         });
     });
-    if(typeof success === 'function'){setTimeout(function(){success();}, args.timing+timing_sequence);}
+    if(typeof success === 'function'){setTimeout(function(){success();}, timing_sequence);}
 }                         
                              
 /** +brief Sequence Remove - Delay and sequential
