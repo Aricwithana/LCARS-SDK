@@ -85,10 +85,14 @@ BF: Checked Setting
     Changed false back to nulls
     to maintain standard return
     syntax.
+<<<<<<< HEAD
 EH: Click Preven Default
     Touch devices use click to handle
     native checked state changes. Added
     code to prevent this.
+=======
+
+>>>>>>> origin/master
 
 
 Legend - 
