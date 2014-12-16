@@ -1,4 +1,4 @@
-/** LCARS SDK 14347.202
+/** LCARS SDK 14350.203
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -700,14 +700,14 @@ var LCARS = {
             if(args.set === true){
                 if(args.args.checked === false){     
                     $(args.element).find('input').prop('checked', false);
-                    allObjects[args.elemID].checked = false;
+                    allObjects[args.elemID].checked = null;
                 }else if(args.args.checked === true){
                     $(args.element).find('input').prop('checked', true);
                     allObjects[args.elemID].checked = true;
                 }
                 return args.element;
             }else{
-                if(allObjects[args.elemID].checked){return allObjects[args.elemID].checked;}else{return false;}
+                if(allObjects[args.elemID].checked){return allObjects[args.elemID].checked;}else{return null;}
             }  
         },
         
@@ -1809,6 +1809,14 @@ $.fn.scrollRight = function(args){
     });
 }
 
+
+/**
+* Native webview check states are click events
+* which are 300ms slower than tap/touchstart.
+* This prevents the native click event on touch
+* interaction automatically.
+*/
+$(document).on('click', '.touch .checkboxButton, .touch .radioButton', function(e){event.preventDefault();});
 
 /**
 * For IE Active States.  Clicking on a child element does not 

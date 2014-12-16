@@ -79,6 +79,18 @@ BF: Remove Object
 CO: Block Font
     Update to :
 
+14350.203-
+BF: Checked Setting
+    Testing code got into prod.
+    Changed false back to nulls
+    to maintain standard return
+    syntax.
+EH: Click Preven Default
+    Touch devices use click to handle
+    native checked state changes. Added
+    code to prevent this.
+
+
 Legend - 
 BF:  Bug Fix
 CO:  Cosmetic
