@@ -53,8 +53,14 @@ var sdkTemplates = {
                 {type:'wrapper', class:'footer', flex:'h', children:[{type:'cap', version:'left'}, {type:'title', size:'half'}, {type:'bar', flexC:'h'}, {type:'cap', version:'right'}]},
                 {type:'wrapper', class:'content'}     
             ]
-        }         
+        },
         
+        typeT:{type:'wrapper', class:'sdk dialog typeT', flexC:'v', children:[
+                {type:'wrapper', class:'header row', flex:'h', children:[{type:'cap', size:'tiny', version:'left'}, {type:'bar', flexC:'h'}, {type:'cap', size:'tiny', version:'right'}]},
+                {type:'wrapper', class:'footer row', flex:'h', children:[{type:'cap', size:'tiny', version:'left'}, {type:'bar', flexC:'h'}, {type:'cap', size:'tiny', version:'right'}]},
+                {type:'wrapper', class:'content', flex:'v'}
+            ]
+        }              
     },
     //Complex Buttons do not follow standard templating.  Wrapper is created with create call.
     complexButtons:{
