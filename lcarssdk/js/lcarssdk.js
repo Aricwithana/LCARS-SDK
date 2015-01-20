@@ -1,4 +1,4 @@
-/** LCARS SDK 14350.203
+/** LCARS SDK 15019.204
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -75,6 +75,7 @@ var LCARS = {
         $(wrapper).css('top', bodyH);
         $(wrapper).css('left', bodyW);
     },
+
      
       
 /** +brief Viewport Stepper - IN PRODUCTION, DO NOT USE.
@@ -673,7 +674,7 @@ var LCARS = {
                     allObjects[args.elemID].fade = args.args.fade;
                 }else if(args.args.fade === true){
                     $(args.element).addClass('fade');
-                    allObjects[args.elemID].hidden = args.args.fade;
+                    allObjects[args.elemID].fade = args.args.fade;
                 }
                 return args.element;
             }else{
@@ -903,7 +904,22 @@ var LCARS = {
                 if(!allObjects[args.elemID].colors){return null;}else{return allObjects[args.elemID].colors;}
             }                
             return args.element;
-        }
+        },
+
+        html:function(args){
+            if(args.set === true){
+                if(args.args.html === null && args.original.html != null){     
+                    $(args.element).empty();                                      
+                    allObjects[args.elemID].html = null;                
+                }else if(typeof args.args.html === 'string'){
+                    $(args.element).html(args.args.html);               
+                    allObjects[args.elemID].html = args.args.html;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].html){return null;}else{return allObjects[args.elemID].html;}
+            }  
+        },        
         
     },
   
@@ -1342,7 +1358,7 @@ var LCARS = {
                         allObjects[args.elemID].headerTitle = null;
                         allObjects[titleID].text = null;
                     }else if(typeof args.args.headerTitle === 'string'){
-                        $(headerTitle).text(args.args.headerTitle);
+                        $(headerTitle).html(args.args.headerTitle);
                         allObjects[args.elemID].headerTitle = args.args.headerTitle;
                         allObjects[titleID].text = args.args.headerTitle;
                     }
@@ -1362,7 +1378,7 @@ var LCARS = {
                         allObjects[args.elemID].footerTitle = null;
                         allObjects[titleID].text = null;
                     }else if(typeof args.args.footerTitle === 'string'){
-                        $(headerTitle).text(args.args.footerTitle);
+                        $(footerTitle).html(args.args.footerTitle);
                         allObjects[args.elemID].footerTitle = args.args.footerTitle;
                         allObjects[titleID].text = args.args.footerTitle;
                     }
@@ -1810,43 +1826,70 @@ $.fn.scrollRight = function(args){
 }
 
 
-/**
-* Native webview check states are click events
-* which are 300ms slower than tap/touchstart.
-* This prevents the native click event on touch
-* interaction automatically.
-*/
-$(document).on('click', '.touch .checkboxButton, .touch .radioButton', function(e){event.preventDefault();});
+//Touch Specific Modifications
+if(webviewInfo.input === "touch"){
 
-/**
-* For IE Active States.  Clicking on a child element does not 
-* trigger its parents css :active state in IE.  JS is required with class change.
-*/
-$(document).on('touchstart', '.ie.touch .complexButton:not(.disabled):not(.noEvent), .ie.touch :not(.complexButton)>.button:not(.disabled):not(.noEvent), .ie.touch .elbow:not(.disabled):not(.noEvent)', function(){
-    $(this).addClass('active');
-});
+    /**
+    * Native webview check states are click events
+    * which are 300ms slower than tap/touchstart.
+    * This prevents the native click event on touch
+    * interaction automatically.
+    */
+    $(document).on('click', '.touch .checkboxButton, .touch .radioButton', function(e){event.preventDefault();});
 
-$(document).on('touchend', '.ie.touch .complexButton.active, .ie.touch .button.active, .ie.touch .elbow.active', function(e){      
-    $(this).removeClass('active'); 
-});
+    //IE Specific for Touch.
+    if(webviewInfo.ie === true){
+        /**
+        * For IE Active States.  Clicking on a child element does not 
+        * trigger its parents css :active state in IE.  JS is required with class change.
+        */
+        $(document).on('touchstart', '.ie.touch .complexButton:not(.disabled):not(.noEvent), .ie.touch :not(.complexButton)>.button:not(.disabled):not(.noEvent), .ie.touch .elbow:not(.disabled):not(.noEvent)', function(){
+            $(this).addClass('active');
+        });
 
-$(document).on('touchcancel', '.ie.touch .complexButton.active, .ie.touch .button.active, .ie.touch .elbow.active', function(e){      
-    $(this).removeClass('active'); 
-});
+        $(document).on('touchend', '.ie.touch .complexButton.active, .ie.touch .button.active, .ie.touch .elbow.active', function(e){      
+            $(this).removeClass('active'); 
+        });
 
-$(document).on('mousedown', '.ie .complexButton:not(.disabled):not(.noEvent), .ie :not(.complexButton)>.button:not(.disabled):not(.noEvent), .ie .elbow:not(.disabled):not(.noEvent)', function(){
-    $(this).addClass('active');
-});
+        $(document).on('touchcancel', '.ie.touch .complexButton.active, .ie.touch .button.active, .ie.touch .elbow.active', function(e){      
+            $(this).removeClass('active'); 
+        });
 
-$(document).on('mouseup', '.ie .complexButton.active, .ie.button.active, .ie .elbow.active', function(e){      
-    $(this).removeClass('active'); 
-});
+        $(document).on('mousedown', '.ie .complexButton:not(.disabled):not(.noEvent), .ie :not(.complexButton)>.button:not(.disabled):not(.noEvent), .ie .elbow:not(.disabled):not(.noEvent)', function(){
+            $(this).addClass('active');
+        });
 
-$(document).on('mouseup', '.ie body', function(e){      
-    var $activeElements = $('.complexButton.active, .elbow.active') 
-    if($activeElements.length > 0){
-        $activeElements.removeClass('active'); 
-    } 
-});
+        $(document).on('mouseup', '.ie .complexButton.active, .ie.button.active, .ie .elbow.active', function(e){      
+            $(this).removeClass('active'); 
+        });
+
+        $(document).on('mouseup', '.ie body', function(e){      
+            var $activeElements = $('.complexButton.active, .elbow.active') 
+            if($activeElements.length > 0){
+                $activeElements.removeClass('active'); 
+            } 
+        });
+    }
+
+    //Browsers native input checked state is a click event, even on a touch screen.
+    $(document).on('click', '.checkboxButton, .radioButton', function(event){event.preventDefault();});
 
 
+    /**
+    * For Touch Active States.
+    *
+    * Only used because the :active CSS state is a click event and thus has the 300ms delay after click end.
+    */
+    $(document).on('touchstart', '.complexButton:not(.disabled):not(.noEvent), :not(.complexButton)>.button:not(.disabled):not(.noEvent), .elbow:not(.disabled):not(.noEvent)', function(){
+        $(this).addClass('active');
+    });
+
+    $(document).on('touchend', '.complexButton.active, .button.active, .elbow.active', function(e){      
+        $(this).removeClass('active'); 
+    });
+
+    $(document).on('touchcancel', '.complexButton.active, .button.active, .elbow.active', function(e){      
+        $(this).removeClass('active'); 
+    });
+
+}

@@ -1,4 +1,4 @@
-/** LCARS SDK 14350.203
+/** LCARS SDK 15019.204
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -127,16 +127,9 @@
 
 
 
-
-
-
-
-
-
-
 .sdk.dialog .content > h1:not(:first-child){margin-top:20px;}
 
-/* Dialog Panel/Windows - Flex is done specifically here instead of the [flex] attribute.  Less CSS this way*/
+/* Dialog Type A */
 .sdk.dialog.typeA{position:absolute; min-height:35px;}
 .sdk.dialog.typeA>.wrapper>*{position:relative;}
 .sdk.dialog.typeA .header, .dialog.typeA .footer{top:0px; left:0px; height:30px; right:0px;}
@@ -147,6 +140,7 @@
 .sdk.dialog.typeA .title{line-height: .81;}
 
 
+/* Dialog Type B */
 .sdk.dialog.typeB{min-width:185px;}
 .sdk.dialog.typeB > .block{height:60px; left:150px; top:0px;}
 .sdk.dialog.typeB > .block~.block{bottom:0px; top:auto;}
@@ -164,6 +158,7 @@
 .sdk.dialog.typeB > .scrollButton{top:130px; left:50px; height:255px; width:45px;}
 .sdk.dialog.typeB>.content{right:0px; top:0px; left:180px; bottom:0px; overflow:hidden;}
 
+/* Dialog Type C */
 .sdk.dialog.typeC{position:absolute; min-height:35px;}
 .sdk.dialog.typeC>.wrapper>*{position:relative;}
 .sdk.dialog.typeC .header, .dialog.typeC .footer{top:0px; left:0px; height:60px; right:0px;}
@@ -174,3 +169,10 @@
 .sdk.dialog.typeC .title{line-height: .80;}
 .helveticaFont .sdk.dialog.typeC .title {line-height: .75;}
 
+
+/* Dialog Type T (T for Tiny) */
+.sdk.dialog.typeT{position:absolute; min-height:35px;}
+.sdk.dialog.typeT>.wrapper>*{position:relative;}
+.sdk.dialog.typeT .header, .dialog.typeT .footer{top:0px; left:0px; height:8px; right:0px;}
+.sdk.dialog.typeT .footer{top:auto; bottom:0px;}
+.sdk.dialog.typeT>.content{right:13px; top:13px; left:13px; bottom:13px; overflow:hidden; justify-content: center;}
