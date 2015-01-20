@@ -90,6 +90,22 @@ EH: Click Preven Default
     native checked state changes. Added
     code to prevent this.
 
+15019.204-
+EH: Tiny Dialog Framing
+CO: Tiny Sizing for bars and caps
+EH: HTML setting to pass raw HTML to
+    append to generated object.
+EH: Prevent Click on Radio/Checkbox
+    inputs on touch screens.
+EH: Added touch check for touch modifications.
+CO: Updated to classes stray DOM attribute
+    settings via CSS.
+BF: Fixed arg name in Fade setting.
+CO: Changed Text setting to use the
+    $.html() syntax so HTML can be 
+    passed within string.
+
+
 
 
 Legend - 
