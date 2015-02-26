@@ -1,4 +1,4 @@
-/** LCARS SDK 15019.204
+/** LCARS SDK 15056.205
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -651,6 +651,21 @@ var LCARS = {
                 if(!allObjects[args.elemID].noEvent){return null;}else{return allObjects[args.elemID].noEvent;}
             }  
         },
+
+        disabled:function(args){
+            if(args.set === true){
+                if(args.args.hidden === false){     
+                    $(args.element).removeClass('disabled');
+                    allObjects[args.elemID].disabled = args.args.disabled;
+                }else if(args.args.disabled === true){
+                    $(args.element).addClass('disabled');
+                    allObjects[args.elemID].disabled = args.args.disabled;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].disabled){return null;}else{return allObjects[args.elemID].disabled;}
+            }  
+        },        
         
         hidden:function(args){
             if(args.set === true){
@@ -886,12 +901,12 @@ var LCARS = {
         colors:function(args){
              if(args.set === true){ 
                 if(args.args.colors === null && args.original.colors != null){     
-                    $(args.element).children(':not(.numericBlock)').each(function(){
+                    $(args.element).children(':not(.numericBlock):not(.title)').each(function(){
                         LCARS.settings.set(this, {color:null});                     
                     });
                     allObjects[args.elemID].colors = null;
                 }else if(Array.isArray(args.args.colors)){
-                    var childrenElem = $(args.element).children(':not(.numericBlock)')
+                    var childrenElem = $(args.element).children(':not(.numericBlock):not(.title)')
                     for (i = 0; i < childrenElem.length; i++) { 
                         var childElem = childrenElem[i];
                         if(args.args.colors[i]){
@@ -919,11 +934,45 @@ var LCARS = {
             }else{
                 if(!allObjects[args.elemID].html){return null;}else{return allObjects[args.elemID].html;}
             }  
-        },        
+        },
         
+        leave:function(args){
+            if(args.set === true){ 
+                if(args.args.leave === null && args.original.leave != null){     
+                    var elemID = $(args.element).attr('id');
+                    $(document).unbindLeave('#'+elemID);
+                    allObjects[args.elemID].leave = null;    
+                }else if(typeof args.args.leave === 'function'){
+                    var elemID = $(args.element).attr('id');
+                    $(document).leave('#'+elemID, args.args.leave);
+                    allObjects[args.elemID].leave = args.args.leave;
+                } 
+                return args.element;             
+            }else{
+                if(!allObjects[args.elemID].leave){return null;}else{return allObjects[args.elemID].leave;}
+            }                
+            
+        },
+        arrive:function(args){
+            if(args.set === true){ 
+                if(args.args.arrive === null && args.original.arrive != null){     
+                    var elemID = $(args.element).attr('id');
+                    $(document).unbindArrive('#'+elemID);
+                    allObjects[args.elemID].arrive = null;    
+                }else if(typeof args.args.arrive === 'function'){
+                    var elemID = $(args.element).attr('id');
+                    $(document).arrive('#'+elemID, args.args.arrive);
+                    allObjects[args.elemID].init = args.args.arrive;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].arrive){return null;}else{return allObjects[args.elemID].arrive;}
+            }                                                  
+        }     
     },
   
-  
+ 
+   
 /** +brief Object Definition Storage
 *  &info - This stores each rendered elements definition into a global
 *          variable, allObjects.  If there is no ID present, an ID will
@@ -1461,17 +1510,16 @@ function labelPreventSet(event){
             allObjects[elemID].checked = true;
             allObjects[inputID].checked = true;
         }
-    }else{
-        if(allObjects[elemID].checked !== true){    
+    }else{ 
+        if(allObjects[elemID].checked !== true){
             $(input).prop('checked', true);
             allObjects[elemID].checked = true;
             allObjects[inputID].checked = true;
-            var nameGroup = $(this).attr('name')
-            $('label[name="'+nameGroup+'"]:not(#'+elemID+')').each(function(){
-                var input = $(this).find('input');
-                var elemID = $(this).attr('id');
-                var inputID = $(input).attr('id');
-                allObjects[elemID].checked = false;
+            var nameGroup = allObjects[elemID].name;
+            $('[name="'+nameGroup+'"]:not(:checked)').each(function(){
+                var parentID = $(this).parent().attr('id');
+                var inputID = $(this).attr('id');
+                allObjects[parentID].checked = false;
                 allObjects[inputID].checked = false;
             });
         }  

@@ -106,6 +106,11 @@ CO: Changed Text setting to use the
     passed within string.
 
 
+15056.205-
+BF: Prevent Default Prop setting
+EH: Disabled Setting
+EH: Arrive.js + arrive/leave setting
+CO: USS Not Affiliated theme updated
 
 
 Legend - 

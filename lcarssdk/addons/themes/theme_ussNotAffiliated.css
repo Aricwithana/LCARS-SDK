@@ -1,4 +1,4 @@
-/** LCARS SDK 15019.204
+/** LCARS SDK 15056.205
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -7,55 +7,79 @@
 
 /* USS Not Affiliated Theme*/
 
-.una_blue1>.bar, .una_blue1>.block, .una_blue1>.button, .una_blue1>.cap{background-color:#3366FF; border-color:#3366FF;}
-.una_blue2>.bar, .una_blue2>.block, .una_blue2>.button, .una_blue2>.cap{background-color:#3366CC; border-color:#3366CC;}
-.una_blue3>.bar, .una_blue3>.block, .una_blue3>.button, .una_blue3>.cap{background-color:#336699; border-color:#336699;}
-.una_blue4>.bar, .una_blue4>.block, .una_blue4>.button, .una_blue4>.cap{background-color:#003366; border-color:#003366;}
+.primary1>.bar, .primary1>.block, .primary1>.button, .primary1>.cap{background-color:#3366FF; border-color:#3366FF;}
+.primary2>.bar, .primary2>.block, .primary2>.button, .primary2>.cap{background-color:#3366CC; border-color:#3366CC;}
+.primary3>.bar, .primary3>.block, .primary3>.button, .primary3>.cap{background-color:#336699; border-color:#336699;}
+.primary4>.bar, .primary4>.block, .primary4>.button, .primary4>.cap{background-color:#006699; border-color:#006699;}
+.primary5>.bar, .primary5>.block, .primary5>.button, .primary5>.cap{background-color:#003366; border-color:#003366;}
 
-.una_green1>.bar, .una_green1>.block, .una_green1>.button, .una_green1>.cap{background-color:#009999; border-color:#009999;}
-.una_green2>.bar, .una_green2>.block, .una_green2>.button, .una_green2>.cap{background-color:#006666; border-color:#006666;}
-.una_green3>.bar, .una_green3>.block, .una_green3>.button, .una_green3>.cap{background-color:#003333; border-color:#003333;}    
-
-.una_gold1>.bar, .una_gold1>.block, .una_gold1>.button, .una_gold1>.cap{background-color:#CC9933; border-color:#CC9933;}
-.una_gold2>.bar, .una_gold2>.block, .una_gold2>.button, .una_gold2>.cap{background-color:#FFCC66; border-color:#FFCC66;}
-
-.una_red1>.bar, .una_red1>.block, .una_red1>.button, .una_red1>.cap{background-color:#990000; border-color:#990000;}
-.una_red2>.bar, .una_red2>.block, .una_red2>.button, .una_red2>.cap{background-color:#ff0000; border-color:#ff0000;}
-
-.una_violet1>.bar, .una_violet1>.block, .una_violet1>.button, .una_violet1>.cap{background-color:#CCCCFF; border-color:#CCCCFF;}
+.secondary1>.bar, .secondary1>.block, .secondary1>.button, .secondary1>.cap{background-color:#00cc99; border-color:#00cc99;}
+.secondary2>.bar, .secondary2>.block, .secondary2>.button, .secondary2>.cap{background-color:#009999; border-color:#009999;}
+.secondary3>.bar, .secondary3>.block, .secondary3>.button, .secondary3>.cap{background-color:#006666; border-color:#006666;}    
+.secondary4>.bar, .secondary4>.block, .secondary4>.button, .secondary4>.cap{background-color:#003333; border-color:#003333;}    
 
 
-.una_blue1:not(.complexButton){background-color:#3366FF; border-color:#3366FF;}
-.una_blue2:not(.complexButton){background-color:#3366CC; border-color:#3366CC;}
-.una_blue3:not(.complexButton){background-color:#336699; border-color:#336699;}
-.una_blue4:not(.complexButton){background-color:#003366; border-color:#003366;}    
+.accent1>.bar, .accent1>.block, .accent1>.button, .accent1>.cap{background-color:#ffcc66; border-color:#ffcc66;}
+.accent2>.bar, .accent2>.block, .accent2>.button, .accent2>.cap{background-color:#FFCC33; border-color:#FFCC33;}
+.accent3>.bar, .accent3>.block, .accent3>.button, .accent3>.cap{background-color:#CC9933; border-color:#CC9933;}
 
-.una_green1:not(.complexButton){background-color:#009999; border-color:#009999;}
-.una_green2:not(.complexButton){background-color:#006666; border-color:#006666;}
-.una_green3:not(.complexButton){background-color:#003333; border-color:#003333;}
 
-.una_gold1:not(.complexButton){background-color:#CC9933; border-color:#CC9933;}
-.una_gold2:not(.complexButton){background-color:#FFCC66; border-color:#FFCC66;}
+.highlight1>.bar, .highlight1>.block, .highlight1>.button, .highlight1>.cap{background-color:#CCCCFF; border-color:#CCCCFF;}
+.highlight2>.bar, .highlight2>.block, .highlight2>.button, .highlight2>.cap{background-color:#ccffff; border-color:#ccffff;}
 
-.una_red1:not(.complexButton){background-color:#990000; border-color:#990000;}
-.una_red2:not(.complexButton){background-color:#ff0000; border-color:#ff0000;}
 
-.una_violet1:not(.complexButton){background-color:#ff0000; border-color:#CCCCFF;}
+.red1>.bar, .red1>.block, .red1>.button, .red1>.cap{background-color:#990000; border-color:#990000;}
+.red2>.bar, .red2>.block, .red2>.button, .red2>.cap{background-color:#ff0000; border-color:#ff0000;}
 
-.una_blueText1{color:#3366FF;}
-.una_blueText2{color:#3366CC;}
-.una_blueText3{color:#336699; }
-.una_blueText4{color:#003366;}    
+.white>.bar, .white>.block, .white>.button, .white>.cap{background-color:#ffffff; border-color:#ffffff;}
 
-.una_greenText1{color:#009999;}
-.una_greenText2{color:#006666;}
-.una_greenText3{color:#003333;}
 
-.una_goldText1{color:#CC9933;}
-.una_goldText2{color:#FFCC66;}
+.primary1:not(.complexButton){background-color:#3366FF; border-color:#3366FF;}
+.primary2:not(.complexButton){background-color:#3366CC; border-color:#3366CC;}
+.primary3:not(.complexButton){background-color:#336699; border-color:#336699;}
+.primary4:not(.complexButton){background-color:#006699; border-color:#006699;}
+.primary5:not(.complexButton){background-color:#003366; border-color:#003366;} 
 
-.una_redText1{color:#990000;}
-.una_redText2{color:#ff0000;}
 
-.una_violet1{color:#CCCCFF;}
+.secondary1:not(.complexButton){background-color:#00cc99; border-color:#00cc99;}
+.secondary3:not(.complexButton){background-color:#009999; border-color:#009999;}
+.secondary3:not(.complexButton){background-color:#006666; border-color:#006666;}
+.secondary4:not(.complexButton){background-color:#003333; border-color:#003333;}
+
+
+.accent1:not(.complexButton){background-color:#ffcc66; border-color:#ffcc66;}
+.accent2:not(.complexButton){background-color:#FFCC33; border-color:#FFCC33;}
+.accent3:not(.complexButton){background-color:#CC9933; border-color:#CC9933;}
+
+.highlight1:not(.complexButton){background-color:#ccccff; border-color:#ccccff;}
+.highlight2:not(.complexButton){background-color:#ccffff; border-color:#ccffff;}
+
+
+.red1:not(.complexButton){background-color:#990000; border-color:#990000;}
+.red2:not(.complexButton){background-color:#ff0000; border-color:#ff0000;}
+
+.white:not(.complexButton){background-color:#ffffff; border-color:#ffffff;}
+
+.primaryText1{color:#3366FF;}
+.primaryText2{color:#3366CC;}
+.primaryText3{color:#336699; }
+.primaryText4{color:#006699;} 
+.primaryText5{color:#003366;} 
+
+.secondaryText1{color:#00cc99;}
+.secondaryText2{color:#009999;}
+.secondaryText3{color:#006666;}
+.secondaryText4{color:#003333;}
+
+.accentText1{color:#ffcc66;}
+.accentText2{color:#ffcc33;}
+.accentText3{color:#cc9933;}
+
+.hilightText1{color:#ccccff;}
+.hilightText1{color:#ccffff;}
+
+.redText1{color:#990000;}
+.redText2{color:#ff0000;}
+
+.whiteText{color:#ffffff;}
 
