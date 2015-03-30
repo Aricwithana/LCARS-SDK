@@ -1,4 +1,4 @@
-/** LCARS SDK 15056.205
+/** LCARS SDK 15088.21
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -100,7 +100,13 @@ LCARS.levelBar = {
                     }    
                     
                 }else if(typeof args.args.level === 'number'){
-                    $(elemBar).css('width', 'calc('+args.args.level + '% - 10px)');             
+                    
+                    if(allObjects[args.elemID].orient === 'vertical' || args.args.direction === 'vertical'){
+                        $(elemBar).css('height', 'calc('+args.args.level + '% - 10px)');     
+                    }else{
+                        $(elemBar).css('width', 'calc('+args.args.level + '% - 10px)');     
+                    }
+                               
                     allObjects[args.elemID].level = args.args.level;
                     if(allObjects[args.elemID].labelLink === 'label'){      
                         LCARS.settings.set(args.element, {label:''+args.args.level+''});

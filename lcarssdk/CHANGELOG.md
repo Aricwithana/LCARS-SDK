@@ -113,6 +113,25 @@ EH: Arrive.js + arrive/leave setting
 CO: USS Not Affiliated theme updated
 
 
+15088.21-
+BF: Arrive.js to use Zepto.
+RM: Removed 'active' CSS state.
+RM: Active state JS for IE and touch.
+EH: Orient setting
+EH: Direction settings
+EH: Level Bars updated for direction
+    and orientation settings.
+CO: Added template to index.html, using 
+    the Alert Status Hue Rotation interface.
+BF: Place more than one onresize events on the UI.
+EH: Child Scale, scales a secondary inner 
+    interface to its parent.
+EH: Viewport Zoom uses zoom feature instead
+    of CSS scaling.  Provides a better visual
+    than scaling on Webkit browsers.
+EH: Child Zoom, zooms a seconary inner
+    inerface to its parent.
+
 Legend - 
 BF:  Bug Fix
 CO:  Cosmetic

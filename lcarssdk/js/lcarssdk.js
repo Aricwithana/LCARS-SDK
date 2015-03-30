@@ -1,4 +1,4 @@
-/** LCARS SDK 15056.205
+/** LCARS SDK 15088.21
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -75,42 +75,85 @@ var LCARS = {
         $(wrapper).css('top', bodyH);
         $(wrapper).css('left', bodyW);
     },
-
-     
-      
-/** +brief Viewport Stepper - IN PRODUCTION, DO NOT USE.
- *	&info - Shrink Width and Height of viewport in steps of passed parameters.
- *	@panelW - Width of container
- *	@panelH - Height of container
- *	@baseStepV - Base Vertical step height     
- *	@spacingStepV - BaseStepV + spacing between (60+5=65)
- *	@baseStepH - Base Horizontal step width 
- *	@spacingStepH -  BaseStepV + spacing between (150+5=155)
- *	@wrapper - Wrapper DOM Object
- *          
-        
-    stepper: function(panelW, panelH, baseStepV, spacingStepV, baseStepH, spacingStepH, wrapper){
-        var windowH = $(window).height();
-        var windowW = $(window).width(); 
-        var stepHeight = (Math.floor((windowH - baseStepV - 20)/spacingStepV) * spacingStepV) + baseStepV;	
-        var newWidth = Math.round(stepHeight*(panelW/panelH)); 
-        
-        if(newWidth < windowW){
-            $(wrapper).width(newWidth).height(stepHeight);  
-        }else{       
-            var stepWidth = (Math.floor((windowW - baseStepH - 20)/spacingStepH) * spacingStepH) + baseStepH;	
-            var newHeight = Math.round(stepWidth*(panelH/panelW)); 
-            $(wrapper).width(stepWidth).height(newHeight);  
-        } 
     
-        var bodyH = ((windowH - $(wrapper)[0].getBoundingClientRect().height)/2)
-        var bodyW = ((windowW - $(wrapper)[0].getBoundingClientRect().width)/2)
-        if(bodyH < 0){bodyH=0;}
-        if(bodyW < 0){bodyW=0;}
-        $(wrapper).css('top', bodyH);
-        $(wrapper).css('left', bodyW);
+    childScale:function(panelW, panelH, wrapper, max){
+        $('.childScale').each(function(){
+            var windowH = $(this).parent().height();
+            var windowW = $(this).parent().width();
+            var ratio = panelW/panelH;
+
+            var diffH = 1-((panelW - windowW)/panelW)
+            var diffW = 1-((panelH - windowH)/panelH)
+            if(max !== true  || max === true && diffW < 1 && diffH < 1 || max === true && diffW < 1 || diffH < 1){
+                if(panelW > panelH){
+                    if(windowH < (windowW*ratio)){
+                        $(wrapper).css('-webkit-transform', 'scale('+diffW+')');
+                        $(wrapper).css('-ms-transform', 'scale('+diffW+')');
+                        $(wrapper).css('transform', 'scale('+diffW+')');
+                    }
+
+                    if(windowW < (windowH*ratio)){
+                        $(wrapper).css('-webkit-transform', 'scale('+diffH+')');
+                        $(wrapper).css('-ms-transform', 'scale('+diffH+')');
+                        $(wrapper).css('transform', 'scale('+diffH+')');
+                    }
+                }
+                if(panelW < panelH){
+                    if(windowH > (windowW*ratio)){
+                        $(wrapper).css('-webkit-transform', 'scale('+diffH+')');
+                        $(wrapper).css('-ms-transform', 'scale('+diffH+')');
+                        $(wrapper).css('transform', 'scale('+diffH+')');
+                    }
+
+                    if(windowW > (windowH*ratio)){
+                        $(wrapper).css('-webkit-transform', 'scale('+diffW+')');
+                        $(wrapper).css('-ms-transform', 'scale('+diffW+')');
+                        $(wrapper).css('transform', 'scale('+diffW+')');
+                    }
+                }
+            }else{
+                $(wrapper).css('-webkit-transform', '');
+                $(wrapper).css('-ms-transform',  '');
+                $(wrapper).css('transform',  '');              
+            }
+
+            var bodyH = ((windowH - $(wrapper)[0].getBoundingClientRect().height)/2)
+            var bodyW = ((windowW - $(wrapper)[0].getBoundingClientRect().width)/2)
+            if(bodyH < 0){bodyH=0;}
+            if(bodyW < 0){bodyW=0;}
+            $(wrapper).css('top', bodyH);
+            $(wrapper).css('left', bodyW);
+        });
     },
-    */ 
+    
+    zoom:function(width, height){
+        var viewportWidth = $(window).width();
+        var viewportHeight = $(window).height();
+        var aspectUI = width/height;
+        var aspectViewport = viewportWidth / viewportHeight;
+        if(aspectUI < aspectViewport){
+            var zoomLevel = Math.round((viewportHeight/height)*100)/100 ; //Round to 1 decimal 
+        }else{
+            var zoomLevel = Math.round((viewportWidth/width)*100)/100 ; //Round to 1 decimal
+
+        }
+        $('html').css('zoom', zoomLevel);     
+    },
+    
+    childZoom:function(width, height){
+        $('.childZoom').each(function(){
+            var viewportWidth = $(this).parent().width();
+            var viewportHeight = $(this).parent().height();
+            var aspectUI = width/height;
+            var aspectViewport = viewportWidth / viewportHeight;
+            if(aspectUI < aspectViewport){
+                var zoomLevel = Math.round((viewportHeight/height)*100)/100; 
+            }else{
+                var zoomLevel = Math.round((viewportWidth/width)*100)/100;
+            }      
+            $(this).css('zoom', zoomLevel);     
+        });
+    },
     
  
 /** +brief Randomly select color from array.
@@ -497,6 +540,38 @@ var LCARS = {
                 if(!allObjects[args.elemID].version){return null;}else{return allObjects[args.elemID].version;}
             }  
         },
+        
+        direction:function(args){
+            if(args.set === true){
+                if(args.args.direction === null && args.original.direction != null){     
+                    $(args.element).removeClass(args.original.direction);
+                    allObjects[args.elemID].direction = null;
+                }else if(typeof args.args.direction === 'string'){
+                    if(args.original.direction){$(args.element).removeClass(args.original.direction);}
+                    $(args.element).addClass(args.args.direction);
+                    allObjects[args.elemID].direction = args.args.direction;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].direction){return null;}else{return allObjects[args.elemID].direction;}
+            }  
+        },
+            
+        orient:function(args){
+            if(args.set === true){
+                if(args.args.orient === null && args.original.orient != null){     
+                    $(args.element).removeClass(args.original.orient);
+                    allObjects[args.elemID].orient = null;
+                }else if(typeof args.args.orient === 'string'){
+                    if(args.original.orient){$(args.element).removeClass(args.original.orient);}
+                    $(args.element).addClass(args.args.orient);
+                    allObjects[args.elemID].orient = args.args.orient;
+                }
+                return args.element;
+            }else{
+                if(!allObjects[args.elemID].orient){return null;}else{return allObjects[args.elemID].orient;}
+            }  
+        },    
 
         label:function(args){
             if(args.set === true){
@@ -1810,16 +1885,28 @@ $.fn.viewport = function(action, args){
     var element = this;
     if(action === 'scale'){
         LCARS.scaler(args.width, args.height, element, args.max);
-        window.onresize = function(event) {
+        window.addEventListener("resize", function(event) {
             LCARS.scaler(args.width, args.height, element, args.max); 
-        }
-    }else if(action === 'step'){
-        LCARS.stepper(args.width, args.height, args.baseStepV, args.spacingStepV, args.baseStepH, args.spacingStepH, element);
-        window.onresize = function(event) {
-            LCARS.stepper(args.width, args.height, args.baseStepV, args.spacingStepV, args.baseStepH, args.spacingStepH, element);    
-        }
-    }
-    
+        });
+        
+    }else if(action === 'childScale'){
+        LCARS.childScale(args.width, args.height, element, args.max);
+        window.addEventListener("resize", function(event) {
+            LCARS.childScale(args.width, args.height, element, args.max); 
+        });
+        
+    }else if(action === 'zoom'){
+        LCARS.zoom(args.width, args.height);
+        window.addEventListener("resize", function(event) {
+            LCARS.zoom(args.width, args.height);    
+        });   
+        
+    }else if(action === 'childZoom'){
+        LCARS.childZoom(args.width, args.height);
+        window.addEventListener("resize", function(event) {
+            LCARS.childZoom(args.width, args.height);    
+        });    
+    }  
 }
 
 
@@ -1871,73 +1958,4 @@ $.fn.scrollRight = function(args){
         var scrollVal = $(this).scrollLeft();	
         $(this).scrollLeft(scrollVal+args.step); 
     });
-}
-
-
-//Touch Specific Modifications
-if(webviewInfo.input === "touch"){
-
-    /**
-    * Native webview check states are click events
-    * which are 300ms slower than tap/touchstart.
-    * This prevents the native click event on touch
-    * interaction automatically.
-    */
-    $(document).on('click', '.touch .checkboxButton, .touch .radioButton', function(e){event.preventDefault();});
-
-    //IE Specific for Touch.
-    if(webviewInfo.ie === true){
-        /**
-        * For IE Active States.  Clicking on a child element does not 
-        * trigger its parents css :active state in IE.  JS is required with class change.
-        */
-        $(document).on('touchstart', '.ie.touch .complexButton:not(.disabled):not(.noEvent), .ie.touch :not(.complexButton)>.button:not(.disabled):not(.noEvent), .ie.touch .elbow:not(.disabled):not(.noEvent)', function(){
-            $(this).addClass('active');
-        });
-
-        $(document).on('touchend', '.ie.touch .complexButton.active, .ie.touch .button.active, .ie.touch .elbow.active', function(e){      
-            $(this).removeClass('active'); 
-        });
-
-        $(document).on('touchcancel', '.ie.touch .complexButton.active, .ie.touch .button.active, .ie.touch .elbow.active', function(e){      
-            $(this).removeClass('active'); 
-        });
-
-        $(document).on('mousedown', '.ie .complexButton:not(.disabled):not(.noEvent), .ie :not(.complexButton)>.button:not(.disabled):not(.noEvent), .ie .elbow:not(.disabled):not(.noEvent)', function(){
-            $(this).addClass('active');
-        });
-
-        $(document).on('mouseup', '.ie .complexButton.active, .ie.button.active, .ie .elbow.active', function(e){      
-            $(this).removeClass('active'); 
-        });
-
-        $(document).on('mouseup', '.ie body', function(e){      
-            var $activeElements = $('.complexButton.active, .elbow.active') 
-            if($activeElements.length > 0){
-                $activeElements.removeClass('active'); 
-            } 
-        });
-    }
-
-    //Browsers native input checked state is a click event, even on a touch screen.
-    $(document).on('click', '.checkboxButton, .radioButton', function(event){event.preventDefault();});
-
-
-    /**
-    * For Touch Active States.
-    *
-    * Only used because the :active CSS state is a click event and thus has the 300ms delay after click end.
-    */
-    $(document).on('touchstart', '.complexButton:not(.disabled):not(.noEvent), :not(.complexButton)>.button:not(.disabled):not(.noEvent), .elbow:not(.disabled):not(.noEvent)', function(){
-        $(this).addClass('active');
-    });
-
-    $(document).on('touchend', '.complexButton.active, .button.active, .elbow.active', function(e){      
-        $(this).removeClass('active'); 
-    });
-
-    $(document).on('touchcancel', '.complexButton.active, .button.active, .elbow.active', function(e){      
-        $(this).removeClass('active'); 
-    });
-
 }

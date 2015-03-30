@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/** LCARS SDK 15056.205
+/** LCARS SDK 15088.21
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -62,10 +62,10 @@ time, mark, audio, video, input {
 }
 
 * {
-    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-	-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    -webkit-touch-callout: none;               
+    -webkit-user-select: none;
+	-webkit-text-size-adjust: none;            
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -79,9 +79,9 @@ time, mark, audio, video, input {
 .blockFont{font-family:'LCARS Block'; font-size:inherit;}
 
 html{overflow:hidden;}
-body{background-color:#000000;	height: 100%; width:100%; overflow:hidden; position: fixed; -webkit-transform:translate3d(0,0,0);}
+body{background-color:#000000;	height: 100%; width:100%; overflow:hidden; position: fixed; }
 
-.scaler, .stepper{-webkit-transform-origin: 0% 0%; transform-origin: 0% 0%; -ms-transform-origin:0% 0%; overflow:hidden;} 
+.scale, .childScale{-webkit-transform-origin: 0% 0%; transform-origin: 0% 0%; -ms-transform-origin:0% 0%; overflow:hidden;} 
 
 ol, ul{list-style: none;}
 blockquote, q{quotes: none;	}
@@ -184,8 +184,8 @@ pre{white-space: pre-wrap;
 .block{position:absolute; height:60px; width:25px; background-color:inherit; -webkit-box-sizing:content-box; box-sizing:content-box; }
 .wrapper{position:absolute;}
 .content{position:absolute; color:#ffffff;}
-.title{position:absolute; background-color:#000000; padding-left:10px; padding-right:10px; color:#ffffff; font-size: 82px; height:60px; line-height: .82;}
-.numericBlock{background-color:#000000 !important; padding-left: 0px; text-align: right; font-size: 60px; line-height: 1; height:inherit; color:#ffffff; position:relative; -webkit-box-sizing: border-box; letter-spacing:5px; min-width:25px; width:auto; font-family:'LCARS Block'; margin:0px !important;}
+.title{position:absolute; background-color:#000000; color:#ffffff; font-size: 82px; height:60px; line-height: .82;}
+.numericBlock{background-color:#000000 !important; padding-left: 0px; text-align: right; font-size: 60px; line-height: 1; height:inherit; color:#ffffff; position:relative; letter-spacing:5px; min-width:25px; width:auto; font-family:'LCARS Block'; margin:0px !important;}
 .oval{position:absolute; border-radius:100%; width:45px; height:25px;}
 
 
@@ -477,75 +477,11 @@ pre{white-space: pre-wrap;
 .column{overflow:hidden;}
 .column>*{width:100%; position:relative; margin-top:5px;}
 .column.flexv>.complexButton>*{height:auto;}
-
 .column>*:first-child{margin-top:0px;}
 
 .row{overflow:hidden;}
 .row>*{min-width:30px; min-height:inherit; position:relative; margin-left:5px; }
 .row>*:first-child{margin-left:0px;}
-
-
-
-/* Active State Animation */
-@-webkit-keyframes active {
-     0% {background-color:#ffffff;  color:#000000; border-color:#ffffff;}
-     100% {background-color:#ffffff; color:#000000; border-color:#ffffff;}
-}
-@keyframes active {
-     0% {background-color:#ffffff; color:#000000; border-color:#ffffff;}
-     100% {background-color:#ffffff;  color:#000000; border-color:#ffffff;}
-}
-
-/* Active State Parameters */
-
-/* Mouse-Desktop */
-html:not(.ie):not(.touch) .complexButton:not(.disabled):not(.noEvent):active :not(.numericBlock):not(.wrapper), 
-html:not(.touch) .button:not(.disabled):not(.noEvent):active, 
-html:not(.touch) .elbow:not(.disabled):not(.noEvent):active{-webkit-animation: active 1.25s linear infinite !important; animation: active 1.25s linear infinite !important;}
-
-html:not(.touch) .complexButton:active, html:not(.touch) .complexButton:active .block.numericBlock{-webkit-animation: none !important; animation: none !important;}
-
-
-/** Mobile/Touch
-*   Webviews add a 'pause' between touchstart and CSS :active. To ensure the state
-*   is applied and for the correct timing, three contact points are applied.
-*   
-*   First is the native CSS, which triggers after a pause and disappears slower.
-*   This is needed because touchstart/end/cancel trigger faster both when adding
-*   the .active class and removing it.  
-*
-*   Second is the typical .active class setting.  Third remedies a slight flicker
-*   when touching an element just slightly or really quickly. 
-*/
-
-html.touch:not(.ie) .complexButton:not(.disabled):not(.noEvent):active :not(.numericBlock):not(.wrapper), 
-html.touch:not(.ie) .button:not(.disabled):not(.noEvent):active, 
-html.touch:not(.ie) .elbow:not(.disabled):not(.noEvent):active{-webkit-animation: none !important; animation: none !important;}
-
-html.touch:not(.ie) .complexButton:active, html.touch:not(.ie) .complexButton:active .block.numericBlock{-webkit-animation: none !important; animation: none !important;}
-
-html.touch.touch:not(.ie) .complexButton:not(.disabled):not(.noEvent).active> :not(.numericBlock),  
-html.touch:not(.ie) .button:not(.disabled):not(.noEvent).active, 
-html.touch:not(.ie) .elbow:not(.disabled):not(.noEvent).active{-webkit-animation: active 1.25s linear infinite !important; animation: active 1.25s linear infinite !important;}
-
-html.touch:not(.ie) .complexButton.active, html.touch:not(.ie) .complexButton.active .block.numericBlock{-webkit-animation: none !important; animation: none !important;}
-
-html.touch:not(.ie) .complexButton:not(.disabled):not(.noEvent).active:active> :not(.numericBlock),  
-html.touch:not(.ie) .button:not(.disabled):not(.noEvent).active:active, 
-html.touch:not(.ie) .elbow:not(.disabled):not(.noEvent).active:active{-webkit-animation: active 1.25s linear infinite !important; animation: active 1.25s linear infinite !important;}
-
-html.touch:not(.ie) .complexButton.active:active, html.touch:not(.ie) .complexButton.active:active .block.numericBlock{-webkit-animation: none !important; animation: none !important;}
-
-
-/* IE since child mouse events do not trigger parent css states and MS won't change it.  Screw you IE.*/
-.ie .elbow:not(.disabled):not(.noEvent).active,
-.ie .complexButton:not(.disabled):not(.noEvent).active .cap, 
-.ie .complexButton:not(.disabled):not(.noEvent).active .block:not(.numericBlock), 
-.ie .complexButton:not(.disabled):not(.noEvent).active .bar,
-.ie .complexButton:not(.disabled):not(.noEvent).active .button{-webkit-animation: active 1.25s linear infinite !important; animation: active 1.25s linear infinite !important;}  
-
-.ie .complexButton.active, .ie .complexButton.active .numericBlock{-webkit-animation: none !important; animation: none !important;}
-
 
 
 

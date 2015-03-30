@@ -1,4 +1,4 @@
-/** LCARS SDK 15056.205
+/** LCARS SDK 15088.21
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -42,7 +42,7 @@
 
 
 .secondary1:not(.complexButton){background-color:#00cc99; border-color:#00cc99;}
-.secondary3:not(.complexButton){background-color:#009999; border-color:#009999;}
+.secondary2:not(.complexButton){background-color:#009999; border-color:#009999;}
 .secondary3:not(.complexButton){background-color:#006666; border-color:#006666;}
 .secondary4:not(.complexButton){background-color:#003333; border-color:#003333;}
 
