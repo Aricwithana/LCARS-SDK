@@ -1,4 +1,4 @@
-/** LCARS SDK 15088.21
+/** LCARS SDK 16098.3
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -8,19 +8,20 @@
 * Display numerical value as an animating bar
 **/
 
-sdkAddonTemplates.levelBar = {
-    typeA:{type:'wrapper', class:'sdk widget levelBar typeA', children:[
+LCARS.templates.sdk.levelBar = {
+    typeA:{type:'wrapper', class:'addon sdk levelBar typeA', children:[
         {type:'bar'}, 
         {type:'cap'} 
     ]}     
-}
+};
 
 
 LCARS.levelBar = {
     create:function(args){
+        if(!args.template){args.template = $.extend(true, {}, LCARS.templates.sdk.levelBar.typeA);}
         if(args.id){args.template.id = args.id;}
         var element = LCARS[args.template.type].create(args.template);
-        
+        console.log(element);
         element = LCARS.definition(element, args);
         return element;
     }, 
@@ -88,7 +89,13 @@ LCARS.levelBar = {
             if(args.set === true){
                 var elemBar = $(args.element).find('.bar');
                 if(args.args.level === null && args.original.level != null){     
-                    $(elemBar).css('width', 0+'%');
+                    
+                    if(allObjects[args.elemID].orient === 'vertical' || args.args.direction === 'vertical'){
+                       $(elemBar).css('height', 0+'%'); 
+                    }else{
+                       $(elemBar).css('width', 0+'%'); 
+                    }
+                    
                     allObjects[args.elemID].level = null;
                     
                     if(allObjects[args.elemID].label  && allObjects[args.elemID].labelLink === true){
@@ -123,4 +130,4 @@ LCARS.levelBar = {
             }             
         }
     }
-}
+};

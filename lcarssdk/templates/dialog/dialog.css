@@ -1,0 +1,184 @@
+/** LCARS SDK 16098.3
+* This file is a part of the LCARS SDK.
+* https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
+* For more information please go to http://www.lcarssdk.org.
+**/
+
+.sdk.dialog .content > h1:not(:first-child){margin-top:20px;}
+
+/* Dialog Type A */
+.sdk.dialog.typeA{
+	position:absolute;
+	min-height:35px;
+} 
+
+.sdk.dialog.typeA > .wrapper > * {position:relative;}
+
+.sdk.dialog.typeA .header, 
+.dialog.typeA .footer{
+	top:0px; 
+	left:0px; 
+	height:30px; 
+	right:0px;
+}
+
+.sdk.dialog.typeA .footer{
+	top:auto; 
+	bottom:0px;
+}
+
+.sdk.dialog.typeA .header .bar{margin-right:10px;}
+
+.sdk.dialog.typeA .footer .bar{margin-left:10px;}
+
+.sdk.dialog.typeA>.content{
+	right:35px; 
+	top:40px; 
+	left:35px; 
+	bottom:40px; 
+	overflow:hidden;
+}
+
+.sdk.dialog.typeA .title{line-height: .81;}
+
+
+/* Dialog Type B */
+.sdk.dialog.typeB{min-width:185px;}
+
+.sdk.dialog.typeB > .block{
+	height:60px; 
+	left:150px; 
+	top:0px;
+}
+
+.sdk.dialog.typeB > .block~.block{
+	bottom:0px; 
+	top:auto;
+}
+.sdk.dialog.typeB > .elbow{width:95px;}
+
+.sdk.dialog.typeB > .elbow .bar{width:45px;}
+
+.sdk.dialog.typeB > .topLeftAlt .innerRadius, .dialog.typeB > [data-version="bottomLeftAlt"] .innerRadius{left:35px;}
+
+.sdk.dialog.typeB > .bottomRightAlt"] .innerRadius, .dialog.typeB > [data-version="topRightAlt"] .innerRadius{right:35px;}
+
+.sdk.dialog.typeB > .topLeftAlt{
+	left:50px; 
+	top:0px;
+}
+
+.sdk.dialog.typeB > .topLeftAlt .bar{
+	bottom:-65px; 
+	height:67px;
+}
+
+.sdk.dialog.typeB > .bottomRightAlt{
+	left:0px; 
+	top:520px; 
+	border-radius:0px;
+}
+
+.sdk.dialog.typeB > .bottomRightAlt .bar{
+	height:132px; 
+	top:-130px;
+}
+
+.sdk.dialog.typeB > .topRightAlt{
+	left:0px; 
+	top:520px; 
+	border-radius:0px;
+}
+
+.sdk.dialog.typeB > .bottomLeftAlt{
+	left:50px; 
+	bottom:0px;
+}
+
+.sdk.dialog.typeB > .topRightAlt .bar{
+	bottom:-107px; 
+	height:109px;
+}
+
+.sdk.dialog.typeB > .scrollButton{
+	top:130px; 
+	left:50px; 
+	height:255px; 
+	width:45px;
+}
+
+.sdk.dialog.typeB>.content{
+	right:0px; 
+	top:0px; 
+	left:180px; 
+	bottom:0px; 
+	overflow:hidden;
+}
+
+
+/* Dialog Type C */
+.sdk.dialog.typeC{
+	position:absolute; 
+	min-height:35px;
+}
+
+.sdk.dialog.typeC > .wrapper > *{position:relative;}
+
+.sdk.dialog.typeC .header, 
+.dialog.typeC .footer{
+    top:0px; 
+    left:0px; 
+    height:60px; 
+    right:0px;
+}
+
+.sdk.dialog.typeC .footer{
+    top:auto; 
+    bottom:0px;
+}
+
+.sdk.dialog.typeC .header .bar, .dialog.typeC .header .button{margin-right:10px; }
+
+.sdk.dialog.typeC .footer .bar, .dialog.typeC .footer .button{margin-left:10px;}
+
+.sdk.dialog.typeC>.content{
+    right:70px; 
+    top:70px; 
+    left:70px; 
+    bottom:70px; 
+    overflow:hidden;
+}
+
+.sdk.dialog.typeC .title{line-height: .80;}
+
+.helveticaFont .sdk.dialog.typeC .title {line-height: .75;}
+
+
+/* Dialog Type T (T for Tiny) */
+.sdk.dialog.typeT{
+    position:absolute; 
+    min-height:35px;
+}
+
+.sdk.dialog.typeT > .wrapper > * {position:relative;}
+
+.sdk.dialog.typeT .header, .dialog.typeT .footer{
+    top:0px; 
+    left:0px; 
+    height:8px; 
+    right:0px;
+}
+
+.sdk.dialog.typeT .footer{
+    top:auto; 
+    bottom:0px;
+}
+
+.sdk.dialog.typeT > .content{
+    right:13px; 
+    top:13px; 
+    left:13px; 
+    bottom:13px; 
+    overflow:hidden; 
+    justify-content: center;
+}

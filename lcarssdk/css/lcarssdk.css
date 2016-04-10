@@ -1,15 +1,21 @@
 @charset "utf-8";
 
-/** LCARS SDK 15088.21
+/** LCARS SDK 16098.3
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
 **/
 
+
+/* =============================================================================
+   Fonts
+   ========================================================================== */
+
 @font-face {
     font-family: 'LCARS';
     src: url('../fonts/lcarsgtj3.eot');
-	src: url('../fonts/lcarsgtj3.eot?#iefix') format('embedded-opentype'), url('../fonts/lcarsgtj3.ttf') format('truetype');
+	src: url('../fonts/lcarsgtj3.eot?#iefix') format('embedded-opentype'), 
+	url('../fonts/lcarsgtj3.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -17,7 +23,8 @@
 @font-face {
     font-family: 'LCARS Lower';
     src: url('../fonts/lcarsunknown.eot');
-	src: url('../fonts/lcarsunknown.eot?#iefix') format('embedded-opentype'), url('../fonts/lcarsunknown.ttf') format('truetype');
+	src: url('../fonts/lcarsunknown.eot?#iefix') format('embedded-opentype'), 
+	url('../fonts/lcarsunknown.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -30,6 +37,10 @@
     font-style: normal;
 }
   
+
+/* =============================================================================
+   Reset
+   ========================================================================== */
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -47,17 +58,18 @@ time, mark, audio, video, input {
 	margin: 0px;
 	padding: 0px;
 	border: 0px;
-	font-size: 25px;
+	font-size: 100%;
 	vertical-align: baseline;	
+	color:inherit;
+	border-color:inherit;
 	font-family:"LCARS";
-    font-weight: normal;
+    font-weight: inherit;
 	text-overflow: ellipsis; 
 	white-space:nowrap; 
 	border-style: none; 
 	outline:none;
 	text-transform:uppercase;
 	line-height:1;
-	/*letter-spacing:.25px;*/
     display:block;
 }
 
@@ -67,8 +79,8 @@ time, mark, audio, video, input {
 	-webkit-text-size-adjust: none;            
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
 	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -76,26 +88,99 @@ time, mark, audio, video, input {
 }
 
 .helveticaFont *, .helveticaFont *:before, .helveticaFont *:after{font-family:'Helvetica W02 Ultra Cm';}
-.blockFont{font-family:'LCARS Block'; font-size:inherit;}
 
-html{overflow:hidden;}
-body{background-color:#000000;	height: 100%; width:100%; overflow:hidden; position: fixed; }
+.blockFont{
+	font-family:'LCARS Block'; 
+	font-size:inherit;
+}
 
-.scale, .childScale{-webkit-transform-origin: 0% 0%; transform-origin: 0% 0%; -ms-transform-origin:0% 0%; overflow:hidden;} 
 
-ol, ul{list-style: none;}
-blockquote, q{quotes: none;	}
-blockquote:before, blockquote:after, q:before, q:after{content: ''; content: none;	}
-table{border-collapse:collapse; border-spacing:0;	}
-*:focus { outline: none; }
+/* =============================================================================
+   Base
+   ========================================================================== */
 
-*:before, *:after{padding:0px; margin:0px; -webkit-backface-visibility: hidden; display:block; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;  box-sizing: border-box;  text-overflow: ellipsis; white-space:nowrap; text-transform:uppercase; word-wrap: break-word; overflow-wrap: break-word; white-space: normal; height: 25px; color:#000000;}
+html{
+	overflow:hidden;     
+	height: 100%;
+    width: 100%;
+	font-weight:normal; 
+	line-height:1;
+}
 
-input[type="text"], input[type="password"]{border:0px; margin:0px; padding:0px; background-color:#000000;   font-family: 'LCARS Lower';  letter-spacing: .5px; -webkit-user-select:auto; color:#ffffff;}
+body{
+	background-color:#000000;	
+	height: 100%; 
+	width:100%; 
+	overflow:hidden; 
+	position: fixed; 
+}
+
+.scale, 
+.childScale{
+	-webkit-transform-origin: 0% 0%; 
+	transform-origin: 0% 0%; 
+	overflow:hidden;
+} 
+
+ol, 
+ul{list-style: none;}
+
+blockquote, 
+q{quotes: none;}
+
+blockquote:before, 
+blockquote:after, 
+q:before, 
+q:after{
+	content: ''; 
+	content: none;	
+}
+
+table{
+	border-collapse:collapse; 
+	border-spacing:0;	
+}
+
+*:focus {outline: none;}
+
+*:before, *:after{
+	padding:0px; 
+	margin:0px; 
+	-webkit-backface-visibility: hidden; 
+	display:block; 
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;  
+	box-sizing: border-box;  
+	text-overflow: ellipsis; 
+	text-transform:uppercase; 
+	word-wrap: break-word; 
+	overflow-wrap: break-word; 
+	white-space: normal; 
+	height: 25px; 
+	color:#000000;
+}
+
+input[type="text"], 
+input[type="password"]{
+	border:0px; 
+	margin:0px; 
+	padding:0px; 
+	background-color:#000000;   
+	font-family: 'LCARS Lower';  
+	letter-spacing: .5px; 
+	-webkit-user-select:auto;
+	user-select:auto; 
+	color:#ffffff;
+}
 
 
 h1{font-size:50px;}
-a{color:#000000; text-decoration:none;}
+
+a{
+	color:#000000; 
+	text-decoration:none;
+}
+
 .italic{font-style:italic;}
 .regularText{text-transform:none;}
 
@@ -115,7 +200,12 @@ p, small{
     letter-spacing: .5px;
 }
 
-small{font-size:18px; margin-top:10px; margin-bottom:10px; font-family: 'LCARS';}
+small{
+	font-size:18px; 
+	margin-top:10px; 
+	margin-bottom:10px; 
+	font-family: 'LCARS';
+}
 
 span{
     white-space:normal;
@@ -144,419 +234,1794 @@ pre{white-space: pre-wrap;
 }
 
 
-
-
-/* Flex Naming */
+/* =============================================================================
+   Flexbox Model
+   ========================================================================== */
+   
 .flexv{ 
-	display: -webkit-box;     
-	display: -moz-box;         
-	display: -ms-flexbox;      
-	display: -webkit-flex;     
 	display: flex;   
-	-webkit-flex-direction:column; 
     flex-direction:column;
 }
 
 .flexcv{                   
-	-webkit-flex: 1;            
 	flex: 1;                            
  }
 
 
 .flexh{    
-	display: -webkit-flex;     
 	display: flex;   
-	-webkit-flex-direction:row; 
     flex-direction:row;
 }
 
 .flexch{     
-	-webkit-flex: 1;                    
 	flex: 1;                            
  }
  
 
-/*Basic Elements*/
-.level{position:absolute;}
-.level>.bar{height:inherit; width:inherit;}
-.bar{position:absolute; height:30px; width:30px; background-color:inherit; -webkit-box-sizing:content-box; box-sizing:content-box; }
-.cap{position:absolute; width:60px; height:60px; background-color:inherit; -webkit-box-sizing:content-box; box-sizing:content-box; }
-.block{position:absolute; height:60px; width:25px; background-color:inherit; -webkit-box-sizing:content-box; box-sizing:content-box; }
-.wrapper{position:absolute;}
-.content{position:absolute; color:#ffffff;}
-.title{position:absolute; background-color:#000000; color:#ffffff; font-size: 82px; height:60px; line-height: .82;}
-.numericBlock{background-color:#000000 !important; padding-left: 0px; text-align: right; font-size: 60px; line-height: 1; height:inherit; color:#ffffff; position:relative; letter-spacing:5px; min-width:25px; width:auto; font-family:'LCARS Block'; margin:0px !important;}
-.oval{position:absolute; border-radius:100%; width:45px; height:25px;}
+/* =============================================================================
+   Basic Elements
+   ========================================================================== */
+
+.wrapper{position:relative;}
+
+.content{position:relative;}
+
+.bar{
+	position:relative; 
+	min-height:30px; 
+	min-width:30px; 
+	background-color:inherit; 
+}
+
+.cap{
+	position:relative; 
+	min-width:60px; 
+	min-height:60px; 
+	background-color:inherit; 
+}
+
+.block{
+	position:relative; 
+	min-height:60px; 
+	min-width:25px; 
+	background-color:inherit; 
+}
+
+.title{
+	position:relative; 
+	background-color:transparent !important;
+	color:#ffffff; 
+	font-size: 82px; 
+	height:60px; 
+	line-height: .82;
+}
+
+.text{}
 
 
+.number{
+	background-color:transparent !important; 
+	line-height: 1; 
+	color:#ffffff; 
+	width:auto; 
+	font-family:'LCARS Block'; 
+	margin:0px !important;
+}
 
-/* Visual Styles for Base Elements */
-.button.pill{border-radius:30px;}
-.button.pill:before, .button.pill:after{right:25px; left:25px;}
-.button.tabRight{border-top-right-radius:30px; border-bottom-right-radius:30px;}
-.button.tabRight:before, .button.tabRight:after{right:25px;}
-.button.tabLeft{border-top-left-radius:30px; border-bottom-left-radius:30px;}
-.button.tabLeft:before, .button.tabRight:after{left:25px;}
+.oval{
+	position:relative; 
+	border-radius:100%; 
+	min-width:45px; 
+	min-height:25px;
+}
 
-.bar.large{height:60px;}
-.bar.half{height:15px;}
-.cap.right{border-top-right-radius:30px; border-bottom-right-radius:30px;}
-.cap.left{border-top-left-radius:30px; border-bottom-left-radius:30px;}
-.cap.tiny{width:8px; height:8px; min-width:8px;}    
-.cap.tiny.right{border-top-right-radius:4px; border-bottom-right-radius:4px; }
-.cap.tiny.left{border-top-left-radius:4px; border-bottom-left-radius:4px;}
-.cap.small{width:30px; height:30px;}
+.button{
+	position:relative; 
+	min-height:60px; 
+	min-width:150px; 
+	cursor:pointer;
+}
 
-.block.oval{border-radius:100%; width:45px; height:25px;}
-.block.oval.small{width: 35px; height: 20px;}
-
-.title.half{height:30px; font-size: 42px; line-height: .80;}
-
-.ie .title{line-height:1;}
-.ie .title.half{line-height:1;}
+/* =============================================================================
+   Styling Classes
+   ========================================================================== */
 
 /*Button*/
-.button{position:absolute; height:60px; width:150px; cursor:pointer;}
-.block:before, .bar:before, .button:before{ font-size:25px; overflow:hidden; display:block; position:absolute; left:8px; bottom:3px; right:8px;  }
-.block:after, .bar:after, .button:after{font-size:25px; overflow:hidden; display:block; position:absolute; left:8px; top:8px; right:8px;  }
+.button.pill{border-radius:30px;}
 
-.block[data-label]:before, .bar[data-label]:before, .button[data-label]:before{content:attr(data-label); }
-.block[data-altLabel]:after, .bar[data-altLabel]:after, .button[data-altLabel]:after{content:attr(data-altLabel); }
+.button.pill:before, 
+.button.pill:after{
+	right:25px; 
+	left:25px;	
+}
+
+.button.right{
+	border-top-right-radius:30px; 
+	border-bottom-right-radius:30px;
+}
+
+.button.right:before, .button.right:after{right:25px;}
+
+.button.left{
+	border-top-left-radius:30px; 
+	border-bottom-left-radius:30px;
+}
+
+.button.left:before, 
+.button.right:after{left:25px;}
+
+
+/*Bar*/
+.bar.xlarge{min-height:125px; max-height:125px;}
+.bar.large{min-height:90px; max-height:90px;}
+.bar.medium{min-height:60px; max-height:60px;}
+.bar.small{min-height:15px; max-height:15px;}
+.bar.tiny{min-height:10px; max-height:10px;}
+
+/*Cap*/
+.cap.right{
+	border-top-right-radius:50%; 
+	border-bottom-right-radius:50%;
+}
+
+.cap.left{
+	border-top-left-radius:30px; 
+	border-bottom-left-radius:30px;
+}
+
+.cap.xlarge{
+	min-width:125px; 
+	min-height:125px;
+}
+
+.cap.large{
+	min-width:90px; 
+	min-height:90px;
+}
+
+.cap.small{
+	min-width:15px; 
+	min-height:15px;
+}
+
+.cap.tiny{
+	min-height:10px; 
+	min-width:10px;
+}
+
+
+/*Oval*/
+.oval.small{
+	width: 35px; 
+	height: 20px;
+}
+
+/*Title*/
+.title.small,
+.title.half{height:30px; font-size: 42px; line-height: .80;}
 
 
 
-/*Complex Button*/
+/* =============================================================================
+   Labels
+   ========================================================================== */
+   
+
+.block:before, 
+.bar:before, 
+.button:before{ 
+	font-size:25px; 
+	overflow:hidden; 
+	display:block; 
+	position:absolute; 
+	left:8px; 
+	bottom:3px; 
+	right:8px;  
+}
+
+.block:after, 
+.bar:after, 
+.button:after{
+	font-size:25px; 
+	overflow:hidden; 
+	display:block; 
+	position:absolute; 
+	left:8px; 
+	top:8px; 
+	right:8px;  
+}
+
+.block[data-label]:before, 
+.bar[data-label]:before, 
+.button[data-label]:before{content:attr(data-label); }
+
+.block[data-altLabel]:after, 
+.bar[data-altLabel]:after, 
+.button[data-altLabel]:after{content:attr(data-altLabel); }
+
+
+/* =============================================================================
+   Complex Button
+   ========================================================================== */
 .complexButton{	    
-	display: -webkit-flex;     
 	display: flex;   
-	-webkit-flex-direction:row; 
     flex-direction:row;
-	background:transparent;
-	height:60px;
-	width:150px;
+	background:transparent !important;
+	min-height:60px;
+	min-width:150px;
 	cursor:pointer;
-	position:absolute;
 }
 
 .complexButton .button{  
-	-webkit-flex: 1;         
 	flex: 1;
-   
 }
 
-.complexButton.vertical{-webkit-flex-direction:column; flex-direction:column;}
-.complexButton.vertical .button{margin-left:0px; margin-bottom:5px;}
+.complexButton .text{
+	background-color:transparent !important; 
+	padding-left: 0px; 
+	text-align: right; 
+	font-size: 60px; 
+	line-height: 1; 
+	height:inherit; 
+	color:#ffffff; 
+	position:relative; 
+	letter-spacing:5px; 
+	min-width:25px; 
+	width:auto; 
+	font-family:'LCARS Block';
+}
+
+.complexButton .block, 
+.complexButton .bar {
+	min-width:25px; 
+	position:relative; 
+	min-height:100%;
+}
+
+.complexButton .cap{
+	position:relative;  
+	height:100%;
+}
+
+.complexButton .button{
+	width:auto; 
+	position:relative; 
+	height:100%;
+	min-width:0px;
+}
+
+.complexButton *{margin-left:5px;}
+.complexButton :first-child{margin-left:0px;}
+.complexButton .text + *{margin-left:5px;}
+
+/* =============================================================================
+   Radio Complex Button
+   ========================================================================== */
+
+.radio .check{visibility:hidden;}
+.radio.checked .check{visibility:visible;}
+.radio .check:not([class*="bg-"]){background-color:#ffffff;}
+
+
+/* =============================================================================
+   Checkbox Complex Button
+   ========================================================================== */
+
+.checkbox .check:not([class*="bg-"]){background-color:#ffffff;}
+.checkbox .check ~ .check{visibility:hidden;}
+
+.checkbox.checked .check{visibility:hidden;}
+.checkbox.checked .check ~ .check{visibility:visible;}
+
+/* =============================================================================
+   Duo & Duo Vertical Complex Button
+   ========================================================================== */
+
+.complexButton.vertical{
+	flex-direction:column;
+}
+
+.complexButton.vertical .button{
+	margin-left:0px; 
+	margin-bottom:5px;
+}
+
 .complexButton.vertical .button:last-child{margin-bottom:0px;}
 
 .complexButton.duo .button{margin-left:0px;}
+
 .complexButton.duo:not(.vertical) .button:last-child{margin-left:-2px !important;}
 
 .complexButton.vertical.duo .button{margin-bottom:0px;}
 .complexButton.vertical.duo .button:last-child{margin-top:-2px !important; }
 
-.complexButton .block, .complexButton .bar {-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;}
 
-.ie .complexButton .numericBlock{line-height:1;}
+/* =============================================================================
+   Endcap Buttons
+   ========================================================================== */
+.endcap{overflow: hidden;}
+.endcap{z-index:2; background-color:transparent !important;}
+.endcap > *{
+	position:absolute; 
+	top:0px; 
+	bottom:0px; 
+	width:150%; 
+	pointer-events:none; 
+	transform-origin: bottom;
+}
 
-.complexButton .bar, .complexButton .block{min-width:25px; position:relative; height:100%;}
-.complexButton .cap{position:relative;  height:100%;}
-.complexButton .button{width:auto; position:relative; height:100%;}
+.endcap:after,
+.endcap:before{z-index:3;}
 
-.complexButton :first-child~*{margin-left:5px;}
-.complexButton input + *{margin-left:0px !important;}
-.complexButton .numericBlock + *{margin-left:0px;}
-
-/* Radio Button Complex Button Variant */
-.radioButton input{display:none;}
-.radioButton input~.checkBlock{background-color:transparent;}
-.radioButton input:checked~.checkBlock{background-color:#ffffff;}
-
-/* Radio Button Complex Button Variant */
-.checkboxButton input{display:none;}
-.checkboxButton input~.checkBlock{background-color:#ffffff;}
-.checkboxButton input~.checkBlock~.checkBlock{background-color:transparent;}
-
-.checkboxButton input:checked~.checkBlock{background-color:transparent;}
-.checkboxButton input:checked~.checkBlock~.checkBlock{background-color:#ffffff;}
+.endcap.large{min-width:150px;}
 
 
 
-/*Default Elbows*/
-.elbow{position:absolute; z-index:1; cursor:pointer; width:150px; height:75px;}
-.elbow:before{font-size:25px; overflow:hidden; display:block; position:absolute; left:8px; right:8px; z-index:2;}
-.elbow:after{font-size:25px; overflow:hidden; display:block; position:absolute; left:8px; right:8px; z-index:2;}
+.endcap.large.top-right:after,
+.endcap.large.bottom-right:before{right:50px;}
+
+.endcap.large.top-right:before,
+.endcap.large.bottom-right:after{right:100px;}
+
+.endcap.large.top-left:after,
+.endcap.large.bottom-left:before{left:50px;}
+
+.endcap.large.top-left:before,
+.endcap.large.bottom-left:after{left:100px;}
+
+
+.endcap.bottom-right .cap,
+.endcap.top-right .cap{
+	right: 0px;
+}
+
+.endcap.top-right .cap{transform: skew(-18deg);}
+.endcap.bottom-right  .cap{transform: skew(18deg);}
+
+.endcap.large.bottom-right .cap,
+.endcap.large.top-right .cap{
+	border-top-right-radius:60px;
+	border-bottom-right-radius:60px;
+}  
+
+.endcap.bottom-left .cap,
+.endcap.top-left .cap{
+	left: 0px;
+}
+
+.endcap.top-left .cap{transform: skew(18deg);}
+.endcap.bottom-left  .cap{transform: skew(-18deg);}
+
+.endcap.large.bottom-left .cap,
+.endcap.large.top-left .cap{
+	border-top-left-radius:60px;
+	border-bottom-left-radius:60px;
+}  
+
+/* =============================================================================
+   Elbows
+   ========================================================================== */
+.elbow{
+	position:relative; 
+	z-index:1; 
+	cursor:pointer; 
+}
+
+.elbow:before{
+	font-size:25px; 
+	overflow:hidden; 
+	display:block; 
+	position:absolute; 
+	left:8px; 
+	right:8px; 
+	z-index:2;
+}
+
+.elbow:after{
+	font-size:25px; 
+	overflow:hidden; 
+	display:block; 
+	position:absolute; 
+	left:8px; 
+	right:8px; 
+	z-index:2;
+}
 
 .elbow[data-label]:before{content:attr(data-label);}
 .elbow[data-altlabel]:after{content:attr(data-altLabel);}
 
-.elbow .innerRadius{position:absolute; width:30px;  height:30px; border-width:15px; border-style: solid; z-index:1;  -webkit-box-sizing: content-box; box-sizing: content-box; -moz-box-sizing: content-box;}
-.elbow >.bar{position:absolute; background-color:inherit !important; height:30px;}
+.elbow .block{
+	position:absolute;
+	z-index:1;  
+	background-color:transparent;
+	-webkit-box-sizing: content-box; 
+	-moz-box-sizing: content-box;
+	box-sizing: content-box; 
+	border-color:inherit; 
+}
+
+.elbow .bar{
+	position:absolute; 
+	background-color:inherit !important; 
+}
+
+.elbow.top-left .bar {
+	border-left-color: inherit !important;
+}
+
+.elbow.top-left .bar .block{
+	border-left-color: inherit !important;
+    border-top-color: transparent;
+}
+
+.elbow.bottom-left .bar {
+	border-left-color: inherit !important;
+}
+.elbow.bottom-left .bar .block{
+	border-left-color: inherit !important;
+    border-bottom-color: transparent;
+}
+
+.elbow.bottom-right .bar {
+	border-right-color: inherit !important;
+}
+
+.elbow.bottom-right .bar .block{
+	border-right-color: inherit !important;
+    border-bottom-color: transparent;
+}
+
+.elbow.top-right .bar {
+	border-right-color: inherit !important;
+}
+
+.elbow.top-right .bar .block{
+	border-right-color: inherit !important;
+    border-top-color: transparent;
+}
 
 
-.topRight{border-top-right-radius:75px; text-align:left;}
-.topRight .innerRadius{border-color:inherit; top: 15px; left: -30px; border-left:0px solid transparent; border-bottom:0px solid transparent; border-top-right-radius:60px; border-bottom-left-radius: 60px;}
-.topRight>.bar{top:0px; min-width: 31px; left: -30px;}
-.topRight:before{bottom:8px}
-.topRight:after{top:8px}
+/* =============================================================================
+   Elbows - Default Horizontal
+   ========================================================================== */
+.elbow.default.horizontal{
+	min-width:75px; 
+	min-height:75px;	
+}
 
-.topLeft{border-top-left-radius:75px; text-align:right;}
-.topLeft .innerRadius{border-color:inherit; top: 15px; right: -30px; border-right:0px solid transparent; border-bottom:0px solid transparent; border-top-left-radius:60px; border-bottom-right-radius: 60px;}
-.topLeft>.bar{top:0px; min-width: 31px; right: -30px;}
-.topLeft:before{bottom:8px; }
-.topLeft:after{top:8px; }
+.elbow.default.horizontal .block{
+	min-height:45px;
+	min-width:45px; 
+	border-width:20px; 
+	border-style: solid;
+}
+.elbow.default.horizontal .bar{
+	max-height:30px;
+	min-width:50px;
+}
 
-.bottomLeft{border-bottom-left-radius:75px; text-align:right;}
-.bottomLeft .innerRadius{border-color:inherit; bottom: 15px; right: -30px; border-right:0px solid transparent; border-top:0px solid transparent; border-bottom-left-radius:60px; border-top-right-radius: 60px;}
-.bottomLeft>.bar{bottom:0px; min-width: 31px; right: -30px;}
-.bottomLeft:before{top:8px}
-.bottomLeft:after{bottom:8px}
+/* Top Right Default Horizontal Elbow */
+.top-right.default.horizontal{
+	border-top-right-radius:75px; 
+	text-align:left;
+}
 
-.bottomRight{border-bottom-right-radius:75px; text-align:left;}
-.bottomRight .innerRadius{border-color:inherit; bottom: 15px; left: -30px; border-left:0px solid transparent; border-top:0px solid transparent; border-bottom-right-radius:60px; border-top-left-radius: 60px;}
-.bottomRight>.bar{bottom:0px; min-width: 31px; left: -30px;}
-.bottomRight:before{top:8px}
-.bottomRight:after{bottom:8px}
+.top-right.default.horizontal .bar{
+	top:0px; 
+	right:calc(100% - 5px);
+}
+
+.top-right.default.horizontal .block{
+	right:-15px;
+	top:calc(100% - 20px);
+	border-left:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-right-radius:60px; 
+	border-bottom-left-radius: 60px;
+	
+}
+
+.top-right.default.horizontal:before{bottom:8px}
+.top-right.default.horizontal:after{top:8px}
+
+/* Top Left Default Horizontal Elbow */
+.top-left.default.horizontal{
+	border-top-left-radius:75px; 
+	text-align:right;
+}
+
+.top-left.default.horizontal .bar{
+	top:0px; 
+	left:calc(100% - 5px);
+}
+
+.top-left.default.horizontal .block{
+	top:calc(100% - 20px);
+	left:-15px;
+    border-right: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    border-top-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+
+}
+
+.top-left.default.horizontal:before{bottom:8px; }
+.top-left.default.horizontal:after{top:8px; }
+
+/* Bottom Left Default Horizontal Elbow */
+.bottom-left.default.horizontal{
+	border-bottom-left-radius:75px; 
+	text-align:right;
+}
+
+.bottom-left.default.horizontal .bar{
+	bottom:0px; 
+	left:calc(100% - 5px);
+}
+
+.bottom-left.default.horizontal .block{
+	bottom:calc(100% - 20px);
+	left:-15px;
+	border-right:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-left-radius:60px; 
+	border-top-right-radius: 60px;
+}
 
 
-.topRightAlt{border-top-right-radius:75px; height:150px; width:75px;}
-.topRightAlt .innerRadius{border-color:inherit; bottom: -30px; right: 15px; border-left:0px solid transparent; border-bottom:0px solid transparent; border-top-right-radius:60px; border-bottom-left-radius: 60px;}
-.topRightAlt>.bar{bottom:-30px; min-width: 30px; right: 0px; height:31px; width:30px;}
-.topRightAlt:before{bottom:4px}
-.topRightAlt:after{top:4px}
+.bottom-left.default.horizontal:before{top:8px}
+.bottom-left.default.horizontal:after{bottom:8px}
+
+/* Bottom Right Default Horizontal Elbow */
+.bottom-right.default.horizontal{
+	border-bottom-right-radius:75px; 
+	text-align:left;
+}
+
+.bottom-right.default.horizontal > .bar{
+	bottom:0px; 
+	right:calc(100% - 5px);
+}
+
+.bottom-right.default.horizontal .block{
+	border-left:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-right-radius:60px; 
+	border-top-left-radius: 60px;
+	bottom:calc(100% - 20px);
+	right:-15px;
+}
+
+.bottom-right.default.horizontal:before{top:8px}
+.bottom-right.default.horizontal:after{bottom:8px}
 
 
-.topLeftAlt{border-top-left-radius:75px; height:150px; width:75px; text-align:right;}
-.topLeftAlt .innerRadius{border-color:inherit; bottom: -30px; left: 15px; border-right:0px solid transparent; border-bottom:0px solid transparent; border-top-left-radius:60px; border-bottom-right-radius: 60px;}
-.topLeftAlt>.bar{bottom:-30px; min-width: 30px; left: 0px; height:31px; width:30px;}
-.topLeftAlt:before{bottom:4px}
-.topLeftAlt:after{top:4px}
+/* =============================================================================
+   Elbows - Default Vertical
+   ========================================================================== */
+.elbow.default.vertical{
+	min-width:75px; 
+	min-height:75px;	
+}
+
+.elbow.default.vertical .block{
+
+	min-height:45px;
+	min-width:45px; 
+	border-width:20px; 
+	border-style: solid;
+}
+.elbow.default.vertical .bar{
+	min-height:50px;
+	max-width:30px;
+}
+
+/* Top Right Vertical Default Elbow */
+.top-right.default.vertical{
+	border-top-right-radius:75px; 
+}
+
+.top-right.default.vertical .bar{
+	right:0px;
+	top:calc(100% - 5px);
+}
+
+.top-right.default.vertical .block{
+	border-left:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-right-radius:60px; 
+	border-bottom-left-radius: 60px;
+	right:calc(100% - 20px);
+	top:-15px;
+}
+
+.top-right.default.vertical:before{bottom:4px}
+.top-right.default.vertical:after{top:4px}
+
+/* Top Left Vertical Default Elbow */
+.top-left.default.vertical{
+	border-top-left-radius:75px; 
+	text-align:right;
+}
+
+.top-left.default.vertical .bar{
+	left:0px;
+	top:calc(100% - 5px);
+}
+
+.top-left.default.vertical .block{
+	border-right:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-left-radius:60px; 
+	border-bottom-right-radius: 60px;
+	left:calc(100% - 20px);
+	top:-15px;
+}
 
 
-.bottomLeftAlt{border-bottom-left-radius:75px; height:150px; width:75px; text-align:right;}
-.bottomLeftAlt .innerRadius{border-color:inherit; top: -29px; left: 15px; border-right:0px solid transparent; border-top:0px solid transparent; border-bottom-left-radius:60px; border-top-right-radius: 60px;}
-.bottomLeftAlt>.bar{top:-30px; min-width: 30px; left: 0px; height:31px; width:30px;}
-.bottomLeftAlt:before{bottom:4px}
-.bottomLeftAlt:after{top:4px}
+.top-left.default.vertical:before{bottom:4px}
+.top-left.default.vertical:after{top:4px}
+
+/* Bottom Left Vertical Default Elbow */
+.bottom-left.default.vertical{
+	border-bottom-left-radius:75px; 
+	text-align:right;
+}
+
+.bottom-left.default.vertical .bar{
+	left:0px;
+	bottom:calc(100% - 5px);
+}
+
+.bottom-left.default.vertical .block{
+	left:calc(100% - 20px);
+	bottom:-15px;
+	border-right:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-left-radius:60px; 
+	border-top-right-radius: 60px;
+}
 
 
-.bottomRightAlt{border-bottom-right-radius:75px; height:150px; width:75px;}
-.bottomRightAlt .innerRadius{border-color:inherit; top: -29px; right: 15px; border-left:0px solid transparent; border-top:0px solid transparent; border-bottom-right-radius:60px; border-top-left-radius: 60px;}
-.bottomRightAlt>.bar{top:-30px; min-width: 30px; right: 0px; height:31px; width:30px;}
-.bottomRightAlt:before{bottom:4px}
-.bottomRightAlt:after{top:4px}
+.bottom-left.default.vertical:before{bottom:4px}
+.bottom-left.default.vertical:after{top:4px}
+
+/* Bottom Right Vertical Default Elbow */
+.bottom-right.default.vertical{
+	border-bottom-right-radius:75px; 
+}
+
+.bottom-right.default.vertical .bar{
+	right:0px;
+	bottom:calc(100% - 5px);
+}
+
+.bottom-right.default.vertical .block{
+	right:calc(100% - 20px);
+	bottom:-15px;
+	border-left:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-right-radius:60px; 
+	border-top-left-radius: 60px;
+}
+
+.bottom-right.default.vertical:before{bottom:4px}
+.bottom-right.default.vertical:after{top:4px}
 
 
-
-/** Base Elbows
+/* =============================================================================
+   Elbows - Base Horizontal
 *   This class is meant to be used as an elbow curve that matches
 *   the UI vertical step.  Default is 60px height so a 60px 
-*   border-radius.  For a base smaller than 60px the inner radius
-*   size would use the '.medium' innerRadius border radius of 30px.
-*/
-.base.topRight{border-top-right-radius:60px; height: 60px;}
-.base.topLeft{border-top-left-radius:60px; height: 60px;}
-.base.bottomLeft{border-bottom-left-radius:60px; height: 60px;}
-.base.bottomRight{border-bottom-right-radius:60px; height: 60px;}
-.base.topRightAlt{border-top-right-radius:60px; height: 60px;}
-.base.topLeftAlt{border-top-left-radius:60px; height: 60px;}
-.base.bottomLeftAlt{border-bottom-left-radius:60px; height: 60px;}
-.base.bottomRightAlt{border-bottom-right-radius:60px; height: 60px;}
+*   border-radius. 
+   ========================================================================== */
+.elbow.base.horizontal{
+	min-width:60px; 
+	min-height:60px;	
+}
+
+/* Top Right Base Horizontal Elbow */
+.elbow.base.horizontal .block{
+	min-height:30px;
+	min-width:30px; 
+	border-width:20px; 
+	border-style: solid;
+}
+.elbow.base.horizontal .bar{
+	max-height:30px;
+	min-width:50px;
+}
+
+
+.top-right.base.horizontal{
+	border-top-right-radius:60px; 
+	text-align:left;
+}
+
+.top-right.base.horizontal .bar{
+	top:0px; 
+	right:calc(100% - 5px);
+}
+
+.top-right.base.horizontal .block{
+	right:-15px;
+	top:calc(100% - 20px);
+	border-left:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-right-radius:60px; 
+	border-bottom-left-radius: 60px;
+	
+}
+
+.top-right.base.horizontal:before{bottom:8px}
+.top-right.base.horizontal:after{top:8px}
+
+/* Top Left Base Horizontal Elbow */
+.top-left.base.horizontal{
+	border-top-left-radius:75px; 
+	text-align:right;
+}
+
+.top-left.base.horizontal .bar{
+	top:0px; 
+	left:calc(100% - 5px);
+}
+
+.top-left.base.horizontal .block{
+	top:calc(100% - 20px);
+	left:-15px;
+    border-right: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    border-top-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+
+}
+
+.top-left.base.horizontal:before{bottom:8px; }
+.top-left.base.horizontal:after{top:8px; }
+
+/* Bottom Left Base Horizontal Elbow */
+.bottom-left.base.horizontal{
+	border-bottom-left-radius:60px; 
+	text-align:right;
+}
+
+.bottom-left.base.horizontal .bar{
+	bottom:0px; 
+	left:calc(100% - 5px);
+}
+
+.bottom-left.base.horizontal .block{
+	bottom:calc(100% - 20px);
+	left:-15px;
+	border-right:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-left-radius:60px; 
+	border-top-right-radius: 60px;
+}
+
+
+.bottom-left.base.horizontal:before{top:8px}
+.bottom-left.base.horizontal:after{bottom:8px}
+
+/* Bottom Right Base Horizontal Elbow */
+.bottom-right.base.horizontal{
+	border-bottom-right-radius:60px; 
+	text-align:left;
+}
+
+.bottom-right.base.horizontal > .bar{
+	bottom:0px; 
+	right:calc(100% - 5px);
+}
+
+.bottom-right.base.horizontal .block{
+	border-left:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-right-radius:60px; 
+	border-top-left-radius: 60px;
+	bottom:calc(100% - 20px);
+	right:-15px;
+}
+
+.bottom-right.base.horizontal:before{top:8px}
+.bottom-right.base.horizontal:after{bottom:8px}
+
+
+/* =============================================================================
+   Elbows - Base Vertical
+   ========================================================================== */
+.elbow.base.vertical{
+	min-width:60px; 
+	min-height:60px;	
+}
+
+.elbow.base.vertical .block{
+
+	min-height:30px;
+	min-width:30px; 
+	border-width:20px; 
+	border-style: solid;
+}
+.elbow.base.vertical .bar{
+	min-height:50px;
+	max-width:30px;
+}
+
+/* Top Right Vertical Base Elbow */
+.top-right.base.vertical{
+	border-top-right-radius:60px; 
+}
+
+.top-right.base.vertical .bar{
+	right:0px;
+	top:calc(100% - 5px);
+}
+
+.top-right.base.vertical .block{
+	border-left:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-right-radius:60px; 
+	border-bottom-left-radius: 60px;
+	right:calc(100% - 20px);
+	top:-15px;
+}
+
+.top-right.base.vertical:before{bottom:4px}
+.top-right.base.vertical:after{top:4px}
+
+/* Top Left Vertical Base Elbow */
+.top-left.base.vertical{
+	border-top-left-radius:60px; 
+	text-align:right;
+}
+
+.top-left.base.vertical .bar{
+	left:0px;
+	top:calc(100% - 5px);
+}
+
+.top-left.base.vertical .block{
+	border-right:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-left-radius:60px; 
+	border-bottom-right-radius: 60px;
+	left:calc(100% - 20px);
+	top:-15px;
+}
+
+
+.top-left.base.vertical:before{bottom:4px}
+.top-left.base.vertical:after{top:4px}
+
+/* Bottom Left Vertical Base Elbow */
+.bottom-left.base.vertical{
+	border-bottom-left-radius:60px; 
+	text-align:right;
+}
+
+.bottom-left.base.vertical .bar{
+	left:0px;
+	bottom:calc(100% - 5px);
+}
+
+.bottom-left.base.vertical .block{
+	left:calc(100% - 20px);
+	bottom:-15px;
+	border-right:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-left-radius:60px; 
+	border-top-right-radius: 60px;
+}
+
+
+.bottom-left.base.vertical:before{bottom:4px}
+.bottom-left.base.vertical:after{top:4px}
+
+/* Bottom Right Vertical Base Elbow */
+.bottom-right.base.vertical{
+	border-bottom-right-radius:60px; 
+}
+
+.bottom-right.base.vertical .bar{
+	right:0px;
+	bottom:calc(100% - 5px);
+}
+
+.bottom-right.base.vertical .block{
+	right:calc(100% - 20px);
+	bottom:-15px;
+	border-left:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-right-radius:60px; 
+	border-top-left-radius: 60px;
+}
+
+.bottom-right.base.vertical:before{bottom:4px}
+.bottom-right.base.vertical:after{top:4px}
+
+
+/* =============================================================================
+   Elbows - Medium Horizontal
+   ========================================================================== */
+.elbow.medium.horizontal{
+	min-width:35px; 
+	min-height:50px;	
+}
+
+.elbow.medium.horizontal .block{
+	min-height:20px;
+	min-width:20px; 
+	border-width:20px; 
+	border-style: solid;
+}
+.elbow.medium.horizontal .bar{
+	max-height:30px;
+	min-width:50px;
+}
+
+/* Top Right medium Horizontal Elbow */
+.top-right.medium.horizontal{
+	border-top-right-radius:30px; 
+	text-align:left;
+}
+
+.top-right.medium.horizontal .bar{
+	top:0px; 
+	right:calc(100% - 5px);
+}
+
+.top-right.medium.horizontal .block{
+	right:-15px;
+	top:calc(100% - 20px);
+	border-left:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-right-radius:30px; 
+	border-bottom-left-radius: 30px;
+	
+}
+
+.top-right.medium.horizontal:before{bottom:8px}
+.top-right.medium.horizontal:after{top:8px}
+
+/* Top Left medium Horizontal Elbow */
+.top-left.medium.horizontal{
+	border-top-left-radius:30px; 
+	text-align:right;
+}
+
+.top-left.medium.horizontal .bar{
+	top:0px; 
+	left:calc(100% - 5px);
+}
+
+.top-left.medium.horizontal .block{
+	top:calc(100% - 20px);
+	left:-15px;
+    border-right: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+
+}
+
+.top-left.medium.horizontal:before{bottom:8px; }
+.top-left.medium.horizontal:after{top:8px; }
+
+/* Bottom Left medium Horizontal Elbow */
+.bottom-left.medium.horizontal{
+	border-bottom-left-radius:30px; 
+	text-align:right;
+}
+
+.bottom-left.medium.horizontal .bar{
+	bottom:0px; 
+	left:calc(100% - 5px);
+}
+
+.bottom-left.medium.horizontal .block{
+	bottom:calc(100% - 20px);
+	left:-15px;
+	border-right:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-left-radius:30px; 
+	border-top-right-radius: 30px;
+}
+
+
+.bottom-left.medium.horizontal:before{top:8px}
+.bottom-left.medium.horizontal:after{bottom:8px}
+
+/* Bottom Right medium Horizontal Elbow */
+.bottom-right.medium.horizontal{
+	border-bottom-right-radius:30px; 
+	text-align:left;
+}
+
+.bottom-right.medium.horizontal > .bar{
+	bottom:0px; 
+	right:calc(100% - 5px);
+}
+
+.bottom-right.medium.horizontal .block{
+	border-left:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-right-radius:30px; 
+	border-top-left-radius: 30px;
+	bottom:calc(100% - 20px);
+	right:-15px;
+}
+
+.bottom-right.medium.horizontal:before{top:8px}
+.bottom-right.medium.horizontal:after{bottom:8px}
+
+/* =============================================================================
+   Elbows - Medium Vertical
+   ========================================================================== */
+.elbow.medium.vertical{
+	min-width:50px; 
+	min-height:50px;	
+}
+
+.elbow.medium.vertical .block{
+
+	min-height:20px;
+	min-width:20px; 
+	border-width:20px; 
+	border-style: solid;
+}
+
+.elbow.medium.vertical .bar{
+	min-height:50px;
+	max-width:30px;
+}
+
+/* Top Right Vertical medium Elbow */
+.top-right.medium.vertical{
+	border-top-right-radius:30px; 
+}
+
+.top-right.medium.vertical .bar{
+	right:0px;
+	top:calc(100% - 5px);
+}
+
+.top-right.medium.vertical .block{
+	border-left:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-right-radius:30px; 
+	border-bottom-left-radius: 30px;
+	right:calc(100% - 20px);
+	top:-15px;
+}
+
+.top-right.medium.vertical:before{bottom:4px}
+.top-right.medium.vertical:after{top:4px}
+
+/* Top Left Vertical medium Elbow */
+.top-left.medium.vertical{
+	border-top-left-radius:30px; 
+	text-align:right;
+}
+
+.top-left.medium.vertical .bar{
+	left:0px;
+	top:calc(100% - 5px);
+}
+
+.top-left.medium.vertical .block{
+	border-right:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-left-radius:30px; 
+	border-bottom-right-radius: 30px;
+	left:calc(100% - 20px);
+	top:-15px;
+}
+
+
+.top-left.medium.vertical:before{bottom:4px}
+.top-left.medium.vertical:after{top:4px}
+
+/* Bottom Left Vertical medium Elbow */
+.bottom-left.medium.vertical{
+	border-bottom-left-radius:30px; 
+	text-align:right;
+}
+
+.bottom-left.medium.vertical .bar{
+	left:0px;
+	bottom:calc(100% - 5px);
+}
+
+.bottom-left.medium.vertical .block{
+	left:calc(100% - 20px);
+	bottom:-15px;
+	border-right:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-left-radius:30px; 
+	border-top-right-radius: 30px;
+}
+
+
+.bottom-left.medium.vertical:before{bottom:4px}
+.bottom-left.medium.vertical:after{top:4px}
+
+/* Bottom Right Vertical medium Elbow */
+.bottom-right.medium.vertical{
+	border-bottom-right-radius:30px; 
+}
+
+.bottom-right.medium.vertical .bar{
+	right:0px;
+	bottom:calc(100% - 5px);
+}
+
+.bottom-right.medium.vertical .block{
+	right:calc(100% - 20px);
+	bottom:-15px;
+	border-left:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-right-radius:30px; 
+	border-top-left-radius: 30px;
+}
+
+.bottom-right.medium.vertical:before{bottom:4px}
+.bottom-right.medium.vertical:after{top:4px}
 
  
-/*Medium Elbows*/
-.elbow.medium{width: 60px;}
-.elbow.medium .innerRadius{border-width: 10px;}
+ 
+ 
+ /* =============================================================================
+   Elbows - small Horizontal
+   ========================================================================== */
+.elbow.small.horizontal{
+	min-width:21px; 
+	min-height:35px;	
+}
 
-.medium.bottomLeftAlt{border-bottom-left-radius:30px; height:60px;}
-.medium.bottomLeftAlt .innerRadius{left: 20px; border-right:0px solid transparent; border-top:0px solid transparent; border-bottom-left-radius:30px; border-top-right-radius: 30px;}
+.elbow.small.horizontal .block{
+	min-height:10px;
+	min-width:10px; 
+	border-width:5px; 
+	border-style: solid;
+}
+.elbow.small.horizontal .bar{
+	min-height:13px;
+	max-width:22px;
+}
 
-.medium.bottomRightAlt{border-bottom-right-radius:30px; height:60px;}
-.medium.bottomRightAlt .innerRadius{right: 20px; border-left:0px solid transparent; border-top:0px solid transparent; border-bottom-right-radius:30px; border-top-left-radius: 30px;}
+/* Top Right small Horizontal Elbow */
+.top-right.small.horizontal{
+	border-top-right-radius:20px; 
+	text-align:left;
+}
 
-.medium.topLeftAlt{border-top-left-radius:30px; height:60px;}
-.medium.topLeftAlt .innerRadius{left: 20px; border-right:0px solid transparent; border-bottom:0px solid transparent; border-top-left-radius:30px; border-bottom-right-radius: 30px;}
+.top-right.small.horizontal .bar{
+	top:0px; 
+	right:calc(100% - 2px);
+}
 
-.medium.topRightAlt{border-top-right-radius:30px; height:60px;}
-.medium.topRightAlt .innerRadius{right: 20px; border-left:0px solid transparent; border-bottom:0px solid transparent; border-top-right-radius:30px; border-bottom-left-radius: 30px;}
+.top-right.small.horizontal .block{
+	right:-3px;
+	top:calc(100% - 5px);
+	border-left:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-right-radius:30px; 
+	border-bottom-left-radius: 30px;
+	
+}
 
-.medium.topRight{border-top-right-radius:30px; text-align:left;}
-.medium.topRight .innerRadius{ top: 20px; left: -30px; border-left:0px solid transparent; border-bottom:0px solid transparent; border-top-right-radius:30px; border-bottom-left-radius: 30px;}
+.top-right.small.horizontal:before{bottom:8px}
+.top-right.small.horizontal:after{top:8px}
 
-.medium.topLeft{border-top-left-radius:30px; text-align:right;}
-.medium.topLeft .innerRadius{ top: 20px; right: -30px; border-right:0px solid transparent; border-bottom:0px solid transparent; border-top-left-radius:30px; border-bottom-right-radius: 30px;}
+/* Top Left small Horizontal Elbow */
+.top-left.small.horizontal{
+	border-top-left-radius:20px; 
+	text-align:right;
+}
 
-.medium.bottomLeft{border-bottom-left-radius:30px; text-align:right;}
-.medium.bottomLeft .innerRadius{ bottom: 20px; right: -30px; border-right:0px solid transparent; border-top:0px solid transparent; border-bottom-left-radius:30px; border-top-right-radius: 30px;}
+.top-left.small.horizontal .bar{
+	top:0px; 
+	left:calc(100% - 2px);
+}
 
-.medium.bottomRight{border-bottom-right-radius:30px; text-align:left;}
-.medium.bottomRight .innerRadius{bottom: 20px; left: -30px; border-left:0px solid transparent; border-top:0px solid transparent; border-bottom-right-radius:30px; border-top-left-radius: 30px;}
+.top-left.small.horizontal .block{
+	top:calc(100% - 5px);
+	left:-3px;
+    border-right: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 
+}
 
-/*Small Elbow*/
-.elbow.small{ height:35px; width:21px;}
-.elbow.small .innerRadius{width:15px; height:15px; border-width: 5px; }
-.elbow.small .bar{width: 22px; min-width: 13px; height: 13px;}
+.top-left.small.horizontal:before{bottom:8px; }
+.top-left.small.horizontal:after{top:8px; }
 
-.small.topLeft{border-top-left-radius:21px;}
-.small.topLeft .innerRadius{top: 8px; right: -20px; border-top-left-radius:16px; border-bottom-right-radius:16px;}
-.small.topLeft .bar{right:-20px; }
+/* Bottom Left small Horizontal Elbow */
+.bottom-left.small.horizontal{
+	border-bottom-left-radius:20px; 
+	text-align:right;
+}
 
-.small.topRight{border-top-right-radius:21px;}
-.small.topRight .innerRadius{top: 8px; left: -20px; border-top-right-radius:16px; border-bottom-left-radius:16px;}
-.small.topRight .bar{left:-20px;}
+.bottom-left.small.horizontal .bar{
+	bottom:0px; 
+	left:calc(100% - 2px);
+}
 
-.small.bottomLeft{border-bottom-left-radius:21px;}
-.small.bottomLeft .innerRadius{bottom: 8px; right: -20px; border-bottom-left-radius:16px; border-top-right-radius: 16px;}
-.small.bottomLeft .bar{right:-20px;}
-
-.small.bottomRight{border-bottom-right-radius:21px;}
-.small.bottomRight .innerRadius{bottom: 8px; left: -20px; border-bottom-right-radius:16px;  border-top-left-radius: 16px;}
-.small.bottomRight .bar{left:-20px;}
-
-
-.small.bottomLeftAlt{border-bottom-left-radius:21px; width:35px; height:21px;}
-.small.bottomLeftAlt .innerRadius{left: 8px; top: -15px; border-right:0px solid transparent; border-top:0px solid transparent; border-bottom-left-radius:16px; border-top-right-radius: 16px;}
-.small.bottomLeftAlt .bar{top:-20px; width:13px; height:22px;}
-
-.small.bottomRightAlt{border-bottom-right-radius:21px; width:35px; height:21px;}
-.small.bottomRightAlt .innerRadius{right: 8px; top: -15px; border-left:0px solid transparent; border-top:0px solid transparent; border-bottom-right-radius:16px; border-top-left-radius: 16px;}
-.small.bottomRightAlt .bar{top:-20px; width:13px; height:22px;}
-
-.small.topLeftAlt{border-top-left-radius:21px; width:35px; height:21px;}
-.small.topLeftAlt .innerRadius{left: 8px; bottom: -15px; border-right:0px solid transparent; border-bottom:0px solid transparent;border-top-left-radius:16px; border-bottom-right-radius: 16px;}
-.small.topLeftAlt .bar{bottom:-20px; width:13px; height:22px;}
-
-.small.topRightAlt{border-top-right-radius:21px; width:35px; height:21px;}
-.small.topRightAlt .innerRadius{right: 8px; bottom: -15px; border-left:0px solid transparent; border-bottom:0px solid transparent; border-top-right-radius:16px; border-bottom-left-radius: 16px;}
-.small.topRightAlt .bar{bottom:-20px; width:13px; height:22px;}
-
-
-/*Large Elbows*/
-.elbow.large{width: 255px; height:255px;}
-.elbow.large .innerRadius{width:75px; height:75px; border-width:34px;}
-.elbow.large .bar{width: 75px; height: 75px; }
-
-
-.large.topLeft{border-top-left-radius:160px;}
-.large.topLeft .innerRadius{top: 41px; right: -75px; border-top-left-radius:104px; border-bottom-right-radius:104px; border-bottom-width:0px; border-right-width:0px;}
-.large.topLeft .bar{right:-75px; }
-
-.large.topRight{border-top-right-radius:160px;}
-.large.topRight .innerRadius{top: 41px; left: -75px; border-top-right-radius:104px; border-bottom-left-radius:104px; border-bottom-width:0px; border-left-width:0px;}
-.large.topRight .bar{left:-75px;}
-
-.large.bottomLeft{border-bottom-left-radius:160px;}
-.large.bottomLeft .innerRadius{bottom: 41px; right: -75px; border-bottom-left-radius:104px; border-top-right-radius: 104px; border-top-width:0px; border-right-width:0px;}
-.large.bottomLeft .bar{right:-75px;}
-
-.large.bottomRight{border-bottom-right-radius:160px;}
-.large.bottomRight .innerRadius{bottom: 41px; left: -75px; border-bottom-right-radius:104px;  border-top-left-radius: 104px; border-top-width:0px; border-left-width:0px;}
-.large.bottomRight .bar{left:-75px;}
-
-
-.large.bottomLeftAlt{border-bottom-left-radius:160px;}
-.large.bottomLeftAlt .innerRadius{left: 41px; top: -75px; border-right:0px solid transparent; border-top:0px solid transparent; border-bottom-left-radius:104px; border-top-right-radius: 104px;}
-.large.bottomLeftAlt .bar{top:-75px;}
-
-.large.bottomRightAlt{border-bottom-right-radius:160px; }
-.large.bottomRightAlt .innerRadius{right: 41px; top: -75px; border-left:0px solid transparent; border-top:0px solid transparent; border-bottom-right-radius:104px; border-top-left-radius: 104px;}
-.large.bottomRightAlt .bar{top:-75px;}
-
-.large.topLeftAlt{border-top-left-radius:160px;}
-.large.topLeftAlt .innerRadius{left: 41px; bottom: -75px; border-right:0px solid transparent; border-bottom:0px solid transparent;border-top-left-radius:104px; border-bottom-right-radius: 104px;}
-.large.topLeftAlt .bar{bottom:-75px;}
-
-.large.topRightAlt{border-top-right-radius:160px;}
-.large.topRightAlt .innerRadius{right: 41px; bottom: -75px; border-left:0px solid transparent; border-bottom:0px solid transparent; border-top-right-radius:104px; border-bottom-left-radius: 104px;}
-.large.topRightAlt .bar{bottom:-75px; }
+.bottom-left.small.horizontal .block{
+	bottom:calc(100% - 5px);
+	left:-3px;
+	border-right:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-left-radius:30px; 
+	border-top-right-radius: 30px;
+}
 
 
+.bottom-left.small.horizontal:before{top:8px}
+.bottom-left.small.horizontal:after{bottom:8px}
+
+/* Bottom Right small Horizontal Elbow */
+.bottom-right.small.horizontal{
+	border-bottom-right-radius:20px; 
+	text-align:left;
+}
+
+.bottom-right.small.horizontal > .bar{
+	bottom:0px; 
+	right:calc(100% - 2px);
+}
+
+.bottom-right.small.horizontal .block{
+	border-left:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-right-radius:30px; 
+	border-top-left-radius: 30px;
+	bottom:calc(100% - 5px);
+	right:-3px;
+}
+
+.bottom-right.small.horizontal:before{top:8px}
+.bottom-right.small.horizontal:after{bottom:8px}
+
+/* =============================================================================
+   Elbows - small Vertical
+   ========================================================================== */
+.elbow.small.vertical{
+	min-width:35px; 
+	min-height:21px;	
+}
+
+.elbow.small.vertical .block{
+
+	min-height:10px;
+	min-width:10px; 
+	border-width:5px; 
+	border-style: solid;
+}
+
+.elbow.small.vertical .bar{
+	min-height:22px;
+	max-width:13px;
+}
+
+/* Top Right Vertical small Elbow */
+.top-right.small.vertical{
+	border-top-right-radius:20px; 
+}
+
+.top-right.small.vertical .bar{
+	right:0px;
+	top:calc(100% - 2px);
+}
+
+.top-right.small.vertical .block{
+	border-left:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-right-radius:30px; 
+	border-bottom-left-radius: 30px;
+	right:calc(100% - 5px);
+	top:-3px;
+}
+
+.top-right.small.vertical:before{bottom:4px}
+.top-right.small.vertical:after{top:4px}
+
+/* Top Left Vertical small Elbow */
+.top-left.small.vertical{
+	border-top-left-radius:20px; 
+	text-align:right;
+}
+
+.top-left.small.vertical .bar{
+	left:0px;
+	top:calc(100% - 2px);
+}
+
+.top-left.small.vertical .block{
+	border-right:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-left-radius:30px; 
+	border-bottom-right-radius: 30px;
+	left:calc(100% - 5px);
+	top:-3px;
+}
 
 
-/* Column-Row Stacks */
-.column{overflow:hidden;}
-.column>*{width:100%; position:relative; margin-top:5px;}
-.column.flexv>.complexButton>*{height:auto;}
-.column>*:first-child{margin-top:0px;}
+.top-left.small.vertical:before{bottom:4px}
+.top-left.small.vertical:after{top:4px}
 
-.row{overflow:hidden;}
-.row>*{min-width:30px; min-height:inherit; position:relative; margin-left:5px; }
-.row>*:first-child{margin-left:0px;}
+/* Bottom Left Vertical small Elbow */
+.bottom-left.small.vertical{
+	border-bottom-left-radius:20px; 
+	text-align:right;
+}
+
+.bottom-left.small.vertical .bar{
+	left:0px;
+	bottom:calc(100% - 2px);
+}
+
+.bottom-left.small.vertical .block{
+	left:calc(100% - 5px);
+	bottom:-3px;
+	border-right:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-left-radius:30px; 
+	border-top-right-radius: 30px;
+}
+
+
+.bottom-left.small.vertical:before{bottom:4px}
+.bottom-left.small.vertical:after{top:4px}
+
+/* Bottom Right Vertical small Elbow */
+.bottom-right.small.vertical{
+	border-bottom-right-radius:20px; 
+}
+
+.bottom-right.small.vertical .bar{
+	right:0px;
+	bottom:calc(100% - 2px);
+}
+
+.bottom-right.small.vertical .block{
+	right:calc(100% - 5px);
+	bottom:-3px;
+	border-left:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-right-radius:30px; 
+	border-top-left-radius: 30px;
+}
+
+.bottom-right.small.vertical:before{bottom:4px}
+.bottom-right.small.vertical:after{top:4px}
+ 
 
 
 
+/* =============================================================================
+   Elbows - large Horizontal
+   ========================================================================== */
+.elbow.large.horizontal{
+	min-width:75px; 
+	min-height:160px;	
+}
 
-/*Basic States*/
-.disabled{background-color:#505050 !important; border-color:#505050 !important; pointer-events:none; -webkit-animation:none !important; animation:none!important; cursor:default;}
+.elbow.large.horizontal .block{
+	min-height:75px;
+	min-width:75px; 
+	border-width:35px; 
+	border-style: solid;
+}
+.elbow.large.horizontal .bar{
+	min-height:60px;
+	max-height:75px;
+	min-width:80px;
+}
+
+/* Top Right large Horizontal Elbow */
+.top-right.large.horizontal{
+	border-top-right-radius:160px; 
+	text-align:left;
+}
+
+.top-right.large.horizontal .bar{
+	top:0px; 
+	right:calc(100% - 5px);
+}
+
+.top-right.large.horizontal .block{
+	right:-30px;
+	top:calc(100% - 35px);
+	border-left:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-right-radius:105px; 
+	border-bottom-left-radius: 105px;
+	
+}
+
+.top-right.large.horizontal:before{bottom:8px}
+.top-right.large.horizontal:after{top:8px}
+
+/* Top Left large Horizontal Elbow */
+.top-left.large.horizontal{
+	border-top-left-radius:160px; 
+	text-align:right;
+}
+
+.top-left.large.horizontal .bar{
+	top:0px; 
+	left:calc(100% - 5px);
+}
+
+.top-left.large.horizontal .block{
+	top:calc(100% - 35px);
+	left:-30px;
+    border-right: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    border-top-left-radius: 105px;
+    border-bottom-right-radius: 105px;
+
+}
+
+.top-left.large.horizontal:before{bottom:8px; }
+.top-left.large.horizontal:after{top:8px; }
+
+/* Bottom Left large Horizontal Elbow */
+.bottom-left.large.horizontal{
+	border-bottom-left-radius:160px; 
+	text-align:right;
+}
+
+.bottom-left.large.horizontal .bar{
+	bottom:0px; 
+	left:calc(100% - 5px);
+}
+
+.bottom-left.large.horizontal .block{
+	bottom:calc(100% - 35px);
+	left:-30px;
+	border-right:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-left-radius:105px; 
+	border-top-right-radius: 105px;
+}
+
+
+.bottom-left.large.horizontal:before{top:8px}
+.bottom-left.large.horizontal:after{bottom:8px}
+
+/* Bottom Right large Horizontal Elbow */
+.bottom-right.large.horizontal{
+	border-bottom-right-radius:160px; 
+	text-align:left;
+}
+
+.bottom-right.large.horizontal > .bar{
+	bottom:0px; 
+	right:calc(100% - 5px);
+}
+
+.bottom-right.large.horizontal .block{
+	border-left:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-right-radius:105px; 
+	border-top-left-radius: 105px;
+	bottom:calc(100% - 35px);
+	right:-30px;
+}
+
+.bottom-right.large.horizontal:before{top:8px}
+.bottom-right.large.horizontal:after{bottom:8px}
+
+
+/* =============================================================================
+   Elbows - large Vertical
+   ========================================================================== */
+.elbow.large.vertical{
+	min-width:75px; 
+	min-height:160px;	
+}
+
+.elbow.large.vertical .block{
+	min-height:75px;
+	min-width:75px; 
+	border-width:35px; 
+	border-style: solid;
+}
+
+.elbow.large.vertical .bar{
+	min-height:80px;
+	max-height:60px;
+	min-width:75px;
+}
+
+/* Top Right Vertical large Elbow */
+.top-right.large.vertical{
+	border-top-right-radius:160px; 
+}
+
+.top-right.large.vertical .bar{
+	right:0px;
+	top:calc(100% - 5px);
+}
+
+.top-right.large.vertical .block{
+	border-left:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-right-radius:105px; 
+	border-bottom-left-radius: 105px;
+	right:calc(100% - 35px);
+	top:-30px;
+}
+
+.top-right.large.vertical:before{bottom:4px}
+.top-right.large.vertical:after{top:4px}
+
+/* Top Left Vertical large Elbow */
+.top-left.large.vertical{
+	border-top-left-radius:160px; 
+	text-align:right;
+}
+
+.top-left.large.vertical .bar{
+	left:0px;
+	top:calc(100% - 5px);
+}
+
+.top-left.large.vertical .block{
+	border-right:0px solid transparent; 
+	border-bottom:0px solid transparent; 
+	border-top-left-radius:105px; 
+	border-bottom-right-radius: 105px;
+	left:calc(100% - 35px);
+	top:-30px;
+}
+
+
+.top-left.large.vertical:before{bottom:4px}
+.top-left.large.vertical:after{top:4px}
+
+/* Bottom Left Vertical large Elbow */
+.bottom-left.large.vertical{
+	border-bottom-left-radius:160px; 
+	text-align:right;
+}
+
+.bottom-left.large.vertical .bar{
+	left:0px;
+	bottom:calc(100% - 5px);
+}
+
+.bottom-left.large.vertical .block{
+	left:calc(100% - 35px);
+	bottom:-30px;
+	border-right:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-left-radius:105px; 
+	border-top-right-radius: 105px;
+}
+
+
+.bottom-left.large.vertical:before{bottom:4px}
+.bottom-left.large.vertical:after{top:4px}
+
+/* Bottom Right Vertical large Elbow */
+.bottom-right.large.vertical{
+	border-bottom-right-radius:160px; 
+}
+
+.bottom-right.large.vertical .bar{
+	right:0px;
+	bottom:calc(100% - 5px);
+}
+
+.bottom-right.large.vertical .block{
+	right:calc(100% - 35px);
+	bottom:-30px;
+	border-left:0px solid transparent; 
+	border-top:0px solid transparent; 
+	border-bottom-right-radius:105px; 
+	border-top-left-radius: 105px;
+}
+
+.bottom-right.large.vertical:before{bottom:4px}
+.bottom-right.large.vertical:after{top:4px}
+
+
+
+/* =============================================================================
+   Columns
+   ========================================================================== */
+
+.column{min-height:60px;}
+
+.column > * {
+	width:100%; 
+	position:relative; 
+	margin-top:5px;
+	min-width:100%;
+}
+
+.column.flexv > .complexButton > * {height:auto;}
+.column > *:first-child{margin-top:0px;}
+
+
+/* =============================================================================
+   Rows
+   ========================================================================== */
+
+.row{
+	min-height:30px; 
+	display: flex;   
+    flex-direction:row;
+}
+
+.row > *{
+	min-width:30px; 
+	min-height:inherit;
+	max-height:inherit; 
+	position:relative; 
+	margin-left:5px; 
+}
+
+.row > *:first-child{margin-left:0px;}
+
+
+/* =============================================================================
+   Disabled State
+   ========================================================================== */
+.disabled{
+	background-color:#666666 !important; 
+	border-color:#666666 !important; 
+	pointer-events:none; 
+	-webkit-animation:none !important; 
+	animation:none!important; 
+	cursor:default;
+}
+
 .disabled.complexButton{background-color:transparent  !important;}
-.disabled.complexButton :not(.numericBlock){background-color:#505050 !important; -webkit-animation:none !important; animation:none !important;}
+
+.disabled.complexButton *:not(.text){
+	background-color:#505050 !important; 
+	-webkit-animation:none !important; 
+	animation:none !important;
+}
 
 
-.blink:not(.complexButton){ -webkit-animation: blink 1.25s step-end infinite; animation: blink 1.25s step-end infinite;}
-.blink.complexButton :not(.numericBlock){ -webkit-animation: blink 1.25s step-end infinite; animation: blink 1.25s step-end infinite;}
+/* =============================================================================
+   Animated States
+   ========================================================================== */
+
+.blink:not(.complexButton){ 
+	-webkit-animation: blink 1.25s step-end infinite; 
+	animation: blink 1.25s step-end infinite;
+}
+
+.blink.complexButton :not(.text){ 
+	-webkit-animation: blink 1.25s step-end infinite; 
+	animation: blink 1.25s step-end infinite;
+}
+
 @-webkit-keyframes blink {
    from, to { }
      50% {background-color:transparent; color:transparent; border-color:transparent;}
 }
+
 @keyframes blink {
    from, to { }
      50% {background-color:transparent; color:transparent; border-color:transparent;}
 }
 
 
-.darkRed2LightRed:not(.complexButton){ -webkit-animation: darkRed2LightRed 1.5s step-end infinite !important; animation: darkRed2LightRed 1.5s step-end infinite !important; }
-.darkRed2LightRed.complexButton :not(.numericBlock){ -webkit-animation: darkRed2LightRed 1.5s step-end infinite !important; animation: darkRed2LightRed 1.5s step-end infinite !important; }
+.darkRed2LightRed:not(.complexButton){ 
+	-webkit-animation: darkRed2LightRed 1.5s step-end infinite !important; 
+	animation: darkRed2LightRed 1.5s step-end infinite !important; 
+}
+
+.darkRed2LightRed.complexButton :not(.text){ 
+	-webkit-animation: darkRed2LightRed 1.5s step-end infinite !important; 
+	animation: darkRed2LightRed 1.5s step-end infinite !important; 
+}
+
 @-webkit-keyframes darkRed2LightRed {
    from, to { background-color:#990000; border-color:#990000;}
      50% {background-color:#FF0000; border-color:#FF0000;}
 }
+
 @keyframes darkRed2LightRed {
    from, to { background-color:#990000; border-color:#990000;}
      50% {background-color:#FF0000; border-color:#FF0000;}
 }
 
 
-.whiteFlash:not(.complexButton){ -webkit-animation: whiteFlash 1.25s step-end infinite; animation: whiteFlash 1.25s step-end infinite;}
-.whiteFlash.complexButton :not(.numericBlock){ -webkit-animation: whiteFlash 1.25s step-end infinite; animation: whiteFlash 1.25s step-end infinite;}
+.whiteFlash:not(.complexButton){ 
+	-webkit-animation: whiteFlash 1.25s step-end infinite; 
+	animation: whiteFlash 1.25s step-end infinite;
+}
+
+.whiteFlash.complexButton :not(.text){ 
+	-webkit-animation: whiteFlash 1.25s step-end infinite; 
+	animation: whiteFlash 1.25s step-end infinite;
+}
+
 @-webkit-keyframes whiteFlash {
    from, to { }
      50% {background-color:#ffffff; color:#ffffff;}
 }
+
 @keyframes whiteFlash {
    from, to { }
      50% {background-color:#ffffff; color:#ffffff;}
 }
 
-.darkRedBlink:not(.complexButton){ -webkit-animation: darkRedBlink 2.5s step-end infinite !important; animation: darkRedBlink 2.5s step-end infinite !important; pointer-events:none;}
-.darkRedBlink.complexButton :not(.numericBlock){ -webkit-animation: darkRedBlink 2.5s step-end infinite !important; animation: darkRedBlink 2.5s step-end infinite !important;  pointer-events:none;}
+.darkRedBlink:not(.complexButton){ 
+	-webkit-animation: darkRedBlink 2.5s step-end infinite !important; 
+	animation: darkRedBlink 2.5s step-end infinite !important; 
+	pointer-events:none;
+}
+
+.darkRedBlink.complexButton :not(.text){ 
+	-webkit-animation: darkRedBlink 2.5s step-end infinite !important; 
+	animation: darkRedBlink 2.5s step-end infinite !important;  
+	pointer-events:none;
+}
+
 @-webkit-keyframes darkRedBlink {
    from, to { background-color:#990000; border-color:#990000;}
      50% {background-color:transparent; border-color:transparent;}
 }
+
 @keyframes darkRedBlink {
    from, to { background-color:#990000; border-color:#990000;}
      50% {background-color:transparent; border-color:transparent;}
 }
 
 
+/* =============================================================================
+   Single State
+   ========================================================================== */
 
-/*Single Class States hanlding visibility, motion and event interaction*/
-.hidden{-webkit-transform:translate3d(99999px,0,0); transform:translate3d(99999px,0,0); -webkit-animation:none !important; animation:none !important;}
-.hidden *{ -webkit-animation:none !important; animation:none !important; -webkit-transition:none; transition:none !important;}
-.fade{opacity:0; -webkit-transition:opacity .25s linear; transition:opacity .25s linear;}
-.noEvent{pointer-events:none;}
-.noTransition, .noTransition *{-webkit-transition:none !important; transition:none !important; -webkit-animation:none !important; animation:none !important;}
+.hidden{
+	visiblity:hidden; 
+	-webkit-animation:none !important; 
+	animation:none !important;
+	pointer-events:none;
+}
+
+.hidden *{ 
+	-webkit-animation:none !important; 
+	animation:none !important; 
+	-webkit-transition:none; 
+	transition:none !important;
+}
+
+.fade{
+	opacity:0; 
+	-webkit-transition:opacity .25s linear; 
+	transition:opacity .25s linear;
+}
+
+.no-event{pointer-events:none;}
+
+.no-transition, 
+.no-transition *{
+	-webkit-transition:none !important; 
+	transition:none !important; 
+	-webkit-animation:none !important; 
+	animation:none !important;
+}
 
 
+/* =============================================================================
+   Basic Color 
+   ========================================================================== */
 
-/* Default Color - All colors should come after Active States and Animations.*/
-.grey>.bar, .grey>.block, .grey>.button, .grey>.cap{background-color:#505050; border-color:#505050;}
-.white>.bar, .white>.block, .white>.button, .white>.cap{background-color:#ffffff; border-color:#ffffff;}
-.transparent>.bar, .transparent>.block, .transparent>.button, .transparent>.cap{background-color:transparent; border-color:transparent;}
-
-.grey:not(.complexButton){background-color:#505050; border-color:#505050;}
-.white:not(.complexButton){background-color:#ffffff; border-color:#ffffff;}
-.transparent:not(.complexButton){background-color:transparent; border-color:transparent;}
-
+[class*="bg-"] > *{
+	background-color:#cccccc;
+	border-color:#cccccc;	
+}
 
 

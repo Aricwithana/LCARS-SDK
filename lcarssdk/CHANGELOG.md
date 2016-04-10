@@ -132,6 +132,29 @@ EH: Viewport Zoom uses zoom feature instead
 EH: Child Zoom, zooms a seconary inner
     inerface to its parent.
 
+16098.3-
+EH: Updated assorted core CSS settings.  Largest
+    update was to the Elbows, complex buttons.
+RM: Assorted files as content was seperated
+    into their own files and new file structure
+    created.
+EH: Added End Cap elements for large bar framing
+    controls.
+EH: Added style setting to directly apply CSS
+    settings to an elements definition object.
+EH: Additional coler generation call for grouped
+    color rendering.
+CO: Provided USS Not Affiliated theme updated.
+EH: Radio/Checkbox are now standard buttons.
+    The state of the element is handled via 
+    a simple JS with function passthrough.
+    These elements are not input elements.
+CO: Multiple elements have their settings updated
+    to utilize new options.
+CO: Complex buttons using large text utilize a 
+    text element instead of the old nbValue setting.
+CO: Elements are not long position absolute by default.
+
 Legend - 
 BF:  Bug Fix
 CO:  Cosmetic

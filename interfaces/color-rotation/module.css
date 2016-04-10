@@ -1,0 +1,121 @@
+#wpr_viewport{
+	width:1920px; 
+	height:1080px; 
+	padding:10px; 
+	text-align:right;
+}
+
+#wpr_leftControls{width:305px;}
+
+#wpr_tabControls{
+	position:absolute;
+	bottom:90px;	
+}
+
+.bracket{height:255px;} 
+
+.buttonWrap{flex-wrap:wrap;}
+
+.buttonWrap .button{
+	margin-top:5px; 
+	margin-left:5px; 
+	position:relative;
+}
+
+.buttonWrap .button:nth-child(odd){margin-left:0px !important;}
+
+.buttonWrap .button:first-child, 
+.buttonWrap .button:nth-child(2){margin-top:0px;}
+
+#wpr_mainView{margin-left:10px;}
+#wpr_mainView > .header{height:320px;}
+#wpr_mainView > .header .content{padding-left:35px;}
+
+#wpr_mainView > .header .column{
+	max-width:150px; 
+	min-width:150px; 
+	overflow:visible;
+}
+
+#wpr_mainView > .header .column .elbow .bar{
+	width:206px; 
+	right:-204px;
+}
+
+#wpr_mainView > .main .column{
+	max-width:150px;
+	 min-width:150px; 
+	 overflow:visible;
+}
+
+#wpr_mainView > .main .column .elbow .bar{
+	width:206px; 
+	right:-204px;
+}
+
+#wpr_mainView > .header .row .bar:nth-child(2), #wpr_mainView > .main .row .bar:nth-child(2){width:143px;}
+#wpr_mainView > .header .row .bar:nth-child(5), #wpr_mainView > .main .row .bar:nth-child(5){width:256px;}
+#wpr_mainView > .header .row .bar:nth-child(6), #wpr_mainView > .main .row .bar:nth-child(6){width:79px;}
+#wpr_mainView > .header .row .bar:nth-child(7), #wpr_mainView > .main .row .bar:nth-child(7){width:49px;}  
+
+#wpr_commandButtons{
+	position:absolute;
+	right:0px;
+	 bottom:35px; 
+	 width:429px;
+ }
+#wpr_commandButtons.buttonWrap .button{
+	margin-top:15px; 
+	margin-left:15px; 
+	width:207px;
+}
+
+/* Static Pattern Heights */
+.twoHeight{height:125px;}
+.threeHeight{height:190px;}
+.fourHeight{height:255px;}
+
+body{
+	-webkit-filter:hue-rotate(0deg) grayscale(0); 
+	filter:hue-rotate(0deg) grayscale(0); 
+	-webkit-animation: colorRotate 30s linear infinite; 
+	animation: colorRotate 30s linear infinite;
+}
+
+@-webkit-keyframes colorRotate {
+	0% {-webkit-filter: hue-rotate(0deg) grayscale(0); 	}
+	50%{-webkit-filter: hue-rotate(360deg) grayscale(0);}       
+	75%{-webkit-filter: hue-rotate(360deg) grayscale(1);}
+	100%{-webkit-filter: hue-rotate(360deg) grayscale(0); }
+}
+
+@keyframes colorRotate {
+	0% {-webkit-filter: hue-rotate(0deg) grayscale(0); filter: hue-rotate(0deg) grayscale(0);}
+	50%{-webkit-filter: hue-rotate(360deg) grayscale(0); filter: hue-rotate(360deg) grayscale(0);}
+	75%{-webkit-filter: hue-rotate(360deg) grayscale(1); filter: hue-rotate(360deg) grayscale(1);}
+	100% {-webkit-filter: hue-rotate(360deg) grayscale(0); filter: hue-rotate(360deg) grayscale(0);}
+}    
+
+ /* Blink between button color and Grey 1 */   
+.ra_g1:not(.complexButton){ -webkit-animation: ra_g1 3.5s step-end infinite !important; animation: ra_g1 3.5s step-end infinite !important; }
+.ra_g1.complexButton :not(.numericBlock){ -webkit-animation: ra_g1 3.5s step-end infinite !important; animation: ra_g1 3.5s step-end infinite !important;}
+@-webkit-keyframes ra_g1 {
+   from, to {}
+	 50% {background-color:#cccccc; border-color:#cccccc;}
+}
+@keyframes ra_g1 {
+   from, to { }
+	 50% {background-color:#cccccc; border-color:#cccccc;}
+}
+
+/* White Strobe */    
+.alertFlash .alertFlash:not(.complexButton){-webkit-animation: whiteFade .25s linear; animation: whiteFade .25s linear;}
+.alertFlash .alertFlash.complexButton :not(.numericBlock){-webkit-animation: whiteFade .25s linear; animation: whiteFade .25s linear;}
+@-webkit-keyframes whiteFade {
+	 0% {background-color:#ffffff;border-color:#ffffff; }    
+}
+
+@keyframes whiteFade {
+	 0% {background-color:#ffffff;border-color:#ffffff; }
+}   
+ 

@@ -1,4 +1,4 @@
-/** LCARS SDK 15088.21
+/** LCARS SDK 16098.3
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -9,13 +9,13 @@
 * that displays two triangles and scrolls content.
 **/
 
-sdkAddonTemplates.scrollButton = {
-        typeAV:{type:'wrapper', class:'sdk widget complexButton scrollButton typeAV duo vertical ', children:[
+LCARS.templates.sdk.scrollButton = {
+        typeAV:{type:'wrapper', class:'addon sdk complexButton scrollButton typeAV duo vertical ', children:[
                 {type:'button', class:'up'}, 
                 {type:'button', class:'down'}        
             ]
         },
-        typeAH:{type:'wrapper', class:'sdk widget complexButton scrollButton typeAH duo', children:[
+        typeAH:{type:'wrapper', class:'addon sdk complexButton scrollButton typeAH duo', children:[
                 {type:'button', class:'left'}, 
                 {type:'button', class:'right'}               
             ]
@@ -26,7 +26,10 @@ sdkAddonTemplates.scrollButton = {
 LCARS.scrollButton = {
 
     create:function(args){
+        if(!args.template){args.template = $.extend(true, {}, LCARS.templates.sdk.scrollButton.typeAV);}
+        
         if(args.id){args.template.id = args.id;}
+        
         var element = LCARS[args.template.type].create(args.template);
 
         if($(element).find('.left').length !== -1){

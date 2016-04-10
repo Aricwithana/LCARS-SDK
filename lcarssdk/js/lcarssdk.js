@@ -1,4 +1,4 @@
-/** LCARS SDK 15088.21
+/** LCARS SDK 16098.3
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -10,7 +10,6 @@
 // @objectCount - Number of objects stored in allObjects;
 var timing_sequence = 65;
 var allObjects = {};
-var sdkAddonTemplates = {}
 var objectCount = 0;
 
 
@@ -21,6 +20,11 @@ var objectCount = 0;
  *          does not conflict with custom needs of custom projects.
  */  
 var LCARS = {
+	
+	templates:{
+		sdk:{}
+	},
+
 /** +brief Viewport Scaler
  *	&info - Scale viewport container in porportion and aspect ratio.
  *	@panelW - Width of container
@@ -31,10 +35,9 @@ var LCARS = {
     scaler: function(panelW, panelH, wrapper, max){
         var windowH = $(window).height();
         var windowW = $(window).width();
-        var ratio = panelW/panelH;
-        
-        var diffH = 1-((panelW - windowW)/panelW)
-        var diffW = 1-((panelH - windowH)/panelH)
+        var ratio = panelW / panelH;
+        var diffH = 1-((panelW - windowW)/panelW);
+        var diffW = 1-((panelH - windowH)/panelH);
         if(max !== true  || max === true && diffW < 1 && diffH < 1 || max === true && diffW < 1 || diffH < 1){
             if(panelW > panelH){
                 if(windowH < (windowW*ratio)){
@@ -70,6 +73,7 @@ var LCARS = {
         
         var bodyH = ((windowH - $(wrapper)[0].getBoundingClientRect().height)/2)
         var bodyW = ((windowW - $(wrapper)[0].getBoundingClientRect().width)/2)
+
         if(bodyH < 0){bodyH=0;}
         if(bodyW < 0){bodyW=0;}
         $(wrapper).css('top', bodyH);
@@ -163,6 +167,16 @@ var LCARS = {
         var color = array[Math.floor(array.length * Math.random())];
         return color;  
     },
+	
+	colorGroupGen:function(array, iLength){
+		var aReturn = [];
+		
+		for (i = 0; i < iLength; i++) { 
+			aReturn.push(array[Math.floor(array.length * Math.random())]);
+		}	
+		
+		return aReturn;
+	},
     
     
  /** +brief Object Settings
@@ -178,15 +192,34 @@ var LCARS = {
             var original = allObjects[elemID];
             
             for (var prop in args) {
+				//Check to see if there are type specific settings needing to be used.
                 if(args.type){var customSettings = LCARS[args.type].settings;}else{var customSettings = LCARS[original.type].settings;}
+      
+                //If type has custom settings
+                if(customSettings){
+                    if(customSettings[prop]){
+                        element = LCARS[allObjects[elemID].type].settings[prop]({element:element, args:args, original:original, set:true, elemID:elemID});
+                    
+                    //If no custom setting, see if a setting is globally available.
+                    }else if(LCARS.settings[prop]){
+                        selement = LCARS.settings[prop]({element:element, args:args, original:original, set:true,  elemID:elemID});    
+                    
+                    //if no setting is available, just set value in global object.
+                    }else{
+                       original[prop] = args[prop];    
+                    }
                 
-                if(customSettings && customSettings[prop] && customSettings[prop] !== null){
-                    element = LCARS[allObjects[elemID].type].settings[prop]({element:element, args:args, original:original, set:true, elemID:elemID});
-                }else if(LCARS.settings[prop]){
-                    element = LCARS.settings[prop]({element:element, args:args, original:original, set:true,  elemID:elemID}); 
                 }else{
-                    original[prop] = args[prop];   
+                    if(LCARS.settings[prop]){
+                        element = LCARS.settings[prop]({element:element, args:args, original:original, set:true,  elemID:elemID});   
+                    
+                    //if no setting is available, just set value in global object.
+                    }else{
+                        original[prop] = args[prop];   
+                    }                
                 }
+                
+                
                 
             }
             return element;
@@ -211,9 +244,10 @@ var LCARS = {
             if(args.args.click != null && webviewInfo.input !== 'touch'){
                 if(targetObj.click){$(args.element).off('click', targetObj.click);}
                 targetObj.click = args.args.click;              
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('click', labelPreventSet);
-                    $(args.element).on('click', targetObj.click);   
+                if(targetObj.type === 'radio' || targetObj.type === 'checkbox'){
+                    $(args.element).on('click', function(){
+						radioCheckboxState.apply(this, [targetObj.click]);
+					});
                 }else{
                     $(args.element).on('click', targetObj.click);
                 }
@@ -230,12 +264,7 @@ var LCARS = {
             if(args.args.mouseenter != null && webviewInfo.input !== 'touch'){
                 if(targetObj.mouseenter){$(args.element).off('mouseenter');}
                 targetObj.mouseenter = args.args.mouseenter;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('mouseenter', targetObj.mouseenter);           
-                    $(args.element).on('mouseenter', labelPreventDefault);
-                }else{
-                    $(args.element).on('mouseenter', targetObj.mouseenter);
-                }
+				$(args.element).on('mouseenter', targetObj.mouseenter);
             }else if(args.args.mouseenter === null){
                 if(targetObj.mouseenter){$(args.element).off('mouseenter');}
                 targetObj.mouseenter = null;             
@@ -249,12 +278,7 @@ var LCARS = {
             if(args.args.mouseleave != null && webviewInfo.input !== 'touch'){
                 if(targetObj.mouseleave){$(args.element).off('mouseleave');}
                 targetObj.mouseleave = args.args.mouseleave;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('mouseleave', targetObj.mouseleave);           
-                    $(args.element).on('mouseleave', labelPreventDefault);
-                }else{
-                    $(args.element).on('mouseleave', targetObj.mouseleave);
-                }
+				$(args.element).on('mouseleave', targetObj.mouseleave);
             }else if(args.args.mouseleave === null){
                 if(targetObj.mouseleave){$(args.element).off('mouseleave');}
                 targetObj.mouseleave = null;             
@@ -269,12 +293,7 @@ var LCARS = {
             if(args.args.hover != null && webviewInfo.input !== 'touch'){
                 if(targetObj.hover){$(args.element).off('hover');}
                 targetObj.hover = args.args.hover;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('hover', targetObj.hover);           
-                    $(args.element).on('hover', labelPreventDefault);
-                }else{
-                    $(args.element).on('hover', targetObj.hover);
-                }
+				$(args.element).on('hover', targetObj.hover);
             }else if(args.args.hover === null){
                 if(targetObj.hover){$(args.element).off('hover');}
                 targetObj.hover = null;             
@@ -288,12 +307,7 @@ var LCARS = {
             if(args.args.mousedown != null && webviewInfo.input !== 'touch'){
                 if(targetObj.mousedown){$(args.element).off('mousedown');}
                 targetObj.mousedown = args.args.mousedown;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('mousedown', targetObj.mousedown);           
-                    $(args.element).on('mousedown', labelPreventDefault);
-                }else{
-                    $(args.element).on('mousedown', targetObj.mousedown);
-                }
+				$(args.element).on('mousedown', targetObj.mousedown);
             }else if(args.args.mousedown === null){
                 if(targetObj.mousedown){$(args.element).off('mousedown');}
                 targetObj.mousedown = null;             
@@ -307,9 +321,10 @@ var LCARS = {
             if(args.args.mouseup != null && webviewInfo.input !== 'touch'){
                 if(targetObj.mouseup){$(args.element).off('mouseup');}
                 targetObj.mouseup = args.args.mouseup;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('mouseup', targetObj.mouseup);           
-                    $(args.element).on('mouseup', labelPreventDefault);
+                if(targetObj.type === 'radio' || targetObj.type === 'checkbox'){
+                    $(args.element).on('mouseup', function(){
+						radioCheckboxState.apply(this, [targetObj.click]);
+					});
                 }else{
                     $(args.element).on('mouseup', targetObj.mouseup);
                 }
@@ -326,9 +341,10 @@ var LCARS = {
             if(args.args.tap != null && webviewInfo.input === 'touch'){
                 if(targetObj.tap){$(args.element).off('tap');}
                 targetObj.tap = args.args.tap;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('tap', targetObj.tap);           
-                    $(args.element).on('tap', labelPreventSet);
+                if(targetObj.type === 'radio' || targetObj.type === 'checkbox'){
+                    $(args.element).on('tap', function(){
+						radioCheckboxState.apply(this, [targetObj.click]);
+					});
                 }else{
                     $(args.element).on('tap', targetObj.tap);
                 }
@@ -345,9 +361,10 @@ var LCARS = {
             if(args.args.singleTap != null && webviewInfo.input === 'touch'){
                 if(targetObj.singleTap){$(args.element).off('singleTap');}
                 targetObj.singleTap = args.args.singleTap;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('singleTap', targetObj.singleTap);           
-                    $(args.element).on('singleTap', labelPreventSet);
+                if(targetObj.type === 'radio' || targetObj.type === 'checkbox'){
+                    $(args.element).on('singleTap', function(){
+						radioCheckboxState.apply(this, [targetObj.click]);
+					});
                 }else{
                     $(args.element).on('singleTap', targetObj.singleTap);
                 }
@@ -364,12 +381,7 @@ var LCARS = {
             if(args.args.doubleTap != null && webviewInfo.input === 'touch'){
                 if(targetObj.doubleTap){$(args.element).off('doubleTap');}
                 targetObj.doubleTap = args.args.doubleTap;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('doubleTap', targetObj.doubleTap);           
-                    $(args.element).on('doubleTap', labelPreventDefault);
-                }else{
-                    $(args.element).on('doubleTap', targetObj.doubleTap);
-                }
+				$(args.element).on('doubleTap', targetObj.doubleTap);
             }else if(args.args.doubleTap === null){
                 if(targetObj.doubleTap){$(args.element).off('doubleTap');}
                 targetObj.doubleTap = null;             
@@ -384,12 +396,7 @@ var LCARS = {
             if(args.args.longTap != null && webviewInfo.input === 'touch'){
                 if(targetObj.longTap){$(args.element).off('longTap');}
                 targetObj.longTap = args.args.longTap;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('longTap', targetObj.longTap);           
-                    $(args.element).on('longTap', labelPreventDefault);
-                }else{
-                    $(args.element).on('longTap', targetObj.longTap);
-                }
+				$(args.element).on('longTap', targetObj.longTap);
             }else if(args.args.longTap === null){
                 if(targetObj.longTap){$(args.element).off('longTap');}
                 targetObj.longTap = null;             
@@ -403,12 +410,7 @@ var LCARS = {
             if(args.args.swipe != null && webviewInfo.input === 'touch'){
                 if(targetObj.swipe){$(args.element).off('swipe');}
                 targetObj.swipe = args.args.swipe;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('swipe', targetObj.swipe);           
-                    $(args.element).on('swipe', labelPreventDefault);
-                }else{
-                    $(args.element).on('swipe', targetObj.swipe);
-                }
+				$(args.element).on('swipe', targetObj.swipe);
             }else if(args.args.swipe === null){
                 if(targetObj.swipe){$(args.element).off('swipe');}
                 targetObj.swipe = null;             
@@ -422,12 +424,7 @@ var LCARS = {
             if(args.args.swipeLeft != null && webviewInfo.input === 'touch'){
                 if(targetObj.swipeLeft){$(args.element).off('swipeLeft');}
                 targetObj.swipeLeft = args.args.swipeLeft;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('swipeLeft', targetObj.swipeLeft);           
-                    $(args.element).on('swipeLeft', labelPreventDefault);
-                }else{
-                    $(args.element).on('swipeLeft', targetObj.swipeLeft);
-                }
+				$(args.element).on('swipeLeft', targetObj.swipeLeft);
             }else if(args.args.swipeLeft === null){
                 if(targetObj.swipeLeft){$(args.element).off('swipeLeft');}
                 targetObj.swipeLeft = null;             
@@ -441,12 +438,7 @@ var LCARS = {
             if(args.args.swipeRight != null && webviewInfo.input === 'touch'){
                 if(targetObj.swipeRight){$(args.element).off('swipeRight');}
                 targetObj.swipeRight = args.args.swipeRight;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('swipeRight', targetObj.swipeRight);           
-                    $(args.element).on('swipeRight', labelPreventDefault);
-                }else{
-                    $(args.element).on('swipeRight', targetObj.swipeRight);
-                }
+				$(args.element).on('swipeRight', targetObj.swipeRight);
             }else if(args.args.swipeRight === null){
                 if(targetObj.swipeRight){$(args.element).off('swipeRight');}
                 targetObj.swipeRight = null;             
@@ -460,12 +452,7 @@ var LCARS = {
             if(args.args.swipeUp != null && webviewInfo.input === 'touch'){
                 if(targetObj.swipeUp){$(args.element).off('swipeUp');}
                 targetObj.swipeUp = args.args.swipeUp;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('swipeUp', targetObj.swipeUp);           
-                    $(args.element).on('swipeUp', labelPreventDefault);
-                }else{
-                    $(args.element).on('swipeUp', targetObj.swipeUp);
-                }
+				$(args.element).on('swipeUp', targetObj.swipeUp);
             }else if(args.args.swipeUp === null){
                 if(targetObj.swipeUp){$(args.element).off('swipeUp');}
                 targetObj.swipeUp = null;             
@@ -479,12 +466,7 @@ var LCARS = {
             if(args.args.swipeDown != null && webviewInfo.input === 'touch'){
                 if(targetObj.swipeDown){$(args.element).off('swipeDown');}
                 targetObj.swipeDown = args.args.swipeDown;
-                if(targetObj.type === 'radioButton' || targetObj.type === 'checkboxButton'){
-                    $(args.element).on('swipeDown', targetObj.swipeDown);           
-                    $(args.element).on('swipeDown', labelPreventDefault);
-                }else{
-                    $(args.element).on('swipeDown', targetObj.swipeDown);
-                }
+				$(args.element).on('swipeDown', targetObj.swipeDown);
             }else if(args.args.swipeDown === null){
                 if(targetObj.swipeDown){$(args.element).off('swipeDown');}
                 targetObj.swipeDown = null;             
@@ -661,6 +643,22 @@ var LCARS = {
             }  
         },
         
+        style:function(args){
+            if(args.set === true){
+                
+                if(args.args.style === null && args.original.style != null){     
+                    allObjects[args.elemID].style = null;   
+                }else if(typeof args.args.style === 'string'){
+                    $(args.element).attr('style', args.args.style);
+                    allObjects[args.elemID].style = args.args.style;
+                }          
+                return args.element;
+            
+            }else{
+                if(!allObjects[args.elemID].style){return null;}else{return allObjects[args.elemID].style;}          
+            }  
+        },
+
         flex:function(args){
             if(args.set === true){
                 
@@ -715,10 +713,10 @@ var LCARS = {
         noEvent:function(args){
             if(args.set === true){
                 if(args.args.noEvent === false){     
-                    $(args.element).removeClass('noEvent');
+                    $(args.element).removeClass('no-event');
                     allObjects[args.elemID].noEvent = args.args.noEvent;
                 }else if(args.args.noEvent === true){
-                    $(args.element).addClass('noEvent');
+                    $(args.element).addClass('no-event');
                     allObjects[args.elemID].noEvent = args.args.noEvent;
                 }
                 return args.element;
@@ -790,10 +788,10 @@ var LCARS = {
         checked:function(args){
             if(args.set === true){
                 if(args.args.checked === false){     
-                    $(args.element).find('input').prop('checked', false);
+                    $(args.element).removeClass('checked');
                     allObjects[args.elemID].checked = null;
                 }else if(args.args.checked === true){
-                    $(args.element).find('input').prop('checked', true);
+                    $(args.element).addClass('checked');
                     allObjects[args.elemID].checked = true;
                 }
                 return args.element;
@@ -953,35 +951,16 @@ var LCARS = {
             allObjects[args.elemID].children = args.args.children;
             return args.element;
         },
-        
-        nbValue:function(args){
-            if(args.set === true){ 
-                if(args.args.nbValue === null && args.original.nbValue != null){     
-                    $(args.element).empty();
-                    allObjects[args.elemID].nbValue = null;
-                    $(args.element).width(0);
-                }else{
-                    var nbvLength = args.args.nbValue.length;
-                    var nbvWidth = (nbvLength * 25) + ((nbvLength-1) * 5) + 10;
-                    $(args.element).width(nbvWidth);
-                    $(args.element).text(args.args.nbValue);
-                    allObjects[args.elemID].nbValue = args.args.nbValue;
-                }                
-            }else{
-                if(!allObjects[args.elemID].nbValue){return null;}else{return allObjects[args.elemID].nbValue;}
-            }                
-            return args.element;
-        },  
-        
+                
         colors:function(args){
              if(args.set === true){ 
                 if(args.args.colors === null && args.original.colors != null){     
-                    $(args.element).children(':not(.numericBlock):not(.title)').each(function(){
+                    $(args.element).children(':not(.text):not(.title)').each(function(){
                         LCARS.settings.set(this, {color:null});                     
                     });
                     allObjects[args.elemID].colors = null;
                 }else if(Array.isArray(args.args.colors)){
-                    var childrenElem = $(args.element).children(':not(.numericBlock):not(.title)')
+                    var childrenElem = $(args.element).children(':not(.text):not(.title)')
                     for (i = 0; i < childrenElem.length; i++) { 
                         var childElem = childrenElem[i];
                         if(args.args.colors[i]){
@@ -1028,6 +1007,7 @@ var LCARS = {
             }                
             
         },
+		
         arrive:function(args){
             if(args.set === true){ 
                 if(args.args.arrive === null && args.original.arrive != null){     
@@ -1043,7 +1023,26 @@ var LCARS = {
             }else{
                 if(!allObjects[args.elemID].arrive){return null;}else{return allObjects[args.elemID].arrive;}
             }                                                  
-        }     
+        },
+		
+		endcap:function(args){
+	
+			if(args.set === true){
+				if(args.args.endcap === false){  				  				
+					$(args.element).removeClass('endcap');
+					$(args.element).find('div').removeObject();
+					allObjects[args.elemID].endcap = args.args.endcap;
+				}else if(args.args.endcap === true){
+					var elementCap = LCARS.cap.create({type:'cap'});
+					$(args.element).addClass('endcap').append(elementCap);
+					allObjects[args.elemID].endcap = args.args.endcap;
+				}
+				return args.element;
+			}else{
+				if(!allObjects[args.elemID].hidden){return null;}else{return allObjects[args.elemID].hidden;}
+			}  
+		}
+		     
     },
   
  
@@ -1108,10 +1107,16 @@ var LCARS = {
     elbow:{
         create:function(args){
             if(args.href !== undefined){
-                var element = $('<a class="elbow"><div class="innerRadius"></div><div class="bar"></div></a>');
+                var element = $('<a class="elbow"><div class="bar"><div class="block"></div></div></a>');
             }else{
-                var element =  $('<div class="elbow"><div class="innerRadius"></div><div class="bar"></div></div>');
-            }	            
+                var element =  $('<div class="elbow"><div class="bar"><div class="block"></div></div></div>');
+            }	
+			if(args.size === undefined){
+				args.size = 'default'
+			}
+			if(args.orient === undefined){
+				args.orient = 'horizontal'
+			}
             element = LCARS.definition(element, args);                            
             return element;	    
         }
@@ -1133,9 +1138,27 @@ var LCARS = {
         }
     },
 
+    endcap:{
+        create:function(args){
+            if(args.href !== undefined){var element = $('<a class="button">');}else{var element = $('<div class="button">');}            
+			var elementCap = LCARS.cap.create({type:'cap'});
+			$(element).append(elementCap);
+            element = LCARS.definition(element, args);
+            return element;
+        }
+    },
+
     block:{
         create:function(args){
             var element =  $('<div class="block"></div>');					            
+            element = LCARS.definition(element, args);            
+            return element;
+        }
+    },
+
+    oval:{
+        create:function(args){
+            var element =  $('<div class="oval"></div>');					            
             element = LCARS.definition(element, args);            
             return element;
         }
@@ -1205,20 +1228,32 @@ var LCARS = {
 
                 }  
             },
-            nbValue:function(args){
-                if(args.set === true){         
-                    var elemNB = $(args.element).find('.numericBlock');
-                    LCARS.settings.set(elemNB, {nbValue:args.args.nbValue});
-                    allObjects[args.elemID].nbValue = args.args.nbValue;
+			
+            text:function(args){
+                if(args.set === true){  
+                    var elemNB = $(args.element).find('.text');
+					if(args.args.text === null && args.original.text != null){     
+						$(elemNB).text('');
+						allObjects[args.elemID].text = null;
+						$(elemNB).width(0);
+					}else{
+						var textLength = args.args.text.length;
+						var textWidth = (textLength * 25) + ((textLength-1) * 5) + 10;
+						$(elemNB).width(textWidth);
+						$(elemNB).text(args.args.text);
+						allObjects[args.elemID].text = args.args.text;
+					}                
+				       
+                    allObjects[args.elemID].text = args.args.text;
+                    return args.element;
                 }else{
-                    if(!allObjects[args.elemID].nbValue){return null;}else{return allObjects[args.elemID].nbValue;}
+                    if(!allObjects[args.elemID].text){return null;}else{return allObjects[args.elemID].text;}
                 }                
-                return args.element;
             }            
         }   
     },
 
-    radio:{
+    radioInput:{
         create:function(args){       
             var element = $('<input type="radio">')
             element = LCARS.definition(element, args);
@@ -1226,22 +1261,11 @@ var LCARS = {
         }
     },
 
-    radioButton:{
+    radio:{
         create:function(args){
-            var element = $('<label class="complexButton radioButton">');
-            var input = LCARS.radio.create({type:'radio', name:args.name, checked:args.checked});
-            $(element).prepend(input);
+            var element = $('<div class="complexButton radio">');         
             if(args.template){        
-                $(args.template).each(function(){
-                    var nbCheck = 'numericBlock';
-                    if(nbCheck.indexOf(this.class) > -1){
-                        if(args.nbValue){this.nbValue = args.nbValue;}
-                    }else{                  
-                        if(this.type == 'button'){
-                            if(args.label !== undefined){this.label = args.label;}
-                            if(args.altLabel !== undefined){this.altLabel = args.altLabel;}
-                        } 
-                    }                   
+                $(args.template).each(function(){               
                     var elementChild = LCARS[this.type].create(this);
                     $(element).append(elementChild);
                 });
@@ -1254,11 +1278,11 @@ var LCARS = {
                 args.colors = [];
                 element = LCARS.definition(element, args);
                 args.colors = saveColors;
-                element = LCARS.settings.set(element, args);
+                element = LCARS.settings.set(element, {colors:saveColors});
             }else{
                 element = LCARS.definition(element, args);
             }
-            return element; 
+            return element;	  
         },
         
         settings:{
@@ -1301,20 +1325,32 @@ var LCARS = {
 
                 }  
             },
-            nbValue:function(args){
-                if(args.set === true){         
-                    var elemNB = $(args.element).find('.numericBlock');
-                    LCARS.settings.set(elemNB, {nbValue:args.args.nbValue});
-                    allObjects[args.elemID].nbValue = args.args.nbValue;
+			
+            text:function(args){
+                if(args.set === true){  
+                    var elemNB = $(args.element).find('.text');
+					if(args.args.text === null && args.original.text != null){     
+						$(elemNB).text('');
+						allObjects[args.elemID].text = null;
+						$(elemNB).width(0);
+					}else{
+						var textLength = args.args.text.length;
+						var textWidth = (textLength * 25) + ((textLength-1) * 5) + 10;
+						$(elemNB).width(textWidth);
+						$(elemNB).text(args.args.text);
+						allObjects[args.elemID].text = args.args.text;
+					}                
+				       
+                    allObjects[args.elemID].text = args.args.text;
+                    return args.element;
                 }else{
-                    if(!allObjects[args.elemID].nbValue){return null;}else{return allObjects[args.elemID].nbValue;}
-                }               
-                return args.element;
+                    if(!allObjects[args.elemID].text){return null;}else{return allObjects[args.elemID].text;}
+                }                
             }            
-        }
+        }   
     },
 
-    checkbox:{
+    checkboxInput:{
         create:function(args){       
             var element = $('<input type="checkbox">')
             element = LCARS.definition(element, args);
@@ -1322,22 +1358,11 @@ var LCARS = {
         }
     },        
 
-    checkboxButton:{
+    checkbox:{
         create:function(args){
-            var element = $('<label class="complexButton checkboxButton">');
-            var input = LCARS.checkbox.create({type:'checkboxButton', name:args.name, checked:args.checked});
-            $(element).prepend(input);
+            var element = $('<div class="complexButton checkbox">');         
             if(args.template){        
-                $(args.template).each(function(){
-                    var nbCheck = 'numericBlock';
-                    if(nbCheck.indexOf(this.class) > -1){
-                        if(args.nbValue){this.nbValue = args.nbValue;}
-                    }else{                  
-                        if(this.type == 'button'){
-                            if(args.label !== undefined){this.label = args.label;}
-                            if(args.altLabel !== undefined){this.altLabel = args.altLabel;}
-                        } 
-                    }                   
+                $(args.template).each(function(){               
                     var elementChild = LCARS[this.type].create(this);
                     $(element).append(elementChild);
                 });
@@ -1350,11 +1375,11 @@ var LCARS = {
                 args.colors = [];
                 element = LCARS.definition(element, args);
                 args.colors = saveColors;
-                element = LCARS.settings.set(element, args);
+                element = LCARS.settings.set(element, {colors:saveColors});
             }else{
                 element = LCARS.definition(element, args);
             }
-            return element;
+            return element;	  
         },
         
         settings:{
@@ -1397,17 +1422,29 @@ var LCARS = {
 
                 }  
             },
-            nbValue:function(args){
-                if(args.set === true){         
-                    var elemNB = $(args.element).find('.numericBlock');
-                    LCARS.settings.set(elemNB, {nbValue:args.args.nbValue});
-                    allObjects[args.elemID].nbValue = args.args.nbValue;
+			
+            text:function(args){
+                if(args.set === true){  
+                    var elemNB = $(args.element).find('.text');
+					if(args.args.text === null && args.original.text != null){     
+						$(elemNB).text('');
+						allObjects[args.elemID].text = null;
+						$(elemNB).width(0);
+					}else{
+						var textLength = args.args.text.length;
+						var textWidth = (textLength * 25) + ((textLength-1) * 5) + 10;
+						$(elemNB).width(textWidth);
+						$(elemNB).text(args.args.text);
+						allObjects[args.elemID].text = args.args.text;
+					}                
+				       
+                    allObjects[args.elemID].text = args.args.text;
+                    return args.element;
                 }else{
-                    if(!allObjects[args.elemID].nbValue){return null;}else{return allObjects[args.elemID].nbValue;}
-                }              
-                return args.element;
+                    if(!allObjects[args.elemID].text){return null;}else{return allObjects[args.elemID].text;}
+                }                
             }            
-        }             
+        }   
     },
 
     wrapper:{
@@ -1418,8 +1455,43 @@ var LCARS = {
             return element;	
         }
     },
+	
+    content:{
+        create:function(args){
+            var element = $('<div class="content"></div>');            
+            element = LCARS.definition(element, args);  
+            
+            return element;	
+        }
+    },
+	
+    column:{
+        create:function(args){
+            var element = $('<div class="column"></div>');            
+            element = LCARS.definition(element, args);  
+            
+            return element;	
+        }
+    },
+	
+    row:{
+        create:function(args){
+            var element = $('<div class="row"></div>');            
+            element = LCARS.definition(element, args);  
+            
+            return element;	
+        }
+    },		
 
     title:{
+        create:function(args){
+            var element = $('<div>'+args.text+'</div>');					
+            element = LCARS.definition(element, args);
+            return element;
+        }
+    },
+
+    text:{
         create:function(args){
             var element = $('<div>'+args.text+'</div>');					
             element = LCARS.definition(element, args);
@@ -1546,61 +1618,41 @@ function compare(a,b) {
 }
 
 
-/** + brief Label 'Double Event' Prevention
+/** + brief Checkbox/Radio Check State
 *
-*   Radio and Checkbox buttons are created via a parent label wrapper
-*   and the input element stored within, hidden and display:none.
-*
-*   Doing this causes events to trigger twice.
-*
-*   Click, Tap & Single Tap call the labelPreventSet().  This prevents and
-*   sets the input DOM state along with updating the appropirate definitions.
-*   
-*   All other events should not trigger the input checked state change
-*   and thus call the simple labelPreventDefault().
-*
-*   !note - Be careful with the labelPreventSet() function and async
-*   checking of the input value to update the value once specific 
-*   requirements are set.  labelPreventDefault() can be rewritten to 
-*   work with specific observers. 
+*   This SDK, while providing an API for standard input form elements,
+*	utilizes normal buttons and simulates the checked state on 
+*	the element.
 *
 **/
 
-function labelPreventDefault(){
-    event.preventDefault();
-}
 
-function labelPreventSet(event){
-    event.preventDefault();
-    var input = $(this).find('input');
+function radioCheckboxState(func){
     var elemID = $(this).attr('id');
-    var inputID = $(input).attr('id');
-    if($(this).hasClass('checkboxButton')){
+    if($(this).hasClass('checkbox')){
         if(allObjects[elemID].checked === true){
-            $(input).prop('checked', false);   
+            $(this).removeClass('checked');   
             allObjects[elemID].checked = false;
-            allObjects[inputID].checked = false;
         }else{      
-            $(input).prop('checked', true);
+            $(this).addClass('checked');
             allObjects[elemID].checked = true;
-            allObjects[inputID].checked = true;
         }
     }else{ 
         if(allObjects[elemID].checked !== true){
-            $(input).prop('checked', true);
-            allObjects[elemID].checked = true;
-            allObjects[inputID].checked = true;
             var nameGroup = allObjects[elemID].name;
-            $('[name="'+nameGroup+'"]:not(:checked)').each(function(){
-                var parentID = $(this).parent().attr('id');
+            $(this).addClass('checked');
+            allObjects[elemID].checked = true;
+            $('[name="'+nameGroup+'"].checked').each(function(){
                 var inputID = $(this).attr('id');
-                allObjects[parentID].checked = false;
-                allObjects[inputID].checked = false;
+				if(inputID !== elemID){
+					allObjects[inputID].checked = false;
+					$(this).removeClass('checked');   
+				}
             });
         }  
     }
+	func.apply(this, []);
 }
-
 
 /** + brief $.fn Calls
 *   

@@ -1,8 +1,8 @@
-LCARS SDK License 15088.21 (v2.1.0)
+LCARS SDK License 16098.3 (v3.0.0)
 Author: Aric McGriff
 Email: contact@lcarssdk.org
 Website: http://www.lcarssdk.org
-Date:2-25-2015
+Date:04-09-216
 
 Original Intellectual Property Ownership.
 THE LCARS SDK IS MADE IN GOOD FAITH THAT THE ENVIRONMENT DOES NOT INFRINGE ON THE INTELLECTUAL PROPERTY OWNED BY PARAMOUNT/CBS TO WHOM STAR TREK AND RELATED MATERIALS ARE TRADEMARKED AND OWNED BY. ALL RELATED LCARS MATERIAL IS FOR THE JOY OF THE FANS AND TO HELP PROMOTE A QUALITY AND FUNCTIONAL LCARS ENVIRONMENT FOR THE STAR TREK FAN COMMUNITY.
@@ -51,7 +51,7 @@ Addons Included: Scroll Button (scrollbutton.css/scrollbutton.js)
 
 Module: A derivative work utilizing the LCARS SDK. Contains project specific code and generally extended features usability. A module is dependant upon the Code core not the other way around.
 
-Viewscreen: Provided application environment.
+LCARS-NV: Provided application environment.
 
 TERMS AND CONDITIONS
 1. For-Profit use is prohibited. The LCARS SDK is for Non-Profit use only.
@@ -64,7 +64,7 @@ TERMS AND CONDITIONS
 4. The LCARS SDK, its Author/Project Lead or any other associated relationships are not responsible or liable for any custom Addons or Modules created by a third party not included directly included in the LCARS SDK umbrella environment.
 
 5. The LCARS SDK source code is available to allow the greatest control over its implementation use. By chance that a 3rd Party is negatively impacting the LCARS SDK environment or violating any other term and conditions concerning the LCARS SDK or related materials, at the discretion of the Author/Project Lead, the 3rd Party will be served a Cease & Desist, in writing. Take-down is immediate upon receiving the Cease & Desist.
-5.a The Viewscreen application is a node-webkit based project.  This application is provided as-is.  For more information: https://github.com/rogerwang/node-webkit
+5.a The LCARS-NV Project is a webview desktop and system bootable based project.  This appliction and operating system is provided as-is.
 
 6. Included font provided by Jens. The .ttf file is directly from his site. Additional file types provided via the Font Squirrel service upon font authors permission.
 6.a http://www.gtjlcars.de/LCARSindex/LCARSFONTS.htm
