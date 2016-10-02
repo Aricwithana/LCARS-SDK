@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/** LCARS SDK 16098.3
+/** LCARS SDK 16276.31
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -13,28 +13,51 @@
 
 @font-face {
     font-family: 'LCARS';
-    src: url('../fonts/lcarsgtj3.eot');
-	src: url('../fonts/lcarsgtj3.eot?#iefix') format('embedded-opentype'), 
-	url('../fonts/lcarsgtj3.ttf') format('truetype');
+    src: url('../fonts/antonio-bold-webfont.eot');
+    src: url('../fonts/antonio-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/antonio-bold-webfont.woff2') format('woff2'),
+         url('../fonts/antonio-bold-webfont.woff') format('woff'),
+         url('../fonts/Antonio-Bold.ttf') format('truetype'),
+         url('../fonts/antonio-bold-webfont.svg#antoniobold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'LCARS Lower';
-    src: url('../fonts/lcarsunknown.eot');
-	src: url('../fonts/lcarsunknown.eot?#iefix') format('embedded-opentype'), 
-	url('../fonts/lcarsunknown.ttf') format('truetype');
+    src: url('../fonts/antonio-bold-webfont.eot');
+    src: url('../fonts/antonio-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/antonio-bold-webfont.woff2') format('woff2'),
+         url('../fonts/antonio-bold-webfont.woff') format('woff'),
+         url('../fonts/Antonio-Bold.ttf') format('truetype'),
+         url('../fonts/antonio-bold-webfont.svg#antoniobold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'LCARS Block';
-    src: url('../fonts/LCARS-Block.eot');
-	src: url('../fonts/LCARS-Block.eot?#iefix') format('embedded-opentype'), url('../fonts/LCARS-Block.ttf') format('truetype');
+    src: url('../fonts/lcars-mono-webfont.eot');
+    src: url('../fonts/lcars-mono-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/lcars-mono-webfont.woff2') format('woff2'),
+         url('../fonts/lcars-mono-webfont.woff') format('woff'),
+		 url('../fonts/LCARS-Mono.ttf') format('truetype'),
+         url('../lcars-mono-webfont.svg#lcars-monoregular') format('svg');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+    font-family: 'LCARS Mono';
+    src: url('../fonts/lcars-mono-webfont.eot');
+    src: url('../fonts/lcars-mono-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/lcars-mono-webfont.woff2') format('woff2'),
+         url('../fonts/lcars-mono-webfont.woff') format('woff'),
+		 url('../fonts/LCARS-Mono.ttf') format('truetype'),
+         url('../lcars-mono-webfont.svg#lcars-monoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
   
 
@@ -71,6 +94,7 @@ time, mark, audio, video, input {
 	text-transform:uppercase;
 	line-height:1;
     display:block;
+	letter-spacing: -2px;
 }
 
 * {
@@ -85,6 +109,7 @@ time, mark, audio, video, input {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	-ms-overflow-style:none;
 }
 
 .helveticaFont *, .helveticaFont *:before, .helveticaFont *:after{font-family:'Helvetica W02 Ultra Cm';}
@@ -156,9 +181,22 @@ table{
 	word-wrap: break-word; 
 	overflow-wrap: break-word; 
 	white-space: normal; 
-	height: 25px; 
 	color:#000000;
 }
+
+::-webkit-scrollbar {
+    width: 0;
+}
+ 
+::-webkit-scrollbar-track {
+    width: 0;
+}
+ 
+::-webkit-scrollbar-thumb {
+    width: 0;
+}
+
+
 
 input[type="text"], 
 input[type="password"]{
@@ -174,7 +212,44 @@ input[type="password"]{
 }
 
 
-h1{font-size:50px;}
+
+h1, h2, h3, h4, h5, h6{
+    -webkit-user-select: text;          
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+    letter-spacing: -1px;	
+    text-transform: uppercase;
+	line-height:1.25;
+	overflow:visible;
+	word-wrap:normal;
+	white-space:normal;
+	margin-bottom:10px;
+}
+
+h1{font-size:50px; }
+h2{font-size:40px; }
+h3{font-size:30px; }
+h4{font-size:24px; }
+h5{font-size:20px;}
+h6{font-size:18px;}
+
+
+h1:first-child:not(.title){margin-top: -8px;}
+h2:first-child:not(.title){margin-top:-6px;}
+h3:first-child:not(.title){margin-top: -4px;}
+h4:first-child:not(.title){margin-top:-3px;}
+h5:first-child:not(.title),
+h6:first-child:not(.title){margin-top: -8px;}
+
+
+h1:last-child,
+h2:last--child,
+h3:last--child,
+h4:last--child,
+h5:last--child,
+h6:last--child{margin-bottom: 0px;}
 
 a{
 	color:#000000; 
@@ -182,28 +257,34 @@ a{
 }
 
 .italic{font-style:italic;}
+
+.text-transform-none,
+.text-transform-none:before,
+.text-transform-none:after,
+.text-transform-none > *:before,
+.text-transform-none > *:after,
 .regularText{text-transform:none;}
 
-p, small{	
+p, small, li{	
     white-space:normal; 
-    margin-top:20px; 
-    margin-bottom:20px;
+    margin-bottom:10px;
     -webkit-user-select: text;          
 	-khtml-user-select: text;
 	-moz-user-select: text;
 	-ms-user-select: text;
 	user-select: text;
 	line-height:1.25;
-	font-size:32px;
+	font-size:24px;
     font-family: 'LCARS Lower';
     text-transform: none;
-    letter-spacing: .5px;
+    letter-spacing: -1px;
 }
 
+p:first-child{margin-top:0px;}
+p:last-child{margin-bottom:0px;}
+
 small{
-	font-size:18px; 
-	margin-top:10px; 
-	margin-bottom:10px; 
+	font-size:18px;
 	font-family: 'LCARS';
 }
 
@@ -291,9 +372,9 @@ pre{white-space: pre-wrap;
 	position:relative; 
 	background-color:transparent !important;
 	color:#ffffff; 
-	font-size: 82px; 
-	height:60px; 
-	line-height: .82;
+    font-size: 67px;
+    height: 60px;
+    line-height: 61px;
 }
 
 .text{}
@@ -311,8 +392,8 @@ pre{white-space: pre-wrap;
 .oval{
 	position:relative; 
 	border-radius:100%; 
-	min-width:45px; 
-	min-height:25px;
+	width:45px; 
+	height:25px;
 }
 
 .button{
@@ -321,6 +402,57 @@ pre{white-space: pre-wrap;
 	min-width:150px; 
 	cursor:pointer;
 }
+
+
+/* =============================================================================
+   Labels
+   ========================================================================== */
+   
+
+.block:before, 
+.cap:before, 
+.bar:before, 
+.button:before{ 
+	font-size:20px; 
+	display:block; 
+	position:absolute; 
+	left:0px; 
+	bottom:0px; 
+	right:0px; 
+	padding:4px 8px; 
+	letter-spacing:-1px;
+	line-height:1.25;
+	overflow: hidden;
+	max-height: 100%;
+}
+
+.block:after, 
+.cap:after, 
+.bar:after, 
+.button:after{
+	font-size:20px; 
+	overflow:hidden; 
+	display:block; 
+	position:absolute; 
+	left:0px; 
+	top:2px; 
+	right:0px;
+	padding:4px 8px; 
+	letter-spacing:-1px;	
+	line-height:1.25;  
+	max-height: 100%;
+}
+
+.block[data-label]:before, 
+.cap[data-label]:before, 
+.bar[data-label]:before, 
+.button[data-label]:before{content:attr(data-label); }
+
+.block[data-altLabel]:after, 
+.cap[data-altLabel]:after, 
+.bar[data-altLabel]:after, 
+.button[data-altLabel]:after{content:attr(data-altLabel); }
+
 
 /* =============================================================================
    Styling Classes
@@ -348,7 +480,7 @@ pre{white-space: pre-wrap;
 }
 
 .button.left:before, 
-.button.right:after{left:25px;}
+.button.left:after{left:25px;}
 
 
 /*Bar*/
@@ -358,15 +490,33 @@ pre{white-space: pre-wrap;
 .bar.small{min-height:15px; max-height:15px;}
 .bar.tiny{min-height:10px; max-height:10px;}
 
+.bar:after{top:0px;}
+
+.bar.small:after,
+.bar.small:before,
+.bar.tiny:after,
+.bar.tiny:before{display:none;}
+
+
 /*Cap*/
+.cap.left:before, 
+.cap.left:after{
+	left:25px;	
+}
+
+.cap.right:before, 
+.cap.right:after{
+	right:25px;	
+}
+
 .cap.right{
 	border-top-right-radius:50%; 
 	border-bottom-right-radius:50%;
 }
 
 .cap.left{
-	border-top-left-radius:30px; 
-	border-bottom-left-radius:30px;
+	border-top-left-radius:50%; 
+	border-bottom-left-radius:50%;
 }
 
 .cap.xlarge{
@@ -379,6 +529,11 @@ pre{white-space: pre-wrap;
 	min-height:90px;
 }
 
+.cap.medium{
+	min-width:30px; 
+	min-height:30px;
+}
+
 .cap.small{
 	min-width:15px; 
 	min-height:15px;
@@ -389,6 +544,34 @@ pre{white-space: pre-wrap;
 	min-width:10px;
 }
 
+.cap.small:before,
+.cap.small:after,
+.cap.medium:before,
+.cap.medium:after,
+.cap.tiny:before,
+.cap.tiny:after{display:none;}
+
+.cap.large.left:before,
+.cap.large.left:after{left:25px;}
+
+.cap.xlarge.left:before,
+.cap.xlarge.left:after{left:50px;}
+
+.cap.large.right:before,
+.cap.large.right:after{right:25px;}
+
+.cap.xlarge.right:before,
+.cap.xlarge.right:after{right:50px;}
+
+
+
+.button.pill:before, 
+.button.pill:after{
+	right:25px; 
+	left:25px;	
+}
+
+
 
 /*Oval*/
 .oval.small{
@@ -398,46 +581,12 @@ pre{white-space: pre-wrap;
 
 /*Title*/
 .title.small,
-.title.half{height:30px; font-size: 42px; line-height: .80;}
-
-
-
-/* =============================================================================
-   Labels
-   ========================================================================== */
-   
-
-.block:before, 
-.bar:before, 
-.button:before{ 
-	font-size:25px; 
-	overflow:hidden; 
-	display:block; 
-	position:absolute; 
-	left:8px; 
-	bottom:3px; 
-	right:8px;  
+.title.half{
+    height: 30px;
+    font-size: 35px;
+    line-height: .9;	
 }
 
-.block:after, 
-.bar:after, 
-.button:after{
-	font-size:25px; 
-	overflow:hidden; 
-	display:block; 
-	position:absolute; 
-	left:8px; 
-	top:8px; 
-	right:8px;  
-}
-
-.block[data-label]:before, 
-.bar[data-label]:before, 
-.button[data-label]:before{content:attr(data-label); }
-
-.block[data-altLabel]:after, 
-.bar[data-altLabel]:after, 
-.button[data-altLabel]:after{content:attr(data-altLabel); }
 
 
 /* =============================================================================
@@ -469,6 +618,8 @@ pre{white-space: pre-wrap;
 	min-width:25px; 
 	width:auto; 
 	font-family:'LCARS Block';
+	overflow:hidden;
+	text-overflow:clip;
 }
 
 .complexButton .block, 
@@ -555,28 +706,27 @@ pre{white-space: pre-wrap;
 
 .endcap.large{min-width:150px;}
 
-
-
-.endcap.large.top-right:after,
 .endcap.large.bottom-right:before{right:50px;}
-
-.endcap.large.top-right:before,
-.endcap.large.bottom-right:after{right:100px;}
-
-.endcap.large.top-left:after,
 .endcap.large.bottom-left:before{left:50px;}
 
-.endcap.large.top-left:before,
-.endcap.large.bottom-left:after{left:100px;}
+.endcap.large.bottom-right:after{right:125px;}
+.endcap.large.bottom-left:after{left:125px;}
 
 
-.endcap.bottom-right .cap,
-.endcap.top-right .cap{
-	right: 0px;
+.endcap.large.top-right:after{right:50px;}
+.endcap.large.top-left:after{left:50px;}
+
+.endcap.large.top-right:before{right:125px;}
+.endcap.large.top-left:before{left:125px;}
+
+
+.endcap.large.bottom-right .cap{right: -16px;}
+.endcap.large.top-right .cap{
+	right:67px;
 }
 
-.endcap.top-right .cap{transform: skew(-18deg);}
-.endcap.bottom-right  .cap{transform: skew(18deg);}
+.endcap.large.top-right .cap{transform: skew(-18deg);}
+.endcap.large.bottom-right  .cap{transform: skew(18deg);}
 
 .endcap.large.bottom-right .cap,
 .endcap.large.top-right .cap{
@@ -584,19 +734,20 @@ pre{white-space: pre-wrap;
 	border-bottom-right-radius:60px;
 }  
 
-.endcap.bottom-left .cap,
-.endcap.top-left .cap{
-	left: 0px;
+.endcap.large.bottom-left .cap{left:-16px;}
+.endcap.large.top-left .cap{
+	left: 67px;
 }
 
-.endcap.top-left .cap{transform: skew(18deg);}
-.endcap.bottom-left  .cap{transform: skew(-18deg);}
+.endcap.large.top-left .cap{transform: skew(18deg);}
+.endcap.large.bottom-left  .cap{transform: skew(-18deg);}
 
 .endcap.large.bottom-left .cap,
 .endcap.large.top-left .cap{
 	border-top-left-radius:60px;
 	border-bottom-left-radius:60px;
 }  
+
 
 /* =============================================================================
    Elbows
@@ -608,23 +759,35 @@ pre{white-space: pre-wrap;
 }
 
 .elbow:before{
-	font-size:25px; 
-	overflow:hidden; 
+	font-size:20px; 
 	display:block; 
 	position:absolute; 
-	left:8px; 
-	right:8px; 
-	z-index:2;
+	left:0px; 
+	right:0px; 
+	padding:5px 7px; 
+	letter-spacing:-1px;
+	line-height:1.25;
+	z-index: 2;
+	background-color:transparent;
+	background-clip:content-box;
+	max-height: 100%;
+	overflow:hidden;
 }
 
 .elbow:after{
-	font-size:25px; 
-	overflow:hidden; 
+	font-size:20px; 
 	display:block; 
 	position:absolute; 
-	left:8px; 
-	right:8px; 
-	z-index:2;
+	left:0px; 
+	right:0px;
+	padding:5px 7px 5px; 
+	letter-spacing:-1px;	
+	line-height:1.25; 
+    z-index: 2;
+	background-color:transparent;
+	background-clip:content-box;
+	max-height: 100%;
+	overflow:hidden;
 }
 
 .elbow[data-label]:before{content:attr(data-label);}
@@ -637,47 +800,35 @@ pre{white-space: pre-wrap;
 	-webkit-box-sizing: content-box; 
 	-moz-box-sizing: content-box;
 	box-sizing: content-box; 
-	border-color:inherit; 
 }
 
 .elbow .bar{
 	position:absolute; 
 	background-color:inherit !important; 
+    border-color: inherit !important;
 }
 
-.elbow.top-left .bar {
-	border-left-color: inherit !important;
-}
 
 .elbow.top-left .bar .block{
 	border-left-color: inherit !important;
-    border-top-color: transparent;
+    border-top-color: inherit !important;
 }
 
-.elbow.bottom-left .bar {
-	border-left-color: inherit !important;
-}
 .elbow.bottom-left .bar .block{
 	border-left-color: inherit !important;
-    border-bottom-color: transparent;
+    border-bottom-color: inherit !important;
 }
 
-.elbow.bottom-right .bar {
-	border-right-color: inherit !important;
-}
 
 .elbow.bottom-right .bar .block{
 	border-right-color: inherit !important;
-    border-bottom-color: transparent;
+    border-bottom-color: inherit !important;
 }
 
-.elbow.top-right .bar {
-	border-right-color: inherit !important;
-}
 
 .elbow.top-right .bar .block{
 	border-right-color: inherit !important;
-    border-top-color: transparent;
+    border-top-color: inherit !important;
 }
 
 
@@ -721,8 +872,8 @@ pre{white-space: pre-wrap;
 	
 }
 
-.top-right.default.horizontal:before{bottom:8px}
-.top-right.default.horizontal:after{top:8px}
+.top-right.default.horizontal:before{bottom:0px; right:10px;}
+.top-right.default.horizontal:after{top:0px; right:60px;}
 
 /* Top Left Default Horizontal Elbow */
 .top-left.default.horizontal{
@@ -745,8 +896,8 @@ pre{white-space: pre-wrap;
 
 }
 
-.top-left.default.horizontal:before{bottom:8px; }
-.top-left.default.horizontal:after{top:8px; }
+.top-left.default.horizontal:before{bottom:0px; left:10px;}
+.top-left.default.horizontal:after{top:0px; left:60px;}
 
 /* Bottom Left Default Horizontal Elbow */
 .bottom-left.default.horizontal{
@@ -769,8 +920,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.bottom-left.default.horizontal:before{top:8px}
-.bottom-left.default.horizontal:after{bottom:8px}
+.bottom-left.default.horizontal:before{top:0px; left:10px;}
+.bottom-left.default.horizontal:after{bottom:0px; left:60px;}
 
 /* Bottom Right Default Horizontal Elbow */
 .bottom-right.default.horizontal{
@@ -792,8 +943,8 @@ pre{white-space: pre-wrap;
 	right:-15px;
 }
 
-.bottom-right.default.horizontal:before{top:8px}
-.bottom-right.default.horizontal:after{bottom:8px}
+.bottom-right.default.horizontal:before{top:0px;right:10px;}
+.bottom-right.default.horizontal:after{bottom:0px; right:60px;}
 
 
 /* =============================================================================
@@ -835,8 +986,8 @@ pre{white-space: pre-wrap;
 	top:-15px;
 }
 
-.top-right.default.vertical:before{bottom:4px}
-.top-right.default.vertical:after{top:4px}
+.top-right.default.vertical:before{bottom:0px; right:10px;}
+.top-right.default.vertical:after{top:0px;  right:60px;}
 
 /* Top Left Vertical Default Elbow */
 .top-left.default.vertical{
@@ -859,8 +1010,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.top-left.default.vertical:before{bottom:4px}
-.top-left.default.vertical:after{top:4px}
+.top-left.default.vertical:before{bottom:0px; left:10px;}
+.top-left.default.vertical:after{top:0px; left:60px;}
 
 /* Bottom Left Vertical Default Elbow */
 .bottom-left.default.vertical{
@@ -883,8 +1034,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.bottom-left.default.vertical:before{bottom:4px}
-.bottom-left.default.vertical:after{top:4px}
+.bottom-left.default.vertical:before{bottom:0px; left:60px;}
+.bottom-left.default.vertical:after{top:0px; left:10px;}
 
 /* Bottom Right Vertical Default Elbow */
 .bottom-right.default.vertical{
@@ -905,8 +1056,8 @@ pre{white-space: pre-wrap;
 	border-top-left-radius: 60px;
 }
 
-.bottom-right.default.vertical:before{bottom:4px}
-.bottom-right.default.vertical:after{top:4px}
+.bottom-right.default.vertical:before{bottom:0px; right:60px;}
+.bottom-right.default.vertical:after{top:0px; right:10px;}
 
 
 /* =============================================================================
@@ -953,8 +1104,8 @@ pre{white-space: pre-wrap;
 	
 }
 
-.top-right.base.horizontal:before{bottom:8px}
-.top-right.base.horizontal:after{top:8px}
+.top-right.base.horizontal:before{bottom:0px; right:10px;}
+.top-right.base.horizontal:after{top:0px; right:50px;}
 
 /* Top Left Base Horizontal Elbow */
 .top-left.base.horizontal{
@@ -977,8 +1128,8 @@ pre{white-space: pre-wrap;
 
 }
 
-.top-left.base.horizontal:before{bottom:8px; }
-.top-left.base.horizontal:after{top:8px; }
+.top-left.base.horizontal:before{bottom:0px; left:10px;}
+.top-left.base.horizontal:after{top:0px; left:50px;}
 
 /* Bottom Left Base Horizontal Elbow */
 .bottom-left.base.horizontal{
@@ -1001,8 +1152,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.bottom-left.base.horizontal:before{top:8px}
-.bottom-left.base.horizontal:after{bottom:8px}
+.bottom-left.base.horizontal:before{top:0px; left:10px;}
+.bottom-left.base.horizontal:after{bottom:0px; left:50px;}
 
 /* Bottom Right Base Horizontal Elbow */
 .bottom-right.base.horizontal{
@@ -1024,8 +1175,8 @@ pre{white-space: pre-wrap;
 	right:-15px;
 }
 
-.bottom-right.base.horizontal:before{top:8px}
-.bottom-right.base.horizontal:after{bottom:8px}
+.bottom-right.base.horizontal:before{top:0px; right:10px;}
+.bottom-right.base.horizontal:after{bottom:0px; right:50px;}
 
 
 /* =============================================================================
@@ -1067,8 +1218,8 @@ pre{white-space: pre-wrap;
 	top:-15px;
 }
 
-.top-right.base.vertical:before{bottom:4px}
-.top-right.base.vertical:after{top:4px}
+.top-right.base.vertical:before{bottom:0px; right:10px;}
+.top-right.base.vertical:after{top:0px; right:50px;}
 
 /* Top Left Vertical Base Elbow */
 .top-left.base.vertical{
@@ -1091,8 +1242,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.top-left.base.vertical:before{bottom:4px}
-.top-left.base.vertical:after{top:4px}
+.top-left.base.vertical:before{bottom:0px; left:10px;}
+.top-left.base.vertical:after{top:0px; left:50px;}
 
 /* Bottom Left Vertical Base Elbow */
 .bottom-left.base.vertical{
@@ -1115,8 +1266,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.bottom-left.base.vertical:before{bottom:4px}
-.bottom-left.base.vertical:after{top:4px}
+.bottom-left.base.vertical:before{bottom:0px; left:50px;}
+.bottom-left.base.vertical:after{top:0px; left:10px;}
 
 /* Bottom Right Vertical Base Elbow */
 .bottom-right.base.vertical{
@@ -1137,8 +1288,8 @@ pre{white-space: pre-wrap;
 	border-top-left-radius: 60px;
 }
 
-.bottom-right.base.vertical:before{bottom:4px}
-.bottom-right.base.vertical:after{top:4px}
+.bottom-right.base.vertical:before{bottom:0px; right:50px;}
+.bottom-right.base.vertical:after{top:0px; right:10px;}
 
 
 /* =============================================================================
@@ -1181,8 +1332,8 @@ pre{white-space: pre-wrap;
 	
 }
 
-.top-right.medium.horizontal:before{bottom:8px}
-.top-right.medium.horizontal:after{top:8px}
+.top-right.medium.horizontal:before{bottom:0px; right:10px;}
+.top-right.medium.horizontal:after{top:0px; right:25px;}
 
 /* Top Left medium Horizontal Elbow */
 .top-left.medium.horizontal{
@@ -1205,8 +1356,8 @@ pre{white-space: pre-wrap;
 
 }
 
-.top-left.medium.horizontal:before{bottom:8px; }
-.top-left.medium.horizontal:after{top:8px; }
+.top-left.medium.horizontal:before{bottom:0px; left:10px;}
+.top-left.medium.horizontal:after{top:0px; left:25px;}
 
 /* Bottom Left medium Horizontal Elbow */
 .bottom-left.medium.horizontal{
@@ -1229,8 +1380,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.bottom-left.medium.horizontal:before{top:8px}
-.bottom-left.medium.horizontal:after{bottom:8px}
+.bottom-left.medium.horizontal:before{top:0px; left:10px;}
+.bottom-left.medium.horizontal:after{bottom:0px; left:25px;}
 
 /* Bottom Right medium Horizontal Elbow */
 .bottom-right.medium.horizontal{
@@ -1252,8 +1403,8 @@ pre{white-space: pre-wrap;
 	right:-15px;
 }
 
-.bottom-right.medium.horizontal:before{top:8px}
-.bottom-right.medium.horizontal:after{bottom:8px}
+.bottom-right.medium.horizontal:before{top:0px; right:10px;}
+.bottom-right.medium.horizontal:after{bottom:0px; right:25px;}
 
 /* =============================================================================
    Elbows - Medium Vertical
@@ -1295,8 +1446,8 @@ pre{white-space: pre-wrap;
 	top:-15px;
 }
 
-.top-right.medium.vertical:before{bottom:4px}
-.top-right.medium.vertical:after{top:4px}
+.top-right.medium.vertical:before{bottom:0px; right:10px;}
+.top-right.medium.vertical:after{top:0px; right:25px;}
 
 /* Top Left Vertical medium Elbow */
 .top-left.medium.vertical{
@@ -1319,8 +1470,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.top-left.medium.vertical:before{bottom:4px}
-.top-left.medium.vertical:after{top:4px}
+.top-left.medium.vertical:before{bottom:0px; left:10px;}
+.top-left.medium.vertical:after{top:0px; left:25px;}
 
 /* Bottom Left Vertical medium Elbow */
 .bottom-left.medium.vertical{
@@ -1343,8 +1494,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.bottom-left.medium.vertical:before{bottom:4px}
-.bottom-left.medium.vertical:after{top:4px}
+.bottom-left.medium.vertical:before{bottom:0px; left:25px;}
+.bottom-left.medium.vertical:after{top:0px; left:10px;}
 
 /* Bottom Right Vertical medium Elbow */
 .bottom-right.medium.vertical{
@@ -1365,8 +1516,8 @@ pre{white-space: pre-wrap;
 	border-top-left-radius: 30px;
 }
 
-.bottom-right.medium.vertical:before{bottom:4px}
-.bottom-right.medium.vertical:after{top:4px}
+.bottom-right.medium.vertical:before{bottom:0px; right:25px;}
+.bottom-right.medium.vertical:after{top:0px; right:10px;}
 
  
  
@@ -1387,7 +1538,6 @@ pre{white-space: pre-wrap;
 }
 .elbow.small.horizontal .bar{
 	min-height:13px;
-	max-width:22px;
 }
 
 /* Top Right small Horizontal Elbow */
@@ -1411,8 +1561,8 @@ pre{white-space: pre-wrap;
 	
 }
 
-.top-right.small.horizontal:before{bottom:8px}
-.top-right.small.horizontal:after{top:8px}
+.top-right.small.horizontal:before{bottom:0px; right:10px;}
+.top-right.small.horizontal:after{top:0px; right:25px;}
 
 /* Top Left small Horizontal Elbow */
 .top-left.small.horizontal{
@@ -1435,8 +1585,8 @@ pre{white-space: pre-wrap;
 
 }
 
-.top-left.small.horizontal:before{bottom:8px; }
-.top-left.small.horizontal:after{top:8px; }
+.top-left.small.horizontal:before{bottom:0px; left:10px;}
+.top-left.small.horizontal:after{top:0px; left:25px;}
 
 /* Bottom Left small Horizontal Elbow */
 .bottom-left.small.horizontal{
@@ -1459,8 +1609,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.bottom-left.small.horizontal:before{top:8px}
-.bottom-left.small.horizontal:after{bottom:8px}
+.bottom-left.small.horizontal:before{top:0px; left:10px;}
+.bottom-left.small.horizontal:after{bottom:0px; left:25px;}
 
 /* Bottom Right small Horizontal Elbow */
 .bottom-right.small.horizontal{
@@ -1482,15 +1632,15 @@ pre{white-space: pre-wrap;
 	right:-3px;
 }
 
-.bottom-right.small.horizontal:before{top:8px}
-.bottom-right.small.horizontal:after{bottom:8px}
+.bottom-right.small.horizontal:before{top:0px; right:10px;}
+.bottom-right.small.horizontal:after{bottom:0px; right:25px;}
 
 /* =============================================================================
    Elbows - small Vertical
    ========================================================================== */
 .elbow.small.vertical{
-	min-width:35px; 
-	min-height:21px;	
+	min-width:21px; 
+	min-height:35px;	
 }
 
 .elbow.small.vertical .block{
@@ -1502,8 +1652,7 @@ pre{white-space: pre-wrap;
 }
 
 .elbow.small.vertical .bar{
-	min-height:22px;
-	max-width:13px;
+	min-width:13px;
 }
 
 /* Top Right Vertical small Elbow */
@@ -1525,8 +1674,8 @@ pre{white-space: pre-wrap;
 	top:-3px;
 }
 
-.top-right.small.vertical:before{bottom:4px}
-.top-right.small.vertical:after{top:4px}
+.top-right.small.vertical:before{bottom:0px; right:10px;}
+.top-right.small.vertical:after{top:0px; right:25px;}
 
 /* Top Left Vertical small Elbow */
 .top-left.small.vertical{
@@ -1549,8 +1698,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.top-left.small.vertical:before{bottom:4px}
-.top-left.small.vertical:after{top:4px}
+.top-left.small.vertical:before{bottom:0px; left:10px;}
+.top-left.small.vertical:after{top:0px; left:25px;}
 
 /* Bottom Left Vertical small Elbow */
 .bottom-left.small.vertical{
@@ -1573,8 +1722,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.bottom-left.small.vertical:before{bottom:4px}
-.bottom-left.small.vertical:after{top:4px}
+.bottom-left.small.vertical:before{bottom:0px; left:25px;}
+.bottom-left.small.vertical:after{top:0px; left:10px;}
 
 /* Bottom Right Vertical small Elbow */
 .bottom-right.small.vertical{
@@ -1595,8 +1744,8 @@ pre{white-space: pre-wrap;
 	border-top-left-radius: 30px;
 }
 
-.bottom-right.small.vertical:before{bottom:4px}
-.bottom-right.small.vertical:after{top:4px}
+.bottom-right.small.vertical:before{bottom:0px; right:25px;}
+.bottom-right.small.vertical:after{top:0px; right:10px;}
  
 
 
@@ -1642,8 +1791,8 @@ pre{white-space: pre-wrap;
 	
 }
 
-.top-right.large.horizontal:before{bottom:8px}
-.top-right.large.horizontal:after{top:8px}
+.top-right.large.horizontal:before{bottom:0px; right:10px;}
+.top-right.large.horizontal:after{top:0px; right:150px;}
 
 /* Top Left large Horizontal Elbow */
 .top-left.large.horizontal{
@@ -1666,8 +1815,8 @@ pre{white-space: pre-wrap;
 
 }
 
-.top-left.large.horizontal:before{bottom:8px; }
-.top-left.large.horizontal:after{top:8px; }
+.top-left.large.horizontal:before{bottom:0px; left:10px;}
+.top-left.large.horizontal:after{top:0px; left:150px;}
 
 /* Bottom Left large Horizontal Elbow */
 .bottom-left.large.horizontal{
@@ -1690,8 +1839,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.bottom-left.large.horizontal:before{top:8px}
-.bottom-left.large.horizontal:after{bottom:8px}
+.bottom-left.large.horizontal:before{top:0px; left:10px;}
+.bottom-left.large.horizontal:after{bottom:0px; left:150px;}
 
 /* Bottom Right large Horizontal Elbow */
 .bottom-right.large.horizontal{
@@ -1713,8 +1862,8 @@ pre{white-space: pre-wrap;
 	right:-30px;
 }
 
-.bottom-right.large.horizontal:before{top:8px}
-.bottom-right.large.horizontal:after{bottom:8px}
+.bottom-right.large.horizontal:before{top:0px; right:10px;}
+.bottom-right.large.horizontal:after{bottom:0px; right:150px;}
 
 
 /* =============================================================================
@@ -1757,8 +1906,8 @@ pre{white-space: pre-wrap;
 	top:-30px;
 }
 
-.top-right.large.vertical:before{bottom:4px}
-.top-right.large.vertical:after{top:4px}
+.top-right.large.vertical:before{bottom:0px; right:10px;}
+.top-right.large.vertical:after{top:0px; right:150px;}
 
 /* Top Left Vertical large Elbow */
 .top-left.large.vertical{
@@ -1781,8 +1930,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.top-left.large.vertical:before{bottom:4px}
-.top-left.large.vertical:after{top:4px}
+.top-left.large.vertical:before{bottom:0px; left:10px;}
+.top-left.large.vertical:after{top:0px; left:150px;}
 
 /* Bottom Left Vertical large Elbow */
 .bottom-left.large.vertical{
@@ -1805,8 +1954,8 @@ pre{white-space: pre-wrap;
 }
 
 
-.bottom-left.large.vertical:before{bottom:4px}
-.bottom-left.large.vertical:after{top:4px}
+.bottom-left.large.vertical:before{bottom:0px; left:150px;}
+.bottom-left.large.vertical:after{top:0px; left:10px;}
 
 /* Bottom Right Vertical large Elbow */
 .bottom-right.large.vertical{
@@ -1827,8 +1976,8 @@ pre{white-space: pre-wrap;
 	border-top-left-radius: 105px;
 }
 
-.bottom-right.large.vertical:before{bottom:4px}
-.bottom-right.large.vertical:after{top:4px}
+.bottom-right.large.vertical:before{bottom:0px; right:150px;}
+.bottom-right.large.vertical:after{top:0px; right:10px;}
 
 
 
@@ -1846,6 +1995,7 @@ pre{white-space: pre-wrap;
 }
 
 .column.flexv > .complexButton > * {height:auto;}
+
 .column > *:first-child{margin-top:0px;}
 
 
@@ -1860,8 +2010,6 @@ pre{white-space: pre-wrap;
 }
 
 .row > *{
-	min-width:30px; 
-	min-height:inherit;
 	max-height:inherit; 
 	position:relative; 
 	margin-left:5px; 
@@ -1916,65 +2064,63 @@ pre{white-space: pre-wrap;
 }
 
 
-.darkRed2LightRed:not(.complexButton){ 
-	-webkit-animation: darkRed2LightRed 1.5s step-end infinite !important; 
-	animation: darkRed2LightRed 1.5s step-end infinite !important; 
+.red-dark-light:not(.complexButton){ 
+	-webkit-animation: red-dark-light 1.5s step-end infinite !important; 
+	animation: red-dark-light 1.5s step-end infinite !important; 
 }
 
-.darkRed2LightRed.complexButton :not(.text){ 
-	-webkit-animation: darkRed2LightRed 1.5s step-end infinite !important; 
-	animation: darkRed2LightRed 1.5s step-end infinite !important; 
+.red-dark-light.complexButton :not(.text){ 
+	-webkit-animation: red-dark-light 1.5s step-end infinite !important; 
+	animation: red-dark-light 1.5s step-end infinite !important; 
 }
 
-@-webkit-keyframes darkRed2LightRed {
+@-webkit-keyframes red-dark-light {
    from, to { background-color:#990000; border-color:#990000;}
      50% {background-color:#FF0000; border-color:#FF0000;}
 }
 
-@keyframes darkRed2LightRed {
+@keyframes red-dark-light {
    from, to { background-color:#990000; border-color:#990000;}
      50% {background-color:#FF0000; border-color:#FF0000;}
 }
 
 
-.whiteFlash:not(.complexButton){ 
-	-webkit-animation: whiteFlash 1.25s step-end infinite; 
-	animation: whiteFlash 1.25s step-end infinite;
+.white-flash:not(.complexButton){ 
+	-webkit-animation: white-flash 1.25s step-end infinite; 
+	animation: white-flash 1.25s step-end infinite;
 }
 
-.whiteFlash.complexButton :not(.text){ 
-	-webkit-animation: whiteFlash 1.25s step-end infinite; 
-	animation: whiteFlash 1.25s step-end infinite;
+.white-flash.complexButton :not(.text){ 
+	-webkit-animation: white-flash 1.25s step-end infinite; 
+	animation: white-flash 1.25s step-end infinite;
 }
 
-@-webkit-keyframes whiteFlash {
+@-webkit-keyframes white-flash {
    from, to { }
      50% {background-color:#ffffff; color:#ffffff;}
 }
 
-@keyframes whiteFlash {
+@keyframes white-flash {
    from, to { }
      50% {background-color:#ffffff; color:#ffffff;}
 }
 
-.darkRedBlink:not(.complexButton){ 
-	-webkit-animation: darkRedBlink 2.5s step-end infinite !important; 
-	animation: darkRedBlink 2.5s step-end infinite !important; 
-	pointer-events:none;
+.red-dark-blink:not(.complexButton){ 
+	-webkit-animation: red-dark-blink 2.5s step-end infinite !important; 
+	animation: red-dark-blink 2.5s step-end infinite !important; 
 }
 
-.darkRedBlink.complexButton :not(.text){ 
-	-webkit-animation: darkRedBlink 2.5s step-end infinite !important; 
-	animation: darkRedBlink 2.5s step-end infinite !important;  
-	pointer-events:none;
+.red-dark-blink.complexButton :not(.text){ 
+	-webkit-animation: red-dark-blink 2.5s step-end infinite !important; 
+	animation: red-dark-blink 2.5s step-end infinite !important;  
 }
 
-@-webkit-keyframes darkRedBlink {
+@-webkit-keyframes red-dark-blink {
    from, to { background-color:#990000; border-color:#990000;}
      50% {background-color:transparent; border-color:transparent;}
 }
 
-@keyframes darkRedBlink {
+@keyframes red-dark-blink {
    from, to { background-color:#990000; border-color:#990000;}
      50% {background-color:transparent; border-color:transparent;}
 }
@@ -1985,7 +2131,7 @@ pre{white-space: pre-wrap;
    ========================================================================== */
 
 .hidden{
-	visiblity:hidden; 
+	visibility:hidden; 
 	-webkit-animation:none !important; 
 	animation:none !important;
 	pointer-events:none;
@@ -2018,10 +2164,25 @@ pre{white-space: pre-wrap;
 /* =============================================================================
    Basic Color 
    ========================================================================== */
-
-[class*="bg-"] > *{
-	background-color:#cccccc;
-	border-color:#cccccc;	
+[class*="bg-"],
+[class*="bg-"] > *:not([class*="bg-"]){
+	background-color:#999999;
+	border-color:#999999;
 }
 
+/* =============================================================================
+   Active/Hover States. Included for optional use.
+   ==========================================================================
 
+
+.button:hover, 
+.endcap:hover > .cap, 
+.elbow:hover,
+.complexButton:hover > *:not(.text){}
+
+.button:not(.endcap):active, 
+.endcap:active > .cap, 
+.elbow:active,
+.complexButton:active > *:not(.text){-webkit-animation:none !important;animation:none !important; background-color:#ffffff !important; border-color:#ffffff !important;}
+
+   ========================================================================== */

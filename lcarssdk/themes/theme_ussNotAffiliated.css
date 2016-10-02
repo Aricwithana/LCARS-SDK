@@ -1,10 +1,11 @@
-/** LCARS SDK 16098.3 - USS Not Affiliated Theme
+/** LCARS SDK 16276.31 - USS Not Affiliated Theme
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
 **/
-[class*="bg-"],
-[class*="bg-"] > *{
+
+[class*="bg-"], 
+[class*="bg-"] > *:not([class*="bg-"]){
 	background-color:#003366;
 	border-color:#003366;	
 }
@@ -128,44 +129,44 @@
 /* Red Alert */
 .red-alert .bg-blue-1,
 .red-alert .bg-blue-1 > *:not([class*="bg-"]){
-	background-color:#ffff66;
-	border-color:#ffff66;	
+	background-color:#cccccc;
+	border-color:#cccccc;	
 }
 .red-alert .bg-blue-2,
 .red-alert .bg-blue-2 > *:not([class*="bg-"]){
-	background-color:#ff0000;
-	border-color:#ff0000;	
+	background-color:#999999;
+	border-color:#999999;	
 }
 .red-alert .bg-blue-3,
 .red-alert .bg-blue-3 > *:not([class*="bg-"]){
-	background-color:#990000;
-	border-color:#990000;
+	background-color:#cc0000;
+	border-color:#cc0000;	
 }
 .red-alert .bg-blue-4,
 .red-alert .bg-blue-4 > *:not([class*="bg-"]){
-	background-color:#330000;
-	border-color:#330000;	
+	background-color:#660000;
+	border-color:#660000;	
 }
 
 .red-alert .bg-green-1,
 .red-alert .bg-green-1 > *:not([class*="bg-"]){
-	background-color:#cccccc;
-	border-color:#cccccc;	
+	background-color:#ffff66;
+	border-color:#ffff66;	
 }
 .red-alert .bg-green-2,
 .red-alert .bg-green-2 > *:not([class*="bg-"]){
-	background-color:#999999;
-	border-color:#999999;	
+	background-color:#ff0000;
+	border-color:#ff0000;	
 }
 .red-alert .bg-green-3,
 .red-alert .bg-green-3 > *:not([class*="bg-"]){
-	background-color:#cc0000;
-	border-color:#cc0000;	
+	background-color:#990000;
+	border-color:#990000;
 }
 .red-alert .bg-green-4,
 .red-alert .bg-green-4 > *:not([class*="bg-"]){
-	background-color:#660000;
-	border-color:#660000;	
+	background-color:#330000;
+	border-color:#330000;	
 }
 
 /* Colors for Text */

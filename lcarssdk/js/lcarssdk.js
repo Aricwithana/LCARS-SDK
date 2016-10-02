@@ -1,4 +1,4 @@
-/** LCARS SDK 16098.3
+/** LCARS SDK 16276.31
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -1138,16 +1138,6 @@ var LCARS = {
         }
     },
 
-    endcap:{
-        create:function(args){
-            if(args.href !== undefined){var element = $('<a class="button">');}else{var element = $('<div class="button">');}            
-			var elementCap = LCARS.cap.create({type:'cap'});
-			$(element).append(elementCap);
-            element = LCARS.definition(element, args);
-            return element;
-        }
-    },
-
     block:{
         create:function(args){
             var element =  $('<div class="block"></div>');					            
@@ -1238,6 +1228,7 @@ var LCARS = {
 						$(elemNB).width(0);
 					}else{
 						var textLength = args.args.text.length;
+						console.log(textLength);
 						var textWidth = (textLength * 25) + ((textLength-1) * 5) + 10;
 						$(elemNB).width(textWidth);
 						$(elemNB).text(args.args.text);
@@ -1583,8 +1574,24 @@ var LCARS = {
                     if(!allObjects[args.elemID].footerTitle){return null;}else{return allObjects[args.elemID].footerTitle;}
                 }            
                 return args.element;             
-            }
+            },
+			
+			content:function(args){console.log('asdf');  
+				if(Array.isArray(args.args.content)){
+					$(args.args.content).each(function(){
+						var childElement = LCARS[this.type].create(this);
+						$(args.element).children('.content').append(childElement);         
+						 
+					});                                   
+				}else if(typeof args.args.children === 'string'){
+					$(args.element).children('.content').append(args.args.content);
+				}
+				allObjects[args.elemID].content = args.args.content;
+				return args.element;
+			}
+			
         }
+		        
     },
     
     htmlTag:{
@@ -1980,17 +1987,17 @@ $.fn.hasAttr = function(arg, string){
 
 /** +brief Element Scrolling
  *	@arg - {target:object, step:int}
- *	@arg - ex. {target:$('body'), step:65}
+ *	@arg - ex. {target:'body', step:65}
  *	!note:  Pass only a single object.
  */	
-$.fn.scrollUp = function(args){    
+$.fn.scrollingUp = function(args){    
     $(args.target).each(function(){
        var scrollVal = $(this).scrollTop();
 	   $(this).scrollTop(scrollVal-args.step);
     });  
 }
 
-$.fn.scrollDown = function(args){    
+$.fn.scrollingDown = function(args){    
     $(args.target).each(function(){
        var scrollVal = $(this).scrollTop();
 	   $(this).scrollTop(scrollVal+args.step);
@@ -1998,14 +2005,14 @@ $.fn.scrollDown = function(args){
     
 }
 
-$.fn.scrollLeft = function(args){    
+$.fn.scrollingLeft = function(args){   
    $(args.target).each(function(){ 
         var scrollVal = $(this).scrollLeft();
 	   $(this).scrollLeft(scrollVal-args.step);
    });
 }
 
-$.fn.scrollRight = function(args){    
+$.fn.scrollingRight = function(args){    
     $(args.target).each(function(){
         var scrollVal = $(this).scrollLeft();	
         $(this).scrollLeft(scrollVal+args.step); 

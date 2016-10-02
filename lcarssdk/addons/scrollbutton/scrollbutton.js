@@ -1,4 +1,4 @@
-/** LCARS SDK 16098.3
+/** LCARS SDK 16276.31
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -11,13 +11,13 @@
 
 LCARS.templates.sdk.scrollButton = {
         typeAV:{type:'wrapper', class:'addon sdk complexButton scrollButton typeAV duo vertical ', children:[
-                {type:'button', class:'up'}, 
-                {type:'button', class:'down'}        
+                {type:'button', class:'scrollUp'}, 
+                {type:'button', class:'scrollDown'}        
             ]
         },
-        typeAH:{type:'wrapper', class:'addon sdk complexButton scrollButton typeAH duo', children:[
-                {type:'button', class:'left'}, 
-                {type:'button', class:'right'}               
+        typeAH:{type:'wrapper', class:'addon sdk complexButton scrollButton typeAH horizontal duo', children:[
+                {type:'button', class:'scrollLeft'}, 
+                {type:'button', class:'scrollRight'}               
             ]
         }        
     }
@@ -32,30 +32,30 @@ LCARS.scrollButton = {
         
         var element = LCARS[args.template.type].create(args.template);
 
-        if($(element).find('.left').length !== -1){
+        if($(element).find('.scrollLeft').length !== -1){
 
-            $(element).find('.left').objectSettings({
-                click:function(){$(this).scrollLeft({target:args.target, step:args.step});}, 
-                tap:function(){$(this).scrollLeft({target:args.target, step:args.step});}
+            $(element).find('.scrollLeft').objectSettings({
+                click:function(){$(this).scrollingLeft({target:args.target, step:args.step});}, 
+                tap:function(){$(this).scrollingLeft({target:args.target, step:args.step});}
             });
 
-            $(element).find('.right').objectSettings({
-                click:function(){$(this).scrollRight({target:args.target, step:args.step});}, 
-                tap:function(){$(this).scrollRight({target:args.target, step:args.step});}
+            $(element).find('.scrollRight').objectSettings({
+                click:function(){$(this).scrollingRight({target:args.target, step:args.step});}, 
+                tap:function(){$(this).scrollingRight({target:args.target, step:args.step});}
             });
 
         }
 
-        if($(element).find('.up').length !== -1){
+        if($(element).find('.scrollUp').length !== -1){
 
-            $(element).find('.up').objectSettings({
-                click:function(){$(this).scrollUp({target:args.target, step:args.step});}, 
-                tap:function(){$(this).scrollUp({target:args.target, step:args.step});}
+            $(element).find('.scrollUp').objectSettings({
+                click:function(){$(this).scrollingUp({target:args.target, step:args.step});}, 
+                tap:function(){$(this).scrollingUp({target:args.target, step:args.step});}
             });
 
-            $(element).find('.down').objectSettings({
-                click:function(){$(this).scrollDown({target:args.target, step:args.step});}, 
-                tap:function(){$(this).scrollDown({target:args.target, step:args.step});}
+            $(element).find('.scrollDown').objectSettings({
+                click:function(){$(this).scrollingDown({target:args.target, step:args.step});}, 
+                tap:function(){$(this).scrollingDown({target:args.target, step:args.step});}
             }); 
 
         }

@@ -1,4 +1,4 @@
-/** LCARS SDK 16098.3
+/** LCARS SDK 16276.31
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -20,9 +20,7 @@
     -ms-flex-direction:row; 
     -moz-flex-direction:row; 
     flex-direction:row;
-    flex-direction:row;
     padding:6px 0px 6px 0px;
-    position:absolute;
 }
 
 
@@ -31,7 +29,9 @@
 	-moz-box-flex: 1;       
 	-webkit-flex: 1;         
 	-ms-flex: 1 0 auto !important;             
-	flex: 1;                  
+	flex: 1; 
+    min-height: auto;
+    min-width: 5px;              
 }
 
 .sdk.levelBar .bar{
@@ -41,7 +41,8 @@
     width:calc(100% - 5px);  
     height:100%; 
     -webkit-transition:width .75s linear; 
-    transition:width .75s linear; min-width:25px;
+    transition:width .75s linear; 
+	min-width:40px;
 } 
 
 .sdk.levelBar .cap{
@@ -87,6 +88,7 @@
     height:100%; 
     -webkit-transition:height .75s linear; 
     transition:height .75s linear; 
+	min-height:40px;
 }
 
 .sdk.levelBar.vertical .cap{
@@ -103,7 +105,7 @@
 
 .sdk.levelBar.vertical.reverse{
     flex-direction:column; 
-    min-height:35px;
+    min-height:40px;
 }
 
 .sdk.levelBar.vertical.reverse .bar:before{

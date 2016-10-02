@@ -1,4 +1,4 @@
-/** LCARS SDK 16098.3
+/** LCARS SDK 16276.31
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -185,19 +185,7 @@ LCARS.templates.sdk.buttons.radioText = {
 		{type:'text'}, 
 		{type:'block', class:'check'}, 
 		{type:'cap', version:'right'}
-	],
-	typeD:[
-		{type:'cap', version:'left'},
-		{type:'block', class:'check'}, 
-		{type:'text'},
-		{type:'button'}
-	],
-	typeDR:[
-		{type:'button'}, 
-		{type:'text'}, 
-		{type:'block', class:'check'}, 
-		{type:'cap', version:'right'}
-	], 
+	]
 	
 };    
 
@@ -235,27 +223,27 @@ LCARS.templates.sdk.buttons.checkboxText = {
 		{type:'cap'}, 
 		{type:'block', class:'check'}, 
 		{type:'block', class:'check'}, 
-		{type:'block'},
+		{type:'text'},
 		{type:'button'}
 	],
 	typeAR:[
 		{type:'button'}, 
+		{type:'text'}, 
 		{type:'block', class:'check'}, 
-		{type:'block'}, 
 		{type:'block', class:'check'}, 
 		{type:'cap'}
 	],
 	typeB:[
 		{type:'cap', version:'left'}, 
 		{type:'block', class:'check'}, 
-		{type:'block'}, 
+		{type:'text'}, 
 		{type:'block', class:'check'}, 
 		{type:'button'}
 	],
 	typeBR:[
 		{type:'button'}, 
 		{type:'block', class:'check'}, 
-		{type:'block'}, 
+		{type:'text'}, 
 		{type:'block', class:'check'}, 
 		{type:'cap', version:'right'}
 	]			      

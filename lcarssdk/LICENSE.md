@@ -1,8 +1,8 @@
-LCARS SDK License 16098.3 (v3.0.0)
+LCARS SDK License 16276.31 (v3.1.0)
 Author: Aric McGriff
 Email: contact@lcarssdk.org
 Website: http://www.lcarssdk.org
-Date:04-09-216
+Date:10-02-2016
 
 Original Intellectual Property Ownership.
 THE LCARS SDK IS MADE IN GOOD FAITH THAT THE ENVIRONMENT DOES NOT INFRINGE ON THE INTELLECTUAL PROPERTY OWNED BY PARAMOUNT/CBS TO WHOM STAR TREK AND RELATED MATERIALS ARE TRADEMARKED AND OWNED BY. ALL RELATED LCARS MATERIAL IS FOR THE JOY OF THE FANS AND TO HELP PROMOTE A QUALITY AND FUNCTIONAL LCARS ENVIRONMENT FOR THE STAR TREK FAN COMMUNITY.
@@ -31,9 +31,7 @@ Author & Project Lead: Aric McGriff, creator of the LCARS SDK Project. Author an
 
 LCARS SDK: A development kit and environment umbrella designed specifically for generating canon quality and functional LCARS interfaces within a webview.
 
-Code core: Main code files required-provided for the LCARS SDK environment to function. These include both JavaScript and CSS languages.
-
-Code core Files: lcarssdk.js – lcarssdk.css – sdktemplates.css – sdktemplates.js
+Core Code: Main code files required-provided for the LCARS SDK environment to function. These include both JavaScript and CSS languages.
 
 Graphic Assets: Static, vector based representations of an LCARS interface(s) released within the LCARS SDK.
 
@@ -47,11 +45,12 @@ Developer: A person(s), group(s) or legal entity that creates, adapts or donates
 
 Addons: Singular, self-contained that extend the functionality of the Code Core.
 
-Addons Included: Scroll Button (scrollbutton.css/scrollbutton.js)
+Addons Included: Scroll Button (scrollbutton.css/scrollbutton.js), Level Bar (levelBar.css/levelBar.js)
+
+Templates: Base settings for basic LCARS elements.  Includes a js and css file.
 
 Module: A derivative work utilizing the LCARS SDK. Contains project specific code and generally extended features usability. A module is dependant upon the Code core not the other way around.
 
-LCARS-NV: Provided application environment.
 
 TERMS AND CONDITIONS
 1. For-Profit use is prohibited. The LCARS SDK is for Non-Profit use only.
@@ -64,11 +63,10 @@ TERMS AND CONDITIONS
 4. The LCARS SDK, its Author/Project Lead or any other associated relationships are not responsible or liable for any custom Addons or Modules created by a third party not included directly included in the LCARS SDK umbrella environment.
 
 5. The LCARS SDK source code is available to allow the greatest control over its implementation use. By chance that a 3rd Party is negatively impacting the LCARS SDK environment or violating any other term and conditions concerning the LCARS SDK or related materials, at the discretion of the Author/Project Lead, the 3rd Party will be served a Cease & Desist, in writing. Take-down is immediate upon receiving the Cease & Desist.
-5.a The LCARS-NV Project is a webview desktop and system bootable based project.  This appliction and operating system is provided as-is.
 
-6. Included font provided by Jens. The .ttf file is directly from his site. Additional file types provided via the Font Squirrel service upon font authors permission.
-6.a http://www.gtjlcars.de/LCARSindex/LCARSFONTS.htm
-6.b Included font, lcarsunknown.ttf, has an unknown creator. The Author makes no claim of ownership and if original owner is found, please contact the Project Lead. Font is utilized for lowercase characters.
+6. Included font provided by Vernon Adams. Web ready font files provided via the Font Squirrel service upon font authors permission.
+6.a https://www.fontsquirrel.com/fonts/antonio - Requires Agreeing to SIL License included along with the LCARS SDK.
+6.b Included font, lcars-mono.ttf is Author created monospaced font based on the Antonio Bold font.
 
 7. All released derivative work shall provide this license in whole and unmodified and use of the LCARS SDK identifiable.
 

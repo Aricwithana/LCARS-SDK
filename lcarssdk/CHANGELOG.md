@@ -155,6 +155,26 @@ CO: Complex buttons using large text utilize a
     text element instead of the old nbValue setting.
 CO: Elements are not long position absolute by default.
 
+
+16276.31-
+BF: API Scrolling - Named function call name. 
+    Conflicted with jQuery.
+BF: Elbow inner radiuses fixed.
+CO/EH: Cleaned up the core css.
+    Standardized many element classes across the board.
+    Added extra variants to different elements.
+    Animations and state names updated.
+    Optional active state for elements to be uncommented
+    if wanted.
+EH: Visual Guide
+RM: Old graphic files
+RM: Older Interface demos
+EH: USS Not Affiliated Theme updates
+EH: Antonio Bold font replaced older fan font.
+BF/CO: Base templates tweaked and cleaned up
+BF/CO: Assorted small issues on the addons.
+
+
 Legend - 
 BF:  Bug Fix
 CO:  Cosmetic

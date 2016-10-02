@@ -1,4 +1,4 @@
-/** LCARS SDK 16098.3
+/** LCARS SDK 16276.31
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -21,7 +21,6 @@ LCARS.levelBar = {
         if(!args.template){args.template = $.extend(true, {}, LCARS.templates.sdk.levelBar.typeA);}
         if(args.id){args.template.id = args.id;}
         var element = LCARS[args.template.type].create(args.template);
-        console.log(element);
         element = LCARS.definition(element, args);
         return element;
     }, 
