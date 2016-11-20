@@ -1,4 +1,4 @@
-/** LCARS SDK 16276.31 - USS Not Affiliated Theme
+/** LCARS SDK 16323.311 - USS Not Affiliated Theme
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -180,3 +180,19 @@
 .red-alert .text-green-2{color:#999999;}
 .red-alert .text-green-3{color:#cc0000;}
 .red-alert .text-green-4{color:#660000;}
+
+
+/* =============================================================================
+   Active/Hover States. Included for optional use.
+   ==========================================================================*/
+
+
+.button:hover, 
+.endcap:hover > .cap, 
+.elbow:hover,
+.complexButton:hover > *:not(.text){}
+
+.button:not(.endcap):active, 
+.endcap:active > .cap, 
+.elbow:active,
+.complexButton:active > *:not(.text){-webkit-animation:none !important;animation:none !important; background-color:#ffffff !important; border-color:#ffffff !important;}

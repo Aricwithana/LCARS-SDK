@@ -1,4 +1,4 @@
-LCARS SDK License 16276.31 (v3.1.0)
+LCARS SDK License 16323.311 (v3.1.1)
 Author: Aric McGriff
 Email: contact@lcarssdk.org
 Website: http://www.lcarssdk.org

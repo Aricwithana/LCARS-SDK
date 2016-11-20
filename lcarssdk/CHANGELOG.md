@@ -175,6 +175,14 @@ BF/CO: Base templates tweaked and cleaned up
 BF/CO: Assorted small issues on the addons.
 
 
+16323.311-
+EH: Updated all elbows with new settings. Should
+    be closer to canon material and lacking stylized
+    flavor from other fan projects.
+CO: Updated bracket template to account for new elbows.
+CO: Swapped svg/img emblem for the Visual Guide to the
+    SDK logo command emblem.
+
 Legend - 
 BF:  Bug Fix
 CO:  Cosmetic

@@ -1,4 +1,4 @@
-/** LCARS SDK 16276.31
+/** LCARS SDK 16323.311
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -10,30 +10,41 @@
 
 /* Bracket Template Type A*/
 .sdk.bracket.typeA{position:relative;}
-.sdk.bracket.typeA > .elbow .bar+.bar{width:8px; min-width:0px;}
+
+.sdk.bracket.typeA .elbow.small.horizontal {
+    min-height: 35px;
+}
+
+.sdk.bracket.typeA > .elbow .bar+.bar{width:10px; min-width:0px;}
 .sdk.bracket.typeA > .elbow{position:absolute;}
 .sdk.bracket.typeA > .top-left{top:0px; left:0px; }
-.sdk.bracket.typeA > .top-left .bar+.bar{position: absolute; top:34px; width: 8px; height: 14px; left:auto; right: 0px;}
+.sdk.bracket.typeA > .top-left .bar+.bar{position: absolute; top:35px; width: 10px; height: 15px; left:auto; right: 0px;}
 .sdk.bracket.typeA > .top-right{top:0px; right:0px; }
-.sdk.bracket.typeA > .top-right .bar+.bar{position: absolute; top:34px; width: 8px; height: 14px; right: 0px; left:auto;}
+.sdk.bracket.typeA > .top-right .bar+.bar{position: absolute; top:35px; width: 10px; height: 15px; right: 0px; left:auto;}
 .sdk.bracket.typeA > .bottom-left{bottom:0px; left:0px; }
-.sdk.bracket.typeA > .bottom-left .bar+.bar{position: absolute; bottom:34px; width: 8px; height: 14px; left:auto;right: 0px;}
+.sdk.bracket.typeA > .bottom-left .bar+.bar{position: absolute; bottom:35px; width: 10px; height: 15px; left:auto;right: 0px;}
 .sdk.bracket.typeA > .bottom-right{bottom:0px; right:0px;}
-.sdk.bracket.typeA > .bottom-right .bar+.bar{position: absolute; bottom:34px; width: 8px; height: 14px; right: 0px; left:auto;}
+.sdk.bracket.typeA > .bottom-right .bar+.bar{position: absolute; bottom:35px; width: 10px; height: 15px; right: 0px; left:auto;}
 
 .sdk.bracket.typeA > .column >.bar{flex:1;}
-.sdk.bracket.typeA > .column > *:not(:first-child){margin-top:3px;}
+.sdk.bracket.typeA > .column > *:not(:first-child){margin-top:5px;}
 .sdk.bracket.typeA > .column:nth-child(odd) >.bar:nth-child(2) { flex: .5;}
 .sdk.bracket.typeA > .column:nth-child(even) >.bar:nth-child(2) { flex: 3;}
-.sdk.bracket.typeA > .column:nth-child(6) {position:absolute; top:38px; left:0px; bottom:38px;  width:8px;}
+.sdk.bracket.typeA > .column:nth-child(6) {position:absolute; top:40px; left:0px; bottom:40px;  width:10px;}
 
-.sdk.bracket.typeA > .column:nth-child(7) {position:absolute; top:51px; left:13px; bottom:51px; width:8px;}
+.sdk.bracket.typeA > .column:nth-child(7) {position:absolute; top:55px; left:15px; bottom:55px; width:10px;}
 
-.sdk.bracket.typeA > .column:nth-child(8) {position:absolute; top:38px; right:13px; bottom:38px;  width:8px;}
+.sdk.bracket.typeA > .column:nth-child(8) {position:absolute; top:40px; right:15px; bottom:40px;  width:10px;}
 
-.sdk.bracket.typeA > .column:nth-child(9) {position:absolute; top:51px; right:0px; bottom:51px; width:8px;}
+.sdk.bracket.typeA > .column:nth-child(9) {position:absolute; top:55px; right:0px; bottom:55px; width:10px;}
 
-.sdk.bracket.typeA > .content{position:absolute; top:38px; left:46px; bottom:38px; right:46px;}
+.sdk.bracket.typeA > .content{
+	position: absolute;
+    top: 0px;
+    left: 25px;
+    bottom: 0px;
+    right: 25px;	
+}
 
 .sdk.bracket.typeA > .column .bar .bar{ position:absolute; max-width:100%;min-width:100%;  -webkit-animation: bracketAnimation 5s linear infinite !important; animation: bracketAnimation 5s linear infinite !important;}
 .sdk.bracket.typeA > .column ~ .column .bar .bar{ position:absolute;  max-width:100%; min-width:100%; -webkit-animation: bracketAnimationR 5s linear infinite !important; animation: bracketAnimationR 5s linear infinite !important; }

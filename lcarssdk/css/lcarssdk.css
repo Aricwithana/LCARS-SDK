@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/** LCARS SDK 16276.31
+/** LCARS SDK 16323.311
 * This file is a part of the LCARS SDK.
 * https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
 * For more information please go to http://www.lcarssdk.org.
@@ -836,13 +836,13 @@ pre{white-space: pre-wrap;
    Elbows - Default Horizontal
    ========================================================================== */
 .elbow.default.horizontal{
-	min-width:75px; 
-	min-height:75px;	
+	min-width:92.5px; 
+	min-height:92.5px;	
 }
 
 .elbow.default.horizontal .block{
-	min-height:45px;
-	min-width:45px; 
+	min-height:35px;
+	min-width:35px; 
 	border-width:20px; 
 	border-style: solid;
 }
@@ -853,7 +853,7 @@ pre{white-space: pre-wrap;
 
 /* Top Right Default Horizontal Elbow */
 .top-right.default.horizontal{
-	border-top-right-radius:75px; 
+	border-top-right-radius:92.5px; 
 	text-align:left;
 }
 
@@ -867,17 +867,17 @@ pre{white-space: pre-wrap;
 	top:calc(100% - 20px);
 	border-left:0px solid transparent; 
 	border-bottom:0px solid transparent; 
-	border-top-right-radius:60px; 
-	border-bottom-left-radius: 60px;
+	border-top-right-radius:70px; 
+	border-bottom-left-radius: 50px;
 	
 }
 
 .top-right.default.horizontal:before{bottom:0px; right:10px;}
-.top-right.default.horizontal:after{top:0px; right:60px;}
+.top-right.default.horizontal:after{top:0px; right:70px;}
 
 /* Top Left Default Horizontal Elbow */
 .top-left.default.horizontal{
-	border-top-left-radius:75px; 
+	border-top-left-radius:92.5px; 
 	text-align:right;
 }
 
@@ -891,17 +891,17 @@ pre{white-space: pre-wrap;
 	left:-15px;
     border-right: 0px solid transparent;
     border-bottom: 0px solid transparent;
-    border-top-left-radius: 60px;
-    border-bottom-right-radius: 60px;
+    border-top-left-radius: 70px;
+    border-bottom-right-radius: 50px;
 
 }
 
 .top-left.default.horizontal:before{bottom:0px; left:10px;}
-.top-left.default.horizontal:after{top:0px; left:60px;}
+.top-left.default.horizontal:after{top:0px; left:70px;}
 
 /* Bottom Left Default Horizontal Elbow */
 .bottom-left.default.horizontal{
-	border-bottom-left-radius:75px; 
+	border-bottom-left-radius:92.5px; 
 	text-align:right;
 }
 
@@ -915,17 +915,17 @@ pre{white-space: pre-wrap;
 	left:-15px;
 	border-right:0px solid transparent; 
 	border-top:0px solid transparent; 
-	border-bottom-left-radius:60px; 
-	border-top-right-radius: 60px;
+	border-bottom-left-radius:70px; 
+	border-top-right-radius: 50px;
 }
 
 
 .bottom-left.default.horizontal:before{top:0px; left:10px;}
-.bottom-left.default.horizontal:after{bottom:0px; left:60px;}
+.bottom-left.default.horizontal:after{bottom:0px; left:70px;}
 
 /* Bottom Right Default Horizontal Elbow */
 .bottom-right.default.horizontal{
-	border-bottom-right-radius:75px; 
+	border-bottom-right-radius:92.5px; 
 	text-align:left;
 }
 
@@ -937,28 +937,28 @@ pre{white-space: pre-wrap;
 .bottom-right.default.horizontal .block{
 	border-left:0px solid transparent; 
 	border-top:0px solid transparent; 
-	border-bottom-right-radius:60px; 
-	border-top-left-radius: 60px;
+	border-bottom-right-radius:70px; 
+	border-top-left-radius: 50px;
 	bottom:calc(100% - 20px);
 	right:-15px;
 }
 
 .bottom-right.default.horizontal:before{top:0px;right:10px;}
-.bottom-right.default.horizontal:after{bottom:0px; right:60px;}
+.bottom-right.default.horizontal:after{bottom:0px; right:70px;}
 
 
 /* =============================================================================
    Elbows - Default Vertical
    ========================================================================== */
 .elbow.default.vertical{
-	min-width:75px; 
-	min-height:75px;	
+	min-width:92.5px; 
+	min-height:92.5px;	
 }
 
 .elbow.default.vertical .block{
 
-	min-height:45px;
-	min-width:45px; 
+	min-height:35px;
+	min-width:35px; 
 	border-width:20px; 
 	border-style: solid;
 }
@@ -969,7 +969,7 @@ pre{white-space: pre-wrap;
 
 /* Top Right Vertical Default Elbow */
 .top-right.default.vertical{
-	border-top-right-radius:75px; 
+	border-top-right-radius:92.5px; 
 }
 
 .top-right.default.vertical .bar{
@@ -980,18 +980,18 @@ pre{white-space: pre-wrap;
 .top-right.default.vertical .block{
 	border-left:0px solid transparent; 
 	border-bottom:0px solid transparent; 
-	border-top-right-radius:60px; 
-	border-bottom-left-radius: 60px;
+	border-top-right-radius:70px; 
+	border-bottom-left-radius: 50px;
 	right:calc(100% - 20px);
 	top:-15px;
 }
 
 .top-right.default.vertical:before{bottom:0px; right:10px;}
-.top-right.default.vertical:after{top:0px;  right:60px;}
+.top-right.default.vertical:after{top:0px;  right:70px;}
 
 /* Top Left Vertical Default Elbow */
 .top-left.default.vertical{
-	border-top-left-radius:75px; 
+	border-top-left-radius:92.5px; 
 	text-align:right;
 }
 
@@ -1003,19 +1003,19 @@ pre{white-space: pre-wrap;
 .top-left.default.vertical .block{
 	border-right:0px solid transparent; 
 	border-bottom:0px solid transparent; 
-	border-top-left-radius:60px; 
-	border-bottom-right-radius: 60px;
+	border-top-left-radius:70px; 
+	border-bottom-right-radius: 50px;
 	left:calc(100% - 20px);
 	top:-15px;
 }
 
 
 .top-left.default.vertical:before{bottom:0px; left:10px;}
-.top-left.default.vertical:after{top:0px; left:60px;}
+.top-left.default.vertical:after{top:0px; left:70px;}
 
 /* Bottom Left Vertical Default Elbow */
 .bottom-left.default.vertical{
-	border-bottom-left-radius:75px; 
+	border-bottom-left-radius:92.5px; 
 	text-align:right;
 }
 
@@ -1029,17 +1029,17 @@ pre{white-space: pre-wrap;
 	bottom:-15px;
 	border-right:0px solid transparent; 
 	border-top:0px solid transparent; 
-	border-bottom-left-radius:60px; 
-	border-top-right-radius: 60px;
+	border-bottom-left-radius:70px; 
+	border-top-right-radius: 50px;
 }
 
 
-.bottom-left.default.vertical:before{bottom:0px; left:60px;}
+.bottom-left.default.vertical:before{bottom:0px; left:70px;}
 .bottom-left.default.vertical:after{top:0px; left:10px;}
 
 /* Bottom Right Vertical Default Elbow */
 .bottom-right.default.vertical{
-	border-bottom-right-radius:75px; 
+	border-bottom-right-radius:92.5px; 
 }
 
 .bottom-right.default.vertical .bar{
@@ -1052,11 +1052,11 @@ pre{white-space: pre-wrap;
 	bottom:-15px;
 	border-left:0px solid transparent; 
 	border-top:0px solid transparent; 
-	border-bottom-right-radius:60px; 
-	border-top-left-radius: 60px;
+	border-bottom-right-radius:70px; 
+	border-top-left-radius: 50px;
 }
 
-.bottom-right.default.vertical:before{bottom:0px; right:60px;}
+.bottom-right.default.vertical:before{bottom:0px; right:70px;}
 .bottom-right.default.vertical:after{top:0px; right:10px;}
 
 
@@ -1073,8 +1073,8 @@ pre{white-space: pre-wrap;
 
 /* Top Right Base Horizontal Elbow */
 .elbow.base.horizontal .block{
-	min-height:30px;
-	min-width:30px; 
+	min-height:22px;
+	min-width:22px; 
 	border-width:20px; 
 	border-style: solid;
 }
@@ -1100,7 +1100,7 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-bottom:0px solid transparent; 
 	border-top-right-radius:60px; 
-	border-bottom-left-radius: 60px;
+	border-bottom-left-radius: 30px;
 	
 }
 
@@ -1124,7 +1124,7 @@ pre{white-space: pre-wrap;
     border-right: 0px solid transparent;
     border-bottom: 0px solid transparent;
     border-top-left-radius: 60px;
-    border-bottom-right-radius: 60px;
+    border-bottom-right-radius: 30px;
 
 }
 
@@ -1148,7 +1148,7 @@ pre{white-space: pre-wrap;
 	border-right:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-left-radius:60px; 
-	border-top-right-radius: 60px;
+	border-top-right-radius: 30px;
 }
 
 
@@ -1170,7 +1170,7 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-right-radius:60px; 
-	border-top-left-radius: 60px;
+	border-top-left-radius: 30px;
 	bottom:calc(100% - 20px);
 	right:-15px;
 }
@@ -1213,7 +1213,7 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-bottom:0px solid transparent; 
 	border-top-right-radius:60px; 
-	border-bottom-left-radius: 60px;
+	border-bottom-left-radius: 30px;
 	right:calc(100% - 20px);
 	top:-15px;
 }
@@ -1236,7 +1236,7 @@ pre{white-space: pre-wrap;
 	border-right:0px solid transparent; 
 	border-bottom:0px solid transparent; 
 	border-top-left-radius:60px; 
-	border-bottom-right-radius: 60px;
+	border-bottom-right-radius: 30px;
 	left:calc(100% - 20px);
 	top:-15px;
 }
@@ -1262,7 +1262,7 @@ pre{white-space: pre-wrap;
 	border-right:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-left-radius:60px; 
-	border-top-right-radius: 60px;
+	border-top-right-radius: 30px;
 }
 
 
@@ -1285,7 +1285,7 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-right-radius:60px; 
-	border-top-left-radius: 60px;
+	border-top-left-radius: 30px;
 }
 
 .bottom-right.base.vertical:before{bottom:0px; right:50px;}
@@ -1296,14 +1296,14 @@ pre{white-space: pre-wrap;
    Elbows - Medium Horizontal
    ========================================================================== */
 .elbow.medium.horizontal{
-	min-width:35px; 
+	min-width:50px; 
 	min-height:50px;	
 }
 
 .elbow.medium.horizontal .block{
-	min-height:20px;
-	min-width:20px; 
-	border-width:20px; 
+	min-height:17px;
+	min-width:17px; 
+	border-width:10px; 
 	border-style: solid;
 }
 .elbow.medium.horizontal .bar{
@@ -1313,7 +1313,7 @@ pre{white-space: pre-wrap;
 
 /* Top Right medium Horizontal Elbow */
 .top-right.medium.horizontal{
-	border-top-right-radius:30px; 
+	border-top-right-radius:45px; 
 	text-align:left;
 }
 
@@ -1323,12 +1323,12 @@ pre{white-space: pre-wrap;
 }
 
 .top-right.medium.horizontal .block{
-	right:-15px;
-	top:calc(100% - 20px);
+	right:-5px;
+	top:calc(100% - 10px);
 	border-left:0px solid transparent; 
 	border-bottom:0px solid transparent; 
-	border-top-right-radius:30px; 
-	border-bottom-left-radius: 30px;
+	border-top-right-radius:34px; 
+	border-bottom-left-radius: 24px;
 	
 }
 
@@ -1337,7 +1337,7 @@ pre{white-space: pre-wrap;
 
 /* Top Left medium Horizontal Elbow */
 .top-left.medium.horizontal{
-	border-top-left-radius:30px; 
+	border-top-left-radius:45px; 
 	text-align:right;
 }
 
@@ -1347,12 +1347,12 @@ pre{white-space: pre-wrap;
 }
 
 .top-left.medium.horizontal .block{
-	top:calc(100% - 20px);
-	left:-15px;
+	top:calc(100% - 10px);
+	left:-5px;
     border-right: 0px solid transparent;
     border-bottom: 0px solid transparent;
-    border-top-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-left-radius: 34px;
+    border-bottom-right-radius: 24px;
 
 }
 
@@ -1361,7 +1361,7 @@ pre{white-space: pre-wrap;
 
 /* Bottom Left medium Horizontal Elbow */
 .bottom-left.medium.horizontal{
-	border-bottom-left-radius:30px; 
+	border-bottom-left-radius:45px; 
 	text-align:right;
 }
 
@@ -1371,12 +1371,12 @@ pre{white-space: pre-wrap;
 }
 
 .bottom-left.medium.horizontal .block{
-	bottom:calc(100% - 20px);
-	left:-15px;
+	bottom:calc(100% - 10px);
+	left:-5px;
 	border-right:0px solid transparent; 
 	border-top:0px solid transparent; 
-	border-bottom-left-radius:30px; 
-	border-top-right-radius: 30px;
+	border-bottom-left-radius:34px; 
+	border-top-right-radius: 24px;
 }
 
 
@@ -1397,10 +1397,10 @@ pre{white-space: pre-wrap;
 .bottom-right.medium.horizontal .block{
 	border-left:0px solid transparent; 
 	border-top:0px solid transparent; 
-	border-bottom-right-radius:30px; 
-	border-top-left-radius: 30px;
-	bottom:calc(100% - 20px);
-	right:-15px;
+	border-bottom-right-radius:34px; 
+	border-top-left-radius: 24px;
+	bottom:calc(100% - 10px);
+	right:-5px;
 }
 
 .bottom-right.medium.horizontal:before{top:0px; right:10px;}
@@ -1410,26 +1410,26 @@ pre{white-space: pre-wrap;
    Elbows - Medium Vertical
    ========================================================================== */
 .elbow.medium.vertical{
-	min-width:50px; 
-	min-height:50px;	
+	min-width:45px; 
+	min-height:45px;	
 }
 
 .elbow.medium.vertical .block{
 
 	min-height:20px;
 	min-width:20px; 
-	border-width:20px; 
+	border-width:10px; 
 	border-style: solid;
 }
 
 .elbow.medium.vertical .bar{
 	min-height:50px;
-	max-width:30px;
+	max-width:50px;
 }
 
 /* Top Right Vertical medium Elbow */
 .top-right.medium.vertical{
-	border-top-right-radius:30px; 
+	border-top-right-radius:45px; 
 }
 
 .top-right.medium.vertical .bar{
@@ -1440,10 +1440,10 @@ pre{white-space: pre-wrap;
 .top-right.medium.vertical .block{
 	border-left:0px solid transparent; 
 	border-bottom:0px solid transparent; 
-	border-top-right-radius:30px; 
-	border-bottom-left-radius: 30px;
-	right:calc(100% - 20px);
-	top:-15px;
+	border-top-right-radius:34px; 
+	border-bottom-left-radius: 24px;
+	right:calc(100% - 10px);
+	top:-5px;
 }
 
 .top-right.medium.vertical:before{bottom:0px; right:10px;}
@@ -1451,7 +1451,7 @@ pre{white-space: pre-wrap;
 
 /* Top Left Vertical medium Elbow */
 .top-left.medium.vertical{
-	border-top-left-radius:30px; 
+	border-top-left-radius:45px; 
 	text-align:right;
 }
 
@@ -1463,10 +1463,10 @@ pre{white-space: pre-wrap;
 .top-left.medium.vertical .block{
 	border-right:0px solid transparent; 
 	border-bottom:0px solid transparent; 
-	border-top-left-radius:30px; 
-	border-bottom-right-radius: 30px;
-	left:calc(100% - 20px);
-	top:-15px;
+	border-top-left-radius:34px; 
+	border-bottom-right-radius: 24px;
+	left:calc(100% - 10px);
+	top:-5px;
 }
 
 
@@ -1475,7 +1475,7 @@ pre{white-space: pre-wrap;
 
 /* Bottom Left Vertical medium Elbow */
 .bottom-left.medium.vertical{
-	border-bottom-left-radius:30px; 
+	border-bottom-left-radius:45px; 
 	text-align:right;
 }
 
@@ -1485,12 +1485,12 @@ pre{white-space: pre-wrap;
 }
 
 .bottom-left.medium.vertical .block{
-	left:calc(100% - 20px);
-	bottom:-15px;
+	left:calc(100% - 10px);
+	bottom:-5px;
 	border-right:0px solid transparent; 
 	border-top:0px solid transparent; 
-	border-bottom-left-radius:30px; 
-	border-top-right-radius: 30px;
+	border-bottom-left-radius:34px; 
+	border-top-right-radius: 24px;
 }
 
 
@@ -1499,7 +1499,7 @@ pre{white-space: pre-wrap;
 
 /* Bottom Right Vertical medium Elbow */
 .bottom-right.medium.vertical{
-	border-bottom-right-radius:30px; 
+	border-bottom-right-radius:45px; 
 }
 
 .bottom-right.medium.vertical .bar{
@@ -1508,12 +1508,12 @@ pre{white-space: pre-wrap;
 }
 
 .bottom-right.medium.vertical .block{
-	right:calc(100% - 20px);
-	bottom:-15px;
+	right:calc(100% - 10px);
+	bottom:-5px;
 	border-left:0px solid transparent; 
 	border-top:0px solid transparent; 
-	border-bottom-right-radius:30px; 
-	border-top-left-radius: 30px;
+	border-bottom-right-radius:34px; 
+	border-top-left-radius: 24px;
 }
 
 .bottom-right.medium.vertical:before{bottom:0px; right:25px;}
@@ -1526,8 +1526,8 @@ pre{white-space: pre-wrap;
    Elbows - small Horizontal
    ========================================================================== */
 .elbow.small.horizontal{
-	min-width:21px; 
-	min-height:35px;	
+	min-width:25px; 
+	min-height:25px;	
 }
 
 .elbow.small.horizontal .block{
@@ -1542,7 +1542,7 @@ pre{white-space: pre-wrap;
 
 /* Top Right small Horizontal Elbow */
 .top-right.small.horizontal{
-	border-top-right-radius:20px; 
+	border-top-right-radius:25px; 
 	text-align:left;
 }
 
@@ -1557,16 +1557,16 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-bottom:0px solid transparent; 
 	border-top-right-radius:30px; 
-	border-bottom-left-radius: 30px;
+	border-bottom-left-radius: 20px;
 	
 }
 
-.top-right.small.horizontal:before{bottom:0px; right:10px;}
-.top-right.small.horizontal:after{top:0px; right:25px;}
+.top-right.small.horizontal:before{bottom:0px; right:10px; font-size: 14px;}
+.top-right.small.horizontal:after{top:0px; right:25px; font-size: 14px;}
 
 /* Top Left small Horizontal Elbow */
 .top-left.small.horizontal{
-	border-top-left-radius:20px; 
+	border-top-left-radius:25px; 
 	text-align:right;
 }
 
@@ -1581,16 +1581,16 @@ pre{white-space: pre-wrap;
     border-right: 0px solid transparent;
     border-bottom: 0px solid transparent;
     border-top-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-bottom-right-radius: 20px;
 
 }
 
-.top-left.small.horizontal:before{bottom:0px; left:10px;}
-.top-left.small.horizontal:after{top:0px; left:25px;}
+.top-left.small.horizontal:before{bottom:0px; left:10px; font-size: 14px;}
+.top-left.small.horizontal:after{top:0px; left:25px; font-size: 14px;}
 
 /* Bottom Left small Horizontal Elbow */
 .bottom-left.small.horizontal{
-	border-bottom-left-radius:20px; 
+	border-bottom-left-radius:25px; 
 	text-align:right;
 }
 
@@ -1605,16 +1605,16 @@ pre{white-space: pre-wrap;
 	border-right:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-left-radius:30px; 
-	border-top-right-radius: 30px;
+	border-top-right-radius: 20px;
 }
 
 
-.bottom-left.small.horizontal:before{top:0px; left:10px;}
-.bottom-left.small.horizontal:after{bottom:0px; left:25px;}
+.bottom-left.small.horizontal:before{top:0px; left:10px; font-size: 14px;}
+.bottom-left.small.horizontal:after{bottom:0px; left:25px; font-size: 14px;}
 
 /* Bottom Right small Horizontal Elbow */
 .bottom-right.small.horizontal{
-	border-bottom-right-radius:20px; 
+	border-bottom-right-radius:25px; 
 	text-align:left;
 }
 
@@ -1627,20 +1627,20 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-right-radius:30px; 
-	border-top-left-radius: 30px;
+	border-top-left-radius: 20px;
 	bottom:calc(100% - 5px);
 	right:-3px;
 }
 
-.bottom-right.small.horizontal:before{top:0px; right:10px;}
-.bottom-right.small.horizontal:after{bottom:0px; right:25px;}
+.bottom-right.small.horizontal:before{top:0px; right:10px; font-size: 14px;}
+.bottom-right.small.horizontal:after{bottom:0px; right:25px; font-size: 14px;}
 
 /* =============================================================================
    Elbows - small Vertical
    ========================================================================== */
 .elbow.small.vertical{
-	min-width:21px; 
-	min-height:35px;	
+	min-width:25px; 
+	min-height:25px;	
 }
 
 .elbow.small.vertical .block{
@@ -1657,7 +1657,7 @@ pre{white-space: pre-wrap;
 
 /* Top Right Vertical small Elbow */
 .top-right.small.vertical{
-	border-top-right-radius:20px; 
+	border-top-right-radius:25px; 
 }
 
 .top-right.small.vertical .bar{
@@ -1669,17 +1669,17 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-bottom:0px solid transparent; 
 	border-top-right-radius:30px; 
-	border-bottom-left-radius: 30px;
+	border-bottom-left-radius: 20px;
 	right:calc(100% - 5px);
 	top:-3px;
 }
 
-.top-right.small.vertical:before{bottom:0px; right:10px;}
-.top-right.small.vertical:after{top:0px; right:25px;}
+.top-right.small.vertical:before{bottom:0px; right:10px; font-size: 14px;}
+.top-right.small.vertical:after{top:0px; right:25px; font-size: 14px;}
 
 /* Top Left Vertical small Elbow */
 .top-left.small.vertical{
-	border-top-left-radius:20px; 
+	border-top-left-radius:25px; 
 	text-align:right;
 }
 
@@ -1692,18 +1692,18 @@ pre{white-space: pre-wrap;
 	border-right:0px solid transparent; 
 	border-bottom:0px solid transparent; 
 	border-top-left-radius:30px; 
-	border-bottom-right-radius: 30px;
+	border-bottom-right-radius: 20px;
 	left:calc(100% - 5px);
 	top:-3px;
 }
 
 
-.top-left.small.vertical:before{bottom:0px; left:10px;}
-.top-left.small.vertical:after{top:0px; left:25px;}
+.top-left.small.vertical:before{bottom:0px; left:10px; font-size: 14px;}
+.top-left.small.vertical:after{top:0px; left:25px; font-size: 14px;}
 
 /* Bottom Left Vertical small Elbow */
 .bottom-left.small.vertical{
-	border-bottom-left-radius:20px; 
+	border-bottom-left-radius:25px; 
 	text-align:right;
 }
 
@@ -1718,16 +1718,16 @@ pre{white-space: pre-wrap;
 	border-right:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-left-radius:30px; 
-	border-top-right-radius: 30px;
+	border-top-right-radius: 20px;
 }
 
 
-.bottom-left.small.vertical:before{bottom:0px; left:25px;}
-.bottom-left.small.vertical:after{top:0px; left:10px;}
+.bottom-left.small.vertical:before{bottom:0px; left:25px; font-size: 14px;}
+.bottom-left.small.vertical:after{top:0px; left:10px; font-size: 14px;}
 
 /* Bottom Right Vertical small Elbow */
 .bottom-right.small.vertical{
-	border-bottom-right-radius:20px; 
+	border-bottom-right-radius:25px; 
 }
 
 .bottom-right.small.vertical .bar{
@@ -1741,11 +1741,11 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-right-radius:30px; 
-	border-top-left-radius: 30px;
+	border-top-left-radius: 20px;
 }
 
-.bottom-right.small.vertical:before{bottom:0px; right:25px;}
-.bottom-right.small.vertical:after{top:0px; right:10px;}
+.bottom-right.small.vertical:before{bottom:0px; right:25px; font-size: 14px;}
+.bottom-right.small.vertical:after{top:0px; right:10px; font-size: 14px;}
  
 
 
@@ -1754,13 +1754,13 @@ pre{white-space: pre-wrap;
    Elbows - large Horizontal
    ========================================================================== */
 .elbow.large.horizontal{
-	min-width:75px; 
-	min-height:160px;	
+	min-width:145px; 
+	min-height:145px;	
 }
 
 .elbow.large.horizontal .block{
-	min-height:75px;
-	min-width:75px; 
+	min-height:55px;
+	min-width:55px; 
 	border-width:35px; 
 	border-style: solid;
 }
@@ -1772,7 +1772,7 @@ pre{white-space: pre-wrap;
 
 /* Top Right large Horizontal Elbow */
 .top-right.large.horizontal{
-	border-top-right-radius:160px; 
+	border-top-right-radius:145px; 
 	text-align:left;
 }
 
@@ -1787,7 +1787,7 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-bottom:0px solid transparent; 
 	border-top-right-radius:105px; 
-	border-bottom-left-radius: 105px;
+	border-bottom-left-radius: 70px;
 	
 }
 
@@ -1796,7 +1796,7 @@ pre{white-space: pre-wrap;
 
 /* Top Left large Horizontal Elbow */
 .top-left.large.horizontal{
-	border-top-left-radius:160px; 
+	border-top-left-radius:145px; 
 	text-align:right;
 }
 
@@ -1811,7 +1811,7 @@ pre{white-space: pre-wrap;
     border-right: 0px solid transparent;
     border-bottom: 0px solid transparent;
     border-top-left-radius: 105px;
-    border-bottom-right-radius: 105px;
+    border-bottom-right-radius: 70px;
 
 }
 
@@ -1820,7 +1820,7 @@ pre{white-space: pre-wrap;
 
 /* Bottom Left large Horizontal Elbow */
 .bottom-left.large.horizontal{
-	border-bottom-left-radius:160px; 
+	border-bottom-left-radius:145px; 
 	text-align:right;
 }
 
@@ -1835,7 +1835,7 @@ pre{white-space: pre-wrap;
 	border-right:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-left-radius:105px; 
-	border-top-right-radius: 105px;
+	border-top-right-radius: 70px;
 }
 
 
@@ -1844,7 +1844,7 @@ pre{white-space: pre-wrap;
 
 /* Bottom Right large Horizontal Elbow */
 .bottom-right.large.horizontal{
-	border-bottom-right-radius:160px; 
+	border-bottom-right-radius:145px; 
 	text-align:left;
 }
 
@@ -1857,7 +1857,7 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-right-radius:105px; 
-	border-top-left-radius: 105px;
+	border-top-left-radius: 70px;
 	bottom:calc(100% - 35px);
 	right:-30px;
 }
@@ -1870,13 +1870,13 @@ pre{white-space: pre-wrap;
    Elbows - large Vertical
    ========================================================================== */
 .elbow.large.vertical{
-	min-width:75px; 
-	min-height:160px;	
+	min-width:145px; 
+	min-height:145px;	
 }
 
 .elbow.large.vertical .block{
-	min-height:75px;
-	min-width:75px; 
+	min-height:55px;
+	min-width:55px; 
 	border-width:35px; 
 	border-style: solid;
 }
@@ -1889,7 +1889,7 @@ pre{white-space: pre-wrap;
 
 /* Top Right Vertical large Elbow */
 .top-right.large.vertical{
-	border-top-right-radius:160px; 
+	border-top-right-radius:145px; 
 }
 
 .top-right.large.vertical .bar{
@@ -1901,7 +1901,7 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-bottom:0px solid transparent; 
 	border-top-right-radius:105px; 
-	border-bottom-left-radius: 105px;
+	border-bottom-left-radius: 70px;
 	right:calc(100% - 35px);
 	top:-30px;
 }
@@ -1911,7 +1911,7 @@ pre{white-space: pre-wrap;
 
 /* Top Left Vertical large Elbow */
 .top-left.large.vertical{
-	border-top-left-radius:160px; 
+	border-top-left-radius:145px; 
 	text-align:right;
 }
 
@@ -1924,7 +1924,7 @@ pre{white-space: pre-wrap;
 	border-right:0px solid transparent; 
 	border-bottom:0px solid transparent; 
 	border-top-left-radius:105px; 
-	border-bottom-right-radius: 105px;
+	border-bottom-right-radius: 70px;
 	left:calc(100% - 35px);
 	top:-30px;
 }
@@ -1935,7 +1935,7 @@ pre{white-space: pre-wrap;
 
 /* Bottom Left Vertical large Elbow */
 .bottom-left.large.vertical{
-	border-bottom-left-radius:160px; 
+	border-bottom-left-radius:145px; 
 	text-align:right;
 }
 
@@ -1950,7 +1950,7 @@ pre{white-space: pre-wrap;
 	border-right:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-left-radius:105px; 
-	border-top-right-radius: 105px;
+	border-top-right-radius: 70px;
 }
 
 
@@ -1959,7 +1959,7 @@ pre{white-space: pre-wrap;
 
 /* Bottom Right Vertical large Elbow */
 .bottom-right.large.vertical{
-	border-bottom-right-radius:160px; 
+	border-bottom-right-radius:145px; 
 }
 
 .bottom-right.large.vertical .bar{
@@ -1973,7 +1973,7 @@ pre{white-space: pre-wrap;
 	border-left:0px solid transparent; 
 	border-top:0px solid transparent; 
 	border-bottom-right-radius:105px; 
-	border-top-left-radius: 105px;
+	border-top-left-radius: 70px;
 }
 
 .bottom-right.large.vertical:before{bottom:0px; right:150px;}
