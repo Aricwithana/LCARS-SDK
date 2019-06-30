@@ -1,0 +1,45 @@
+.sdk.scroll-button.vertical{
+    display:flex;
+    flex-direction: column;
+}
+
+.sdk.scroll-button.vertical > .button:first-child{
+    flex:.25; 
+}
+
+.sdk.scroll-button.vertical > .button:last-child{
+    flex:.75; 
+}
+
+.sdk.scroll-button.vertical.reverse > .button:first-child{
+    flex:.75; 
+}
+
+.sdk.scroll-button.vertical.reverse > .button:last-child{
+    flex:.25; 
+}
+
+.sdk.scroll-button.horizontal{
+    display:flex;
+    flex-direction: row;
+}
+
+.sdk.scroll-button.horizontal > .button{min-width:30px;}
+
+.sdk.scroll-button.horizontal > .button:first-child{
+    flex:.25; 
+}
+
+.sdk.scroll-button.horizontal > .button:last-child{
+    flex:.75;
+    text-align:left;
+}
+
+.sdk.scroll-button.horizontal.reverse > .button:first-child{
+    flex:.75; 
+}
+
+.sdk.scroll-button.horizontal.reverse > .button:last-child{
+    flex:.25;
+    text-align:left;
+}
