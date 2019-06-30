@@ -1,0 +1,137 @@
+/* Level Bar - Default Horzongal, LTR*/
+.sdk.solid-level-bar{
+    background-color:transparent !important;	
+    padding:0px;
+    overflow:hidden;
+    position: relative; 
+    width:100%;
+    height:100%;
+}
+
+
+.sdk.solid-level-bar .wrapper{
+	display: flex;   
+    box-orient:horizontal; 
+    flex-direction:row;    
+    width:100%; 
+    height:100%;
+    transition:transform .75s linear;
+}
+
+.sdk.solid-level-bar .cap{           
+	flex: 1; 
+    min-height: auto;
+    min-width: 5px;              
+}
+
+.sdk.solid-level-bar .bar{
+    position:relative; 
+    width:inherit; 
+    width:calc(100% - 5px);  
+    height:100%; 
+    -webkit-transition:width .75s linear; 
+    transition:width .75s linear; 
+	min-width:40px;
+} 
+
+.sdk.solid-level-bar .cap{
+    border-left:5px solid #ffffff;  
+    height:100%;
+    margin:0 0 0 5px;
+    background-color:transparent !important; 
+    position:relative; 
+} 
+
+.sdk.solid-level-bar:before{ 
+	font-size:inherit; 
+	display:block; 
+	position:absolute; 
+	left:0px; 
+	bottom:0px; 
+	right:0px; 
+	padding:4px 8px; 
+	letter-spacing:-1px;
+	line-height:1.25;
+	overflow: hidden;
+	max-height: 100%;
+	white-space: pre;
+    content:attr(data-label);
+    z-index: 1;
+}
+
+.sdk.solid-level-bar:after{
+	font-size:inherit; 
+	overflow:hidden; 
+	display:block; 
+	position:absolute; 
+	left:0px; 
+	top:2px; 
+	right:0px;
+	padding:4px 8px; 
+	letter-spacing:-1px;	
+	line-height:1.25;  
+	max-height: 50%;
+	white-space: pre;
+    content:attr(data-altLabel);
+    z-index: 1;
+}
+
+
+/* Level Bar - Horizontal RTL*/
+
+.sdk.solid-level-bar.reverse .wrapper{flex-direction:row-reverse; }
+.sdk.solid-level-bar.reverse{text-align:right;}
+
+.sdk.solid-level-bar.reverse .cap{
+    border:none; 
+    border-right:5px solid #ffffff;
+    margin:0 5px 0 0;
+}
+
+.sdk.solid-level-bar.vertical .wrapper{
+    -webkit-box-orient:vertical; 
+    -moz-box-orient:vertical; 
+    box-orient:vertical; 
+    -webkit-flex-direction:column; 
+    -ms-flex-direction:column; 
+    -moz-flex-direction:column; 
+    flex-direction:column-reverse; 
+    min-width:60px; 
+    height:100%;
+}
+
+.row > .sdk.solid-level-bar.vertical .wrapper{min-width:10px;}
+
+/* Level Bar Vertical Default - BTT*/
+
+.sdk.solid-level-bar.vertical .bar{
+    position:relative; 
+    text-align:left; 
+    width:100%; 
+    height:calc(100% - 5px);  
+    height:100%; 
+	min-height:40px;
+}
+
+.sdk.solid-level-bar.vertical .cap{
+    border:none; 
+    border-bottom:5px solid #ffffff; 
+    height:100%; 
+    margin: 0 0 5px 0; 
+    background-color:transparent !important; 
+    position:relative; 
+}
+
+/* Level Bar Vertical - TTB */
+
+.sdk.solid-level-bar.vertical.reverse .wrapper{
+    flex-direction:column; 
+    min-height:40px;
+}
+
+.sdk.solid-level-bar.vertical.reverse .cap{
+    border:none; 
+    border-top:5px solid #ffffff; 
+    height:100%; 
+    margin: 5px 0 0 0;
+}

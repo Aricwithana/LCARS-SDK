@@ -1,0 +1,132 @@
+.sdk.default-bracket:before{ 
+	font-size:inherit; 
+	display:block; 
+	position:absolute; 
+	left:57px; 
+	bottom:-3px; 
+	right:58px; 
+	padding:0; 
+	letter-spacing:-1px;
+    line-height: 1.25;
+	max-height: 100%;
+    content:attr(data-label);
+    z-index: 1;
+    font-size:14px;
+    text-align:right;
+}
+
+.sdk.default-bracket:after{
+	font-size:inherit; 
+	display:block; 
+	position:absolute; 
+	left:57px; 
+	bottom:calc(100% - 16px); 
+	right:58px; 
+	padding:0; 
+	letter-spacing:-1px;
+    line-height: 1.25;
+	max-height: 100%;
+    content:attr(data-altLabel);
+    z-index: 1;
+    font-size:14px;
+}
+
+.sdk.default-bracket:active:before, .sdk.default-bracket:active:after {
+    color: inherit;
+}
+
+/* Bracket Template Type A*/
+.sdk.default-bracket{position:relative;}
+
+.sdk.default-bracket .elbow.small.horizontal {
+    min-height: 35px;
+}
+
+.sdk.default-bracket > .elbow .bar+.bar{width:10px; min-width:0px;}
+.sdk.default-bracket > .elbow{position:absolute;}
+.sdk.default-bracket > .top-left{top:0px; left:0px; }
+.sdk.default-bracket > .top-left .bar+.bar{position: absolute; top:35px; width: 10px; height: 15px; left:auto; right: 0px;}
+.sdk.default-bracket > .top-right{top:0px; right:0px; }
+.sdk.default-bracket > .top-right .bar+.bar{position: absolute; top:35px; width: 10px; height: 15px; right: 0px; left:auto;}
+.sdk.default-bracket > .bottom-left{bottom:0px; left:0px; }
+.sdk.default-bracket > .bottom-left .bar+.bar{position: absolute; bottom:35px; width: 10px; height: 15px; left:auto;right: 0px;}
+.sdk.default-bracket > .bottom-right{bottom:0px; right:0px;}
+.sdk.default-bracket > .bottom-right .bar+.bar{position: absolute; bottom:35px; width: 10px; height: 15px; right: 0px; left:auto;}
+
+.sdk.default-bracket > .column >.bar{flex:1;}
+.sdk.default-bracket > .column > *:not(:first-child){margin-top:5px;}
+.sdk.default-bracket > .column:nth-child(odd) >.bar:nth-child(2) { flex: .5;}
+.sdk.default-bracket > .column:nth-child(even) >.bar:nth-child(2) { flex: 3;}
+.sdk.default-bracket > .column:nth-child(6) {position:absolute; top:40px; left:0px; bottom:40px;  width:10px;}
+
+.sdk.default-bracket > .column:nth-child(7) {position:absolute; top:55px; left:15px; bottom:55px; width:10px;}
+
+.sdk.default-bracket > .column:nth-child(8) {position:absolute; top:40px; right:15px; bottom:40px;  width:10px;}
+
+.sdk.default-bracket > .column:nth-child(9) {position:absolute; top:55px; right:0px; bottom:55px; width:10px;}
+
+.sdk.default-bracket > .content{
+	position: absolute;
+    top: 18px;
+    left: 30px;
+    bottom: 18px;
+    right: 30px;	
+}
+
+.sdk.default-bracket .animated{ position:absolute; max-width:100%;min-width:100%;  -webkit-animation: bracketAnimation 5s linear infinite !important; animation: bracketAnimation 5s linear infinite !important;}
+.sdk.default-bracket .animated{ position:absolute;  max-width:100%; min-width:100%; -webkit-animation: bracketAnimationR 5s linear infinite !important; animation: bracketAnimationR 5s linear infinite !important; }
+
+@-webkit-keyframes bracketAnimation {
+    0%   { height:50%; top:25%;}
+    10%  { height:36%; top:42%;}
+    20%  { height:10%; top:80%;}
+    30%  { height:30%; top:15%;}
+    40%  { height:62%; top:21%;}
+    50%  { height:75%; top:2%;}
+    60%  { height:12%; top:53%;}
+    70%  { height:25%; top:25%;}
+    80%  { height:92%; top:3%;}
+    90%  { height:16%; top:26%;}
+    100% { height:50%; top:25%;}
+}
+@keyframes bracketAnimation {
+    0%   { height:50%; top:25%;}
+    10%  { height:36%; top:42%;}
+    20%  { height:10%; top:80%;}
+    30%  { height:30%; top:15%;}
+    40%  { height:62%; top:21%;}
+    50%  { height:75%; top:2%;}
+    60%  { height:12%; top:53%;}
+    70%  { height:25%; top:25%;}
+    80%  { height:92%; top:3%;}
+    90%  { height:16%; top:26%;}
+    100% { height:50%; top:25%;}
+}
+
+@-webkit-keyframes bracketAnimationR {
+    0%   { height:50%; top:25%;}
+    10%  { height:16%; top:26%;}
+    20%  { height:92%; top:3%;}
+    30%  { height:25%; top:25%;}
+    40%  { height:62%; top:21%;}
+    50%  { height:75%; top:2%;}
+    60%  { height:62%; top:21%;}
+    70%  { height:30%; top:15%;}
+    80%  { height:10%; top:80%;}
+    90%  { height:36%; top:42%;}
+    100% { height:50%; top:25%;}
+}
+@keyframes bracketAnimationR {
+    0%   { height:50%; top:25%;}
+    10%  { height:16%; top:26%;}
+    20%  { height:92%; top:3%;}
+    30%  { height:25%; top:25%;}
+    40%  { height:62%; top:21%;}
+    50%  { height:75%; top:2%;}
+    60%  { height:62%; top:21%;}
+    70%  { height:30%; top:15%;}
+    80%  { height:10%; top:80%;}
+    90%  { height:36%; top:42%;}
+    100% { height:50%; top:25%;}
+}
+

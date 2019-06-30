@@ -1,0 +1,47 @@
+.sdk.default-bar-frame > .content{
+    padding:25px 70px;
+}
+
+.sdk.default-bar-frame > header > *:not(:first-child),
+.sdk.default-bar-frame > footer > *:not(:first-child),
+.sdk.default-bar-frame > header > .row > *:not(:first-child),
+.sdk.default-bar-frame > footer > .row > *:not(:first-child){margin-left:10px;}
+
+
+.sdk.default-bar-frame.reverse > .header-controls-before,
+.sdk.default-bar-frame.reverse > .header-controls-before:empty + .bar,
+.sdk.default-bar-frame > .footer-controls-before,
+.sdk.default-bar-frame > .footer-controls-before:empty + .bar{margin-left:0px;}
+
+.sdk.default-bar-frame > header .header-controls-before,
+.sdk.default-bar-frame > header .header-controls-after,
+.sdk.default-bar-frame > footer .footer-controls-before,
+.sdk.default-bar-frame > footer .footer-controls-after{text-align:right;}
+
+.sdk.default-bar-frame > header .header-controls-before > *:not(:first-child),
+.sdk.default-bar-frame > header .header-controls-after > *:not(:first-child),
+.sdk.default-bar-frame > footer .footer-controls-before > *:not(:first-child),
+.sdk.default-bar-frame > footer .footer-controls-after > *:not(:first-child){margin-left:10px;}
+
+
+.sdk.default-bar-frame > header .header-controls-before:empty,
+.sdk.default-bar-frame > header .header-controls-after:empty,
+.sdk.default-bar-frame > footer .footer-controls-before:empty,
+.sdk.default-bar-frame > footer .footer-controls-after:empty,
+.sdk.default-bar-frame > header .title:empty,
+.sdk.default-bar-frame > footer .title:empty{display:none;}
+
+
+
+.sdk.default-bar-frame:not(.reverse) > header > .row .title:empty + *,
+.sdk.default-bar-frame:not(.reverse) > header .title:empty + .header-controls-before:empty + *{margin-left:0px;}
+
+.sdk.default-bar-frame:not(.reverse) > footer > .row .footer-controls-before:empty + *,
+.sdk.default-bar-frame:not(.reverse) > footer .footer-controls-after:empty + .title + *{margin-left:0px;}
+
+
+.sdk.default-bar-frame.reverse > footer > .row .title:empty + *,
+.sdk.default-bar-frame.reverse > footer .title:empty + .footer-controls-before:empty + *{margin-left:0px;}
+
+.sdk.default-bar-frame.reverse > header > .row .header-controls-before:empty + *,
+.sdk.default-bar-frame.reverse > header .header-controls-after:empty + .title + *{margin-left:0px;}
