@@ -1017,7 +1017,7 @@ var LCARS = {
                 }else if(typeof args.args.arrive === 'function'){
                     var elemID = $(args.element).attr('id');
                     $(document).arrive('#'+elemID, args.args.arrive);
-                    allObjects[args.elemID].init = args.args.arrive;
+                    allObjects[args.elemID].arrive = args.args.arrive;
                 }
                 return args.element;
             }else{
