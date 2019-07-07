@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+/** LCARS SDK 19182.4
+* This file is a part of the LCARS SDK.
+* https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
+* For more information please go to http://www.lcarssdk.org.
+**/
+
+
+/* =============================================================================
+   Fonts
+   ========================================================================== */
+
+@font-face {
+    font-family: 'LCARS';
+    src: url('antonio-bold-webfont.eot');
+    src: url('antonio-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('antonio-bold-webfont.woff2') format('woff2'),
+         url('antonio-bold-webfont.woff') format('woff'),
+         url('Antonio-Bold.ttf') format('truetype'),
+         url('antonio-bold-webfont.svg#antoniobold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LCARS Lower';
+    src: url('antonio-bold-webfont.eot');
+    src: url('antonio-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('antonio-bold-webfont.woff2') format('woff2'),
+         url('antonio-bold-webfont.woff') format('woff'),
+         url('Antonio-Bold.ttf') format('truetype'),
+         url('antonio-bold-webfont.svg#antoniobold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LCARS Block';
+    src: url('lcars-mono-webfont.eot');
+    src: url('lcars-mono-webfont.eot?#iefix') format('embedded-opentype'),
+         url('lcars-mono-webfont.woff2') format('woff2'),
+         url('lcars-mono-webfont.woff') format('woff'),
+		 url('LCARS-Mono.ttf') format('truetype'),
+         url('lcars-mono-webfont.svg#lcars-monoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LCARS Mono';
+    src: url('lcars-mono-webfont.eot');
+    src: url('lcars-mono-webfont.eot?#iefix') format('embedded-opentype'),
+         url('lcars-mono-webfont.woff2') format('woff2'),
+         url('lcars-mono-webfont.woff') format('woff'),
+		 url('LCARS-Mono.ttf') format('truetype'),
+         url('lcars-mono-webfont.svg#lcars-monoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
