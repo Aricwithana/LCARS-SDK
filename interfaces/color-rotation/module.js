@@ -94,7 +94,7 @@ var nemesisUI = {type:'wrapper', id:'wpr_viewport', version:'row scale red-alert
 		
         {type:'wrapper', version:'main', flex:'h', flexc:'v', children:[
             {type:'wrapper', version:'column', flex:'v', children:[
-                {type:'elbow', version:'horizontal', direction:'top-left', color:'bg-blue-2', class:'threeHeight', hidden:true},
+                {type:'elbow', version:'horizontal threeHeight', direction:'top-left', color:'bg-blue-2', hidden:true},
                 {type:'button', color:'bg-blue-3', hidden:true},
                 {type:'button', color:'bg-green-3', hidden:true},
                 {type:'button', color:'bg-blue-1', hidden:true},
