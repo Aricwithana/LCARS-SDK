@@ -8,7 +8,7 @@ var colorArray = ['bg-blue-1', 'bg-blue-2','bg-blue-3','bg-blue-4', 'bg-green-1'
 var timer_colorChanges = null
 var array_colorChangeObjects = null;
     
-var nemesisUI = {type:'wrapper', id:'wpr_viewport', version:'row scale red-alert', flex:'h', arrive:function(){var dom = this.dom; LCARS.helper.viewportZoom(dom, {width:1440, height:1080}); 
+var nemesisUI = {type:'wrapper', id:'wpr_viewport', version:'row', class:{'scale':true, 'red-alert':true}, flex:'h', arrive:function(){var dom = this.dom; LCARS.helper.viewportZoom(dom, {width:1440, height:1080}); 
 		window.addEventListener("resize", function(){LCARS.helper.viewportZoom(dom, {width:1440, height:1080});});},
 
 	children:[
@@ -94,7 +94,7 @@ var nemesisUI = {type:'wrapper', id:'wpr_viewport', version:'row scale red-alert
 		
         {type:'wrapper', version:'main', flex:'h', flexc:'v', children:[
             {type:'wrapper', version:'column', flex:'v', children:[
-                {type:'elbow', version:'horizontal threeHeight', direction:'top-left', color:'bg-blue-2', hidden:true},
+                {type:'elbow', version:'horizontal' class:{'threeHeight':true}, direction:'top-left', color:'bg-blue-2', hidden:true},
                 {type:'button', color:'bg-blue-3', hidden:true},
                 {type:'button', color:'bg-green-3', hidden:true},
                 {type:'button', color:'bg-blue-1', hidden:true},
