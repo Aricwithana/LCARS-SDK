@@ -1,0 +1,35 @@
+/** LCARS SDK 19182.4 - Project Specific Theme
+* This file is a part of the LCARS SDK.
+* https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
+* For more information please go to http://www.lcarssdk.org.
+**/
+
+
+/* =============================================================================
+   Active/Hover States. Included for optional use.
+   ==========================================================================*/
+
+.button:not(.endcap):active, 
+.endcap:active > .cap, 
+.elbow:active,
+.elbow:active > .bar,
+.elbow:active > .bar > .block,
+.complexButton:active > *:not(.text){-webkit-animation:none !important;animation:none !important; background-color:#ffffff !important; 
+	border-bottom-color:#ffffff !important;
+border-right-color:#ffffff !important;
+border-top-color:#ffffff !important;
+border-left-color:#ffffff !important;
+	border-color:#ffffff !important;
+}
+.elbow:active > .bar > .block{background-color:transparent !important;}
+
+
+
+
+[class*="bg-"], 
+[class*="bg-"] > *:not([class*="bg-"]){
+	transition:background-color linear, border linear;
+}
+
+
+   
