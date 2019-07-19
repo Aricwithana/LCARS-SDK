@@ -1,0 +1,207 @@
+<!-- LCARS SDK 19182.4
+- This file is a part of the LCARS SDK.
+- https://github.com/AricwithanA/LCARS-SDK/blob/master/LICENSE.md
+- For more information please go to http://www.lcarssdk.org.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    
+    <title>Hard Coded - No JS API | LCARS SDK v4.0</title>
+ 
+    <!--<base href="/">-->
+       
+    <!-- Core and Widgets CSS-->    
+    <link rel="stylesheet" type="text/css" href="../../lcars-sdk/core/lcars-sdk.css">
+    <link rel="stylesheet" type="text/css" href="../../lcars-sdk/widgets/sdk_solid-level-bar/solid-level-bar.css">
+    <link rel="stylesheet" type="text/css" href="../../lcars-sdk/widgets/sdk_default-bracket/default-bracket.css">
+    <link rel="stylesheet" type="text/css" href="../../lcars-sdk/widgets/sdk_default-bar-frame/default-bar-frame.css">
+    <link rel="stylesheet" type="text/css" href="../../lcars-sdk/widgets/sdk_scroll-button/scroll-button.css">
+
+    <!-- Color Theme CSS-->    
+    <link rel="stylesheet" type="text/css" href="../../lcars-sdk/themes/sdk_theme-default.css"> 
+
+    <!-- Project Specific CSS-->    
+    <link rel="stylesheet" type="text/css" href="module.css">
+
+    <!-- Project Specific Theme CSS-->    
+    <link rel="stylesheet" type="text/css" href="theme.css">
+      
+</head>
+
+<body ontouchstart="" onload="">
+
+<div class="wrapper row flex-h" id="wpr_viewport">
+    <!--Left Column-->
+    <div class="column flex-v">
+        <!--Bracket-->
+        <div class="wrapper sdk default-bracket">
+            <div class="wrapper content"></div>
+            <div class="elbow top-left small bg-green-1 no-event horizontal">
+                <div class="bar">
+                    <div class="block"></div>
+                </div>
+                <div class="bar"></div>
+            </div>
+            <div class="elbow top-right small bg-green-4 no-event horizontal">
+                <div class="bar">
+                    <div class="block"></div>
+                </div>
+                <div class="bar"></div>
+            </div>
+            <div class="elbow bottom-left small bg-green-1 no-event horizontal">
+                <div class="bar">
+                    <div class="block"></div>
+                </div>
+                <div class="bar"></div>
+            </div>
+            <div class="elbow bottom-right small bg-green-3 no-event horizontal">
+                <div class="bar">
+                    <div class="block"></div>
+                </div>
+                <div class="bar"></div>
+            </div>
+            <div class="column flex-v">
+                <div class="bar flex-c-v bg-green-2"></div>
+                <div class="bar flex-c-v bg-green-1">
+                    <div class="bar animated bg-white"></div>
+                </div>
+                <div class="bar flex-c-v bg-blue-4"></div>
+            </div>
+            <div class="column flex-v">
+                <div class="bar flex-c-v bg-green-4"></div>
+                <div class="bar flex-c-v bg-green-1"></div>
+                <div class="bar flex-c-v bg-blue-4"></div>
+            </div>
+            <div class="column flex-v">
+                <div class="bar flex-c-v bg-green-3"></div>
+                <div class="bar flex-c-v bg-blue-3">
+                    <div class="bar animated bg-white"></div>
+                </div>
+                <div class="bar flex-c-v bg-green-3"></div>
+            </div>
+            <div class="column flex-v">
+                <div class="bar flex-c-v bg-green-1"></div>
+                <div class="bar flex-c-v bg-green-3"></div>
+                <div class="bar flex-c-v bg-green-4"></div>
+            </div>
+        </div>
+        <!--First Button Group-->
+        <div class="wrapper flex-h button-wrap">
+            <div class="button bg-blue-3 round-left"></div>
+            <div class="button bg-blue-4"></div>
+            <div class="button bg-green-4 round-left"></div>
+            <div class="button bg-blue-2"></div>
+            <div class="button bg-green-4 round-left"></div>
+            <div class="button bg-green-2"></div>
+        </div>
+        <!--Column Spacer-->
+        <div class="wrapper" style="max-height: 190px; flex: 4;"></div>
+        <!--Second Button Group-->
+        <div class="wrapper flex-h button-wrap">
+            <div class="button bg-green-2 round-left"></div>
+            <div class="button bg-blue-2"></div>
+            <div class="button bg-blue-4 round-left"></div>
+            <div class="button bg-green-2"></div>
+            <div class="button bg-blue-1 round-left ra_g1"></div>
+            <div class="button bg-blue-4"></div>
+        </div>
+        <!--Column Spacer-->
+        <div class="wrapper spacer flex-c-v" style=" margin:0;"></div>
+        <!--Last Complex Button-->
+        <div class="complex-button">
+            <div class="cap round-left bg-green-4"></div>
+            <div class="block bg-green-4"></div>
+            <div class="text" style="width: 65px;">55</div>
+            <div class="button round-right bg-blue-1"></div>
+        </div>
+    </div>
+    <!--Button Column-->    
+    <div class="wrapper column flex-v" style="min-width:150px;">
+        <div class="button bg-blue-1"></div>
+        <div class="button bg-blue-2"></div>
+        <div class="button bg-blue-4 step-two"></div>
+        <div class="button bg-green-3 step-three"></div>
+        <div class="button bg-blue-4 step-three"></div>
+        <div class="button bg-blue-3"></div>
+        <div class="button bg-green-3"></div>
+        <div class="button bg-blue-3"></div>
+        <div class="button bg-blue-2 flex-c-v"></div>
+    </div>
+    <!--Main Frame-->    
+    <div class="wrapper column flex-v flex-c-h" id="wpr_mainView">
+        <!--Header-->    
+        <div class="row header flex-h">
+            <!--Header Column-->    
+            <div class="column flex-v">
+                <div class="button bg-green-3 step-two"  data-label="LCARS"></div>
+                <div class="elbow bottom-left bg-green-4 flex-c-v default horizontal">
+                    <div class="bar">
+                        <div class="block"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper flex-c-h flex-v">
+                <!--Header Content-->    
+                <div class="wrapper content flex-c-v">
+                    <div class="title">LCARS Hardcode - API DISABLED</div>
+                    <div class="wrapper flex-h button-wrap">
+                        <div class="button bg-green-1 round"></div>
+                        <div class="button bg-green-3 round"></div>
+                        <div class="button bg-blue-1 round"></div>
+                        <div class="button bg-green-4 round"></div>
+                        <div class="button bg-blue-3 round"></div>
+                        <a class="button bg-green-1 round blink" target="_blank" data-label="Docs" href="https://github.com/Aricwithana/LCARS-SDK/wiki"></a>
+                    </div>
+                </div>
+                <!--Header Bar Row-->    
+                <div class="row frame flex-h">
+                    <div class="bar bg-blue-2"></div>
+                    <div class="bar bg-blue-1"></div>
+                    <div class="bar bg-blue-3"></div>
+                    <div class="bar bg-green-1 flex-c-h"></div>
+                    <div class="bar bg-blue-3"></div>
+                    <div class="bar bg-blue-2"></div>
+                    <div class="bar bg-blue-3"></div>
+                </div>
+            </div>
+        </div>
+        <!--Body-->    
+        <div class="wrapper main flex-h flex-c-v">
+            <!--Body Button Column-->    
+            <div class="wrapper column flex-v">
+                <div class="elbow top-left bg-green-4 step-two default horizontal">
+                    <div class="bar">
+                        <div class="block"></div>
+                    </div>
+                </div>
+                <div class="button bg-blue-4"></div>
+                <div class="button bg-green-4 step-two"></div>
+                <div class="button bg-green-1"></div>
+                <div class="button bg-green-2 step-two"></div>
+                <div class="button bg-blue-4 flex-c-v" data-altLabel="LCARS"></div>
+            </div>
+            <!--Body Bar Row-->    
+            <div class="column flex-c-h flex-v">
+                <div class="row flex-h frame">
+                    <div class="bar bg-green-4"></div>
+                    <div class="bar bg-blue-4 small"></div>
+                    <div class="bar bg-blue-1"></div>
+                    <div class="bar bg-green-3 flex-c-h"></div>
+                    <div class="bar bg-blue-2"></div>
+                    <div class="bar bg-green-3"></div>
+                    <div class="bar bg-green-1"></div>
+                </div>
+                <!--Body Content-->    
+                <div class="wrapper content flex-c-v" style=" overflow:auto;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
